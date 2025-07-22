@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Our Blog | Voxen Tech LLP - Software, Website & Mobile App Experts
+    </title>
+    <meta
+      name="description"
+      content="Explore the latest insights in tech, design, and development from the experts at Voxen Tech LLP."
+    />
+    <link rel="icon" type="image/png" href="favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. Global Styles & Variables --- */
+      :root {
+        --primary-purple: #8b4a84;
+        --dark-purple: #2d2640;
+        --text-light: #f0f0f0;
+        --text-muted: #a9a4b3;
+        --card-border: #e0e0e0;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #fff;
+        color: #333;
+        overflow-x: hidden;
+        padding-top: 80px; /* Global offset for fixed header */
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      section {
+        padding: clamp(2.5rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
+      }
+
+      /* --- 2. Header & Navigation --- */
+      .header {
+        background-color: var(--dark-purple);
+        padding: 0 clamp(1rem, 5vw, 3rem);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-container {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .logo-icon img {
+        width: 48px;
+        height: 48px;
+      }
+
+      .logo-text {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+      }
+
+      .nav-item {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        padding-bottom: 5px;
+        border-bottom: 3px solid transparent;
+        transition: color 0.3s ease, border-bottom-color 0.3s ease;
+      }
+
+      .nav-item:hover {
+        color: white;
+      }
+
+      .nav-item.active {
+        color: white;
+        font-weight: 600;
+        border-bottom-color: var(--primary-purple);
+      }
+
+      .contact-btn {
+        background: #5c4b69;
+        color: white;
+        padding: 0.75rem 1.75rem;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .contact-btn:hover {
+        background: var(--primary-purple);
+        transform: translateY(-2px);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #cfb8d9;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      /* --- 3. Hero Section --- */
+      .hero-container {
+        padding-top: 0;
+        /* UPDATED: This makes the hero section fill the entire screen height below the header */
+        height: calc(100vh - 80px);
+        min-height: 600px; /* Ensures a decent height on very wide but short screens */
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        background: linear-gradient(
+            rgba(29, 17, 46, 0.7),
+            rgba(29, 17, 46, 0.7)
+          ),
+          url("http://googleusercontent.com/file_content/0") no-repeat center
+            center/cover;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        z-index: 1;
+        padding: 1rem;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 8vw, 5rem);
+        font-weight: 700;
+        line-height: 1.1;
+      }
+
+      .hero-title .about-us-heading-highlight {
+        color: var(--primary-purple);
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1rem, 3vw, 1.3rem);
+        max-width: 500px;
+        margin: 1rem auto 0;
+        line-height: 1.6;
+        color: var(--text-light);
+      }
+
+      /* --- 4. Latest Insights (Blog Grid) --- */
+      .latest-insights-section {
+        background: #f9f9f9;
+        padding-top: clamp(2.5rem, 8vw, 4rem);
+      }
+
+      .section-title {
+        color: var(--dark-purple);
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .insights-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 2rem;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .Insightblog-card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .Insightblog-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      }
+
+      .Insightblog-image-wrapper img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+
+      .Insightblog-text-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .Insightblog-date {
+        color: #777;
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .Insightblog-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--dark-purple);
+        margin-bottom: 0.75rem;
+      }
+
+      .Insightblog-description {
+        color: #555;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+      }
+
+      .read-article-button {
+        background-color: var(--primary-purple);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        align-self: flex-start;
+        transition: background-color 0.3s ease;
+      }
+
+      .read-article-button:hover {
+        background-color: #6c3a65;
+      }
+
+      /* --- 5. Newsletter Section --- */
+      .newsletter-section {
+        background-color: var(--dark-purple);
+        color: white;
+        text-align: center;
+      }
+
+      .newsletter-title {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        margin-bottom: 1rem;
+      }
+
+      .newsletter-description {
+        max-width: 600px;
+        margin: 0 auto 2rem auto;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      .newsletter-input-button {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        max-width: 500px;
+        margin: 0 auto 1rem auto;
+      }
+
+      .newsletter-email-input {
+        flex-grow: 1;
+        padding: 0.9rem;
+        border-radius: 8px;
+        border: 1px solid #5c4b69;
+        background: #3a2f54;
+        color: white;
+        font-size: 1rem;
+      }
+
+      .newsletter-subscribe-btn {
+        padding: 0.9rem 1.5rem;
+        border: none;
+        background-color: var(--primary-purple);
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      .newsletter-subscribe-btn:hover {
+        background-color: #a03e88;
+      }
+
+      .newsletter-privacy-text {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      /* --- 6. Footer --- */
+      footer {
+        background-color: #1e172f;
+        color: var(--text-muted);
+        padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
+      }
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1280px;
+        margin: 0 auto;
+        gap: 2.5rem;
+      }
+      .footer-column {
+        flex: 1;
+        min-width: 220px;
+      }
+      .footer-column h3 {
+        color: white;
+        margin-bottom: 1.5rem;
+      }
+      .footer-column ul li {
+        margin-bottom: 1rem;
+      }
+      .footer-column a:hover {
+        color: white;
+      }
+      .footer-column-company-details {
+        flex-basis: 350px;
+      }
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .social-icons a {
+        font-size: 1.5rem;
+      }
+      .footer-separator {
+        border-top: 1px solid #333;
+        margin: 3rem auto 2rem;
+        max-width: 1280px;
+      }
+      .footer-bottom {
+        text-align: center;
+      }
+      .legal-links a {
+        margin: 0 0.5rem;
+      }
+
+      /* --- 7. Media Queries for Responsiveness --- */
+      @media (max-width: 768px) {
+        body {
+          padding-top: 70px;
+        }
+
+        .header {
+          height: 70px;
+        }
+
+        .hero-container {
+          height: calc(
+            100vh - 70px
+          ); /* Adjust hero height for smaller header */
+          min-height: 500px;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .nav-menu {
+          position: absolute;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background: rgba(45, 38, 64, 0.98);
+          backdrop-filter: blur(10px);
+          flex-direction: column;
+          gap: 0;
+          padding: 1rem 0;
+          transform: translateY(-100%);
+          visibility: hidden;
+          transition: transform 0.4s ease, visibility 0.4s ease;
+        }
+
+        .nav-menu.active {
+          transform: translateY(0);
+          visibility: visible;
+        }
+
+        .nav-item {
+          padding: 1rem 2rem;
+          width: 100%;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .nav-item.active {
+          border-bottom-color: rgba(255, 255, 255, 0.05);
+          background-color: var(--primary-purple);
+        }
+        .nav-menu .contact-btn {
+          margin: 1rem 2rem 0.5rem;
+          display: block;
+          text-align: center;
+          width: calc(100% - 4rem);
+        }
+
+        .newsletter-input-button {
+          flex-direction: column;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+        .social-icons {
+          justify-content: center;
+        }
+        .footer-logo {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .insights-cards-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header" id="mainHeader">
+      <div class="nav-container">
+        <a href="./index.html" class="logo-section">
+          <div class="logo-icon">
+            <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
+          </div>
+          <div class="logo-text">VOXEN TECH LLP</div>
+        </a>
+        <nav class="nav-menu" id="navMenu">
+          <a href="./index.html" class="nav-item">Home</a>
+          <a href="./about.html" class="nav-item">About</a>
+          <a href="./services.html" class="nav-item">Services</a>
+          <a href="./portfolio.html" class="nav-item">Portfolio</a>
+          <a href="./blog.html" class="nav-item active">Blog</a>
+          <a href="./contactus.html" class="contact-btn">Contact Us</a>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span>Our </span>
+            <span class="about-us-heading-highlight">Blogs</span>
+          </h1>
+          <p class="hero-subtitle">
+            Explore the latest in tech, design, and development.
+          </p>
+        </div>
+      </div>
+
+      <section class="latest-insights-section">
+        <h2 class="section-title">Latest Insights</h2>
+
+        <div class="insights-cards-container">
+          <div class="Insightblog-card">
+            <div class="Insightblog-image-wrapper">
+              <img
+                src="./assets/images/reviews/tile1.png"
+                alt="Stylized image of mobile app development"
+              />
+            </div>
+            <div class="Insightblog-text-content">
+              <p class="Insightblog-date">July 22, 2025 • 5 min read</p>
+              <h3 class="Insightblog-title">
+                Top 5 Trends in Mobile App Development for 2025
+              </h3>
+              <p class="Insightblog-description">
+                Discover the emerging technologies and approaches that will
+                shape mobile app development in the coming years.
+              </p>
+              <button class="read-article-button">Read Article</button>
+            </div>
+          </div>
+          <div class="Insightblog-card">
+            <div class="Insightblog-image-wrapper">
+              <img
+                src="./assets/images/reviews/tile2.png"
+                alt="A lock icon symbolizing digital security"
+              />
+            </div>
+            <div class="Insightblog-text-content">
+              <p class="Insightblog-date">July 15, 2025 • 7 min read</p>
+              <h3 class="Insightblog-title">
+                Essential Security Practices for Mobile App Development
+              </h3>
+              <p class="Insightblog-description">
+                Learn the critical security measures every developer should
+                implement to protect user data and prevent breaches.
+              </p>
+              <button class="read-article-button">Read Article</button>
+            </div>
+          </div>
+          <div class="Insightblog-card">
+            <div class="Insightblog-image-wrapper">
+              <img
+                src="./assets/images/reviews/tile3.png"
+                alt="Abstract representation of an ecommerce platform"
+              />
+            </div>
+            <div class="Insightblog-text-content">
+              <p class="Insightblog-date">July 5, 2025 • 5 min read</p>
+              <h3 class="Insightblog-title">
+                How We Built a Scalable Ecommerce Platform
+              </h3>
+              <p class="Insightblog-description">
+                A deep dive into the architecture and technologies behind our
+                high-performance ecommerce solution.
+              </p>
+              <button class="read-article-button">Read Article</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="newsletter-section">
+        <div class="newsletter-content-wrapper">
+          <h2 class="newsletter-title">Subscribe to Our Newsletter</h2>
+          <p class="newsletter-description">
+            Get the latest tech insights, development tips, and company news
+            delivered straight to your inbox.
+          </p>
+          <div class="newsletter-input-button">
+            <input
+              type="email"
+              class="newsletter-email-input"
+              placeholder="Your email address"
+              aria-label="Your email address"
+            />
+            <button type="submit" class="newsletter-subscribe-btn">
+              Subscribe
+            </button>
+          </div>
+          <p class="newsletter-privacy-text">
+            We respect your privacy. Unsubscribe at any time.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column footer-column-company-details">
+          <div class="footer-logo">
+            <img
+              src="./assets/images/logos/logo.svg"
+              alt="VOXEN TECH LLP Logo"
+              class="footer-logo-img"
+            />
+            <span class="footer-logo-text">VOXEN TECH LLP</span>
+          </div>
+          <p>
+            VOXEN TECH LLP is a leading software development company in Kochi,
+            India, providing full-stack development, ecommerce solutions, mobile
+            app development, and BPO services.
+          </p>
+          <div class="social-icons">
+            <a
+              href="https://www.facebook.com/voxentech"
+              target="_blank"
+              aria-label="Facebook"
+              class="social-icon facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/voxentech"
+              target="_blank"
+              aria-label="Instagram"
+              class="social-icon instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/company/voxentech"
+              target="_blank"
+              aria-label="LinkedIn"
+              class="social-icon linkedin"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./portfolio.html">Portfolio</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./contactus.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Our Services</h3>
+          <ul>
+            <li>
+              <a href="./services.html#web-development">Website Development</a>
+            </li>
+            <li>
+              <a href="./services.html#mobile-app">Mobile App Development</a>
+            </li>
+            <li><a href="./services.html#ecommerce">Ecommerce Solutions</a></li>
+            <li>
+              <a href="./services.html#custom-software">Custom Software</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-column contact-info">
+          <h3>Contact Us</h3>
+          <ul>
+            <li>
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <a href="#" target="_blank"
+                  >VOXEN TECH LLP, Kochi, Kerala, India</a
+                >
+              </p>
+            </li>
+            <li>
+              <p>
+                <i class="fas fa-phone-alt"></i>
+                <a href="tel:+917736126160">+91 7736126160</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-separator"></div>
+
+      <div class="footer-bottom">
+        <p>© 2025 VOXEN TECH LLP. All Rights Reserved.</p>
+        <div class="legal-links">
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const navMenu = document.getElementById("navMenu");
+
+        if (mobileMenuBtn && navMenu) {
+          mobileMenuBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            navMenu.classList.toggle("active");
+            mobileMenuBtn.textContent = navMenu.classList.contains("active")
+              ? "✕"
+              : "☰";
+          });
+        }
+
+        document.addEventListener("click", function (e) {
+          if (
+            navMenu.classList.contains("active") &&
+            !navMenu.contains(e.target)
+          ) {
+            navMenu.classList.remove("active");
+            mobileMenuBtn.textContent = "☰";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

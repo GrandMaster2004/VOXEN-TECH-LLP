@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/portfolio.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/theme.css" />
+    <link rel="stylesheet" href="./assets/css/tablet.css" />
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <meta
+      name="description"
+      content="Voxen Tech LLP is a leading software, website, and mobile app development company in India. We offer end-to-end branding, digital marketing, social media management, and BPO solutions to grow your business online."
+    />
+    <title>
+      Top Software, Website & Mobile App Development Company | Branding &
+      Digital Marketing Experts – Voxen Tech LLP
+    </title>
+
+    <style>
+      /* --- Global & Base Styles --- */
+      :root {
+        --primary-purple: #8b4a84;
+        --dark-purple: #2d2640;
+        --card-bg: #877c8b;
+        --light-accent: #e5c4c4;
+      }
+      html,
+      body {
+        max-width: 100vw;
+        overflow-x: hidden;
+        font-family: "Poppins", sans-serif; /* Consistent font family */
+      }
+
+      /* --- Header & Navigation (Copied from services.html) --- */
+      .header {
+        background-color: var(--dark-purple);
+        padding: 1rem 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      .nav-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon img {
+        width: 48px;
+        height: 48px;
+      }
+      .logo-text {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-item {
+        color: #a9a4b3;
+        font-size: 1.1rem;
+        text-decoration: none;
+        padding-bottom: 5px;
+        border-bottom: 3px solid transparent;
+        transition: color 0.3s ease;
+      }
+      .nav-item:hover {
+        color: white;
+      }
+      .nav-item.active {
+        color: white;
+        font-weight: 600;
+        border-bottom-color: var(--primary-purple);
+      }
+      .contact-btn {
+        background: #5c4b69;
+        color: white;
+        padding: 0.75rem 1.75rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+      }
+      .contact-btn:hover {
+        background: var(--primary-purple);
+        transform: translateY(-2px);
+      }
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #cfb8d9;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      /* --- Responsive Styles for Header --- */
+      @media (max-width: 768px) {
+        .header {
+          padding: 1rem;
+        }
+        .nav-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--dark-purple);
+          flex-direction: column;
+          padding: 1rem 0;
+        }
+        .nav-menu.active {
+          display: flex;
+        }
+        .nav-item {
+          padding: 1rem 2rem;
+          width: 100%;
+          border-bottom: none;
+        }
+        .nav-item.active {
+          border-bottom: none;
+        }
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .services-section,
+        .why-choose-voxen-tech-section,
+        .portfolio-sectionhome,
+        .latest-insights-section,
+        .portfolio-section,
+        .client-spotlights-section,
+        .vision-section {
+          width: 100% !important;
+          left: 0 !important;
+          right: 0 !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+      }
+      section {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header" id="mainHeader">
+      <div class="nav-container">
+        <a href="./index.html" class="logo-section">
+          <div class="logo-icon">
+            <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
+          </div>
+          <div class="logo-text">VOXEN TECH LLP</div>
+        </a>
+        <nav class="nav-menu" id="navMenu">
+          <a href="./index.html" class="nav-item">Home</a>
+          <a href="./about.html" class="nav-item">About</a>
+          <a href="./services.html" class="nav-item">Services</a>
+          <a href="./portfolio.html" class="nav-item active">Portfolio</a>
+          <a href="./blog.html" class="nav-item">Blog</a>
+          <a href="./contactus.html" class="contact-btn">Contact Us</a>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+      </div>
+    </header>
+
+    <div class="hero-container">
+      <div class="banner-slides">
+        <div class="banner-slide active"></div>
+      </div>
+      <div class="hero-content-inner-wrapper">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span>Our</span>
+            <span class="about-us-heading-highlight">Portfolio</span>
+          </h1>
+          <p class="hero-subtitle">
+            Explore how we've helped clients solve <br />
+            complex problems and achieve <br />results through custom digital
+            <br />solutions. <br />
+          </p>
+        </div>
+      </div>
+    </div>
+    <section class="portfolio-section">
+      <div class="main-content-wrapper">
+        <h2 class="section-heading">Portfolio</h2>
+        <div class="portfolio-grid">
+          <div class="portfolio-item">
+            <a href="services.html#web-development">
+              <img
+                src="./assets/images/portfolio/portfolio1.png"
+                alt="Portfolio Image 1"
+              />
+            </a>
+            <div class="portfolio-info-container">
+              <div class="portfolio-text-content">
+                <h3 class="portfolio-title">Ecommerce Solution</h3>
+                <p class="portfolio-description">
+                  A complete ecommerce platform with <br />
+                  product management, payment <br />
+                  gateway integration, and analytics <br />dashboard.
+                </p>
+              </div>
+              <div class="portfolio-buttons">
+                <button class="portfolio-btn">React</button>
+                <button class="portfolio-btn">Node.js</button>
+                <button class="portfolio-btn">MongoDB</button>
+                <button class="portfolio-btn">Stripe</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item">
+            <a href="services.html#web-development">
+              <img
+                src="./assets/images/portfolio/portfolio2.png"
+                alt="Portfolio Image 2"
+              />
+            </a>
+            <div class="portfolio-info-container">
+              <div class="portfolio-text-content">
+                <h3 class="portfolio-title">Classified Application</h3>
+                <p class="portfolio-description">
+                  A modern classifieds platform <br />
+                  with advanced search, user <br />
+                  verification, and secure <br />messaging system.
+                </p>
+              </div>
+              <div class="portfolio-buttons">
+                <button class="portfolio-btn">Flutter</button>
+                <button class="portfolio-btn">Firebase</button>
+                <button class="portfolio-btn">Google Maps API</button>
+                <button class="portfolio-btn">AI Moderation</button>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-item">
+            <a href="services.html#web-development">
+              <img
+                src="./assets/images/portfolio/portfolio3.png"
+                alt="Portfolio Image 3"
+              />
+            </a>
+            <div class="portfolio-info-container">
+              <div class="portfolio-text-content">
+                <h3 class="portfolio-title">Trolleylist - Shopping List App</h3>
+                <p class="portfolio-description">
+                  A smart shopping list application with barcode scanning, price
+                  comparison, and store navigation features.
+                </p>
+              </div>
+              <div class="portfolio-buttons">
+                <button class="portfolio-btn">React Native</button>
+                <button class="portfolio-btn">Redux</button>
+                <button class="portfolio-btn">ML Recommendations</button>
+                <button class="portfolio-btn">Barcode API</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item">
+            <a href="services.html#web-development">
+              <img
+                src="./assets/images/portfolio/portfolio4.png"
+                alt="Portfolio Image 4"
+              />
+            </a>
+            <div class="portfolio-info-container">
+              <div class="portfolio-text-content">
+                <h3 class="portfolio-title">Enterprise Resource Planning</h3>
+                <p class="portfolio-description">
+                  Custom ERP solution integrating <br />
+                  inventory, HR, accounting, and <br />CRM modules with
+                  AI-powered <br />
+                  analytics.
+                </p>
+              </div>
+              <div class="portfolio-buttons">
+                <button class="portfolio-btn">Java</button>
+                <button class="portfolio-btn">Angular</button>
+                <button class="portfolio-btn">PostgreSQL</button>
+                <button class="portfolio-btn">AI Analytics</button>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-item">
+            <a href="services.html#web-development">
+              <img
+                src="./assets/images/portfolio/portfolio6.png"
+                alt="Portfolio Image 5"
+              />
+            </a>
+            <div class="portfolio-info-container">
+              <div class="portfolio-text-content">
+                <h3 class="portfolio-title">Healthcare Management System</h3>
+                <p class="portfolio-description">
+                  HIPAA-compliant platform for <br />
+                  patient records, appointment <br />
+                  scheduling, and telemedicine <br />
+                  capabilities.
+                </p>
+              </div>
+              <div class="portfolio-buttons">
+                <button class="portfolio-btn">Vue.Js</button>
+                <button class="portfolio-btn">Python</button>
+                <button class="portfolio-btn">Django</button>
+                <button class="portfolio-btn">WebRTC</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item">
+            <a href="services.html#web-development">
+              <img
+                src="./assets/images/portfolio/portfolio5.png"
+                alt="Portfolio Image 6"
+              />
+            </a>
+            <div class="portfolio-info-container">
+              <div class="portfolio-text-content">
+                <h3 class="portfolio-title">Logistics Tracking System</h3>
+                <p class="portfolio-description">
+                  Real-time shipment tracking with <br />route optimization,
+                  driver <br />management, and IoT <br />
+                  integration.
+                </p>
+              </div>
+              <div class="portfolio-buttons">
+                <button class="portfolio-btn">React</button>
+                <button class="portfolio-btn">Node js</button>
+                <button class="portfolio-btn">Google Maps API</button>
+                <button class="portfolio-btn">MongoDB</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="client-spotlights-section">
+      <div class="main-content-wrapper">
+        <h2 class="section-heading">Client Spotlights</h2>
+      </div>
+
+      <div class="client-spotlights-slider-wrapper">
+        <div class="spotlights-track">
+          <div class="spotlight-slide">
+            <img
+              src="./assets/images/portfolio/spotlight1.png"
+              alt="Client Spotlight 1"
+              class="spotlight-image"
+            />
+          </div>
+          <div class="spotlight-slide">
+            <img
+              src="./assets/images/portfolio/spotlight2.png"
+              alt="Client Spotlight 2"
+              class="spotlight-image"
+            />
+          </div>
+          <div class="spotlight-slide">
+            <img
+              src="./assets/images/portfolio/spotlight1.png"
+              alt="Client Spotlight 3"
+              class="spotlight-image"
+            />
+          </div>
+          <div class="spotlight-slide">
+            <img
+              src="./assets/images/portfolio/spotlight1.png"
+              alt="Client Spotlight 4"
+              class="spotlight-image"
+            />
+          </div>
+          <div class="spotlight-slide">
+            <img
+              src="./assets/images/portfolio/spotlight1.png"
+              alt="Client Spotlight 5"
+              class="spotlight-image"
+            />
+          </div>
+          <div class="spotlight-slide">
+            <img
+              src="./assets/images/portfolio/spotlight1.png"
+              alt="Client Spotlight 6"
+              class="spotlight-image"
+            />
+          </div>
+        </div>
+        <button
+          class="next-spotlight-button"
+          aria-label="Next client spotlight"
+        >
+          →
+        </button>
+      </div>
+    </section>
+
+    <section class="vision-section">
+      <div class="vision-content-wrapper">
+        <div class="vision-animated-item vision-animate-left">
+          <h3 class="vision-title">Let's Turn Your Vision Into Reality</h3>
+        </div>
+
+        <div class="vision-animated-item vision-animate-right">
+          <p class="vision-description">
+            Let's discuss how we can help transform your ideas into powerful
+            digital solutions.
+          </p>
+        </div>
+
+        <div class="vision-buttons-row">
+          <div class="vision-animated-item vision-animate-left">
+            <button class="contact-button vision-specific-button">
+              Contact Us
+            </button>
+          </div>
+          <div class="vision-animated-item vision-animate-right">
+            <button class="contact-button vision-specific-button">
+              Get a Quote
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <link rel="stylesheet" href="./Components/footer.css" />
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column footer-column-company-details">
+          <div class="footer-logo">
+            <img
+              src="./assets/images/logos/logo.svg"
+              alt="VOXEN TECH LLP Logo"
+              class="footer-logo-img"
+            />
+            <span class="footer-logo-text">VOXEN TECH LLP</span>
+          </div>
+          <p>
+            VOXEN TECH LLP is a leading software development company in Kochi,
+            India, providing full-stack development, ecommerce solutions, mobile
+            app development, and BPO services.
+          </p>
+          <div class="social-icons">
+            <a
+              href="https://www.facebook.com/voxentech"
+              target="_blank"
+              aria-label="Facebook"
+              class="social-icon facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/voxentech"
+              target="_blank"
+              aria-label="Instagram"
+              class="social-icon instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/company/voxentech"
+              target="_blank"
+              aria-label="LinkedIn"
+              class="social-icon linkedin"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./portfolio.html">Portfolio</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./contactus.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Our Services</h3>
+          <ul>
+            <li>
+              <a href="./services.html#web-development">Website Development</a>
+            </li>
+            <li>
+              <a href="./services.html#mobile-app">Mobile App Development</a>
+            </li>
+            <li><a href="./services.html#ecommerce">Ecommerce Solutions</a></li>
+            <li>
+              <a href="./services.html#custom-software">Custom Software</a>
+            </li>
+            <li>
+              <a href="./services.html#api-development">API Development</a>
+            </li>
+            <li><a href="./services.html#bpo-services">BPO Services</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column contact-info">
+          <h3>Contact Us</h3>
+          <p>
+            <i class="fas fa-map-marker-alt"></i>
+            <a
+              href="https://maps.google.com/?q=Kochi,Kerala,India"
+              target="_blank"
+              >VOXEN TECH LLP, Kochi, Kerala, India</a
+            >
+          </p>
+          <p>
+            <i class="fas fa-phone-alt"></i>
+            <a href="tel:+917736126160">+91 7736126160</a>
+          </p>
+          <p>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
+          </p>
+          <p><i class="fas fa-clock"></i> Mon-Fri: 9AM – 6PM</p>
+        </div>
+      </div>
+
+      <div class="footer-separator"></div>
+
+      <div class="footer-bottom">
+        <p>© 2025 VOXEN TECH LLP. All Rights Reserved.</p>
+        <div class="legal-links">
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+    <script src="./assets/script/main.js"></script>
+    <script src="./assets/script/portfolio.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const navMenu = document.getElementById("navMenu");
+
+        mobileMenuBtn.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+          mobileMenuBtn.textContent = navMenu.classList.contains("active")
+            ? "✕"
+            : "☰";
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.innerWidth <= 768) {
+          document.querySelectorAll(".portfolio-item").forEach(function (card) {
+            card.classList.add("show-hover");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

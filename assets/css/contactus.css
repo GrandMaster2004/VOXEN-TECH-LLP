@@ -1,0 +1,818 @@
+/* Base Styles */
+:root {
+    --primary-color: #711666;
+    --text-color: #FFFFFF; /* Used for hero text and initially for some base elements */
+    --button-primary-bg: #5B2C6F;
+    --button-primary-text: #FFFFFF;
+    --button-secondary-bg: #FFFFFF;
+    --button-secondary-text: #5B2C6F;
+
+    /* Colors for the cards section */
+    --card-bg-color: #877C8B; 
+    --card-text-color: #F0F0F0; 
+    --card-hover-shadow: rgba(0, 0, 0, 0.2);
+    --learn-more-button-bg: #D9D9D9; 
+    --learn-more-button-text: #333333; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    background-color: #ffffff; /* General background color for the page */
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color); /* Default text color, overridden in sections like cards */
+    overflow-x: hidden; /* Prevents horizontal scroll */
+    position: relative; /* Useful for absolute positioning children */
+}
+
+/* Utility Class for Mobile Menu Overlay (used by Navbar's JS, but defined here for main body) */
+body.mobile-menu-open {
+    overflow: hidden; /* Prevents background scrolling when mobile menu is open */
+}
+
+/* --- Hero Banner Styles --- */
+
+/* Main wrapper for the hero section: spans full width, fixed height */
+.hero-container {
+    background-size: cover;
+    background-repeat: no-repeat; 
+    margin-top: 100px;
+    width: 100%;
+    height: 832px;
+    position: relative;
+    overflow: hidden;
+    background-color: #333333;
+    /* REMOVED: justify-content and align-items here, as content will be absolutely positioned */
+}
+
+.banner-slides {
+    background-size: cover;
+    background-repeat: no-repeat; 
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+}
+
+.banner-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+
+.banner-slide.active {
+    opacity: 1;
+}
+
+/* Add your banner images here - Path relative to style.css */
+.banner-slide:nth-child(1) {
+    background-image: url('../images/contactus.png');
+}
+
+/* Inner wrapper for hero content: applies max-width and padding */
+.hero-content-inner-wrapper {
+    /* MODIFIED: Absolute positioning for bottom-right alignment */
+    position: absolute;
+    bottom: 80px; /* Distance from the bottom edge */
+    right: 80px;  /* Distance from the right edge */
+    max-width: 100%; /* Limit the width of the content block */
+    z-index: 50;
+    padding: 0 40px; /* Internal padding */
+    box-sizing: border-box; /* Ensure padding is included in max-width */
+
+    /* NEW: Initial state for "from left" animation */
+    opacity: 0;
+    transform: translateX(-100%); /* Start off-screen to the left */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Animation properties */
+}
+
+/* NEW: Class to trigger animation (added by JavaScript) */
+.hero-content-inner-wrapper.loaded {
+    opacity: 1;
+    transform: translateX(0); /* Move to final position */
+}
+
+.hero-content {
+    text-align: left; /* Content remains left-aligned within its wrapper */
+    width: 100%;
+}
+
+.hero-title {
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    font-family: 'Poppins';
+    text-transform: uppercase;
+    text-align: right;
+    white-space: nowrap;
+    
+    /* NEW: Bold shadow effect for the heading */
+    text-shadow:#333333;
+}
+
+.hero-subtitle {
+    text-align: right;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.about-us-heading-highlight {
+    color: #793271;
+}
+
+/* ... (Your existing Main Content Wrapper styles) ... */
+
+/* --- Responsive Adjustments for Hero Banner --- */
+@media (max-width: 992px) { /* Tablets */
+    .hero-content-inner-wrapper {
+        bottom: 60px; /* Adjust positioning */
+        right: 60px;
+        max-width: 500px; /* Reduce max-width */
+        padding: 0 30px;
+    }
+    .hero-title {
+        font-size: 55px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Adjust shadow for smaller text */
+    }
+    .hero-subtitle {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) { /* Smaller tablets and large phones */
+    .hero-content-inner-wrapper {
+        bottom: 40px;
+        right: 40px;
+        max-width: 90%; /* Allow content to take more width on smaller screens */
+        padding: 0 20px;
+    }
+    .hero-title {
+        font-size: 45px;
+        margin-bottom: 20px;
+    }
+    .hero-subtitle {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile phones */
+    .hero-container {
+        height: 600px; /* Reduce hero height for smaller screens */
+    }
+    .hero-content-inner-wrapper {
+        bottom: 20px;
+        right: 20px;
+        padding: 0 15px;
+    }
+    .hero-title {
+        font-size: 35px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        white-space: normal !important;
+        text-align: center !important;
+    }
+    .hero-content {
+        text-align: center !important;
+    }
+}
+
+/* --- Contact Section --- */
+.contact-section {
+    padding: 80px 0; /* Vertical spacing */
+    background-color: #F8F8F8; /* Light background for contrast if content doesn't cover all */
+    overflow: hidden; /* Important for animation transitions */
+}
+
+.contact-content-wrapper {
+    max-width: 1280px; /* Max width for the entire section content */
+    margin: 0 auto; /* Center the content wrapper */
+    padding: 0 20px; /* Horizontal padding for responsiveness */
+    display: flex;
+    justify-content: center; /* Center columns when they don't fill max-width */
+    align-items: flex-start; /* Align columns to the top */
+    gap: 40px; /* Space between left and right columns */
+}
+
+/* --- Left Column (Contact Info & Follow Us) --- */
+.contact-left-column {
+    display: flex;
+    flex-direction: column; /* Stack contact info and follow us boxes */
+    gap: 40px; /* Space between the two left boxes */
+    flex-shrink: 0; /* Prevent shrinking */
+    width: 415px; /* Fixed width as per the container specification */
+    box-sizing: border-box; /* Include padding/border in width */
+
+    opacity: 0;
+    transform: translateX(-100px); /* Start off-screen to the left */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.contact-info-box {
+    background-color: #2D2640; /* Background color as requested */
+    width: 100%; /* Fill parent column */
+    height: 416px; /* Fixed height as requested */
+    padding: 30px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Distribute content vertically */
+    box-sizing: border-box;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: center; /* Align icon and text vertically */
+    gap: 15px; /* Space between icon and text */
+}
+
+.contact-icon {
+    width: 54px; /* Icon size as requested */
+    height: 61px; /* Icon size as requested */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.contact-text a {
+    color: #FFFFFF; /* Link color */
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    line-height: 1px;
+    display: block; /* Make links block for line breaks */
+}
+.contact-text span,
+.contact-text.address {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.contact-text a:hover {
+    text-decoration: underline;
+}
+
+.follow-us-box {
+    background-color: #2D2640; /* Background color as requested */
+    width: 100%; /* Fill parent column */
+    height: 346px; /* Fixed height as requested */
+    padding: 30px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Distribute content vertically */
+    align-items: center; /* Center content horizontally */
+    box-sizing: border-box;
+}
+
+.follow-us-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.social-icons-wrapper {
+    display: flex;
+    gap: 20px; /* Space between social icons */
+    justify-content: center;
+}
+
+.social-icon {
+    width: 52px; /* Social icon size as requested */
+    height: 52px; /* Social icon size as requested */
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px); /* Simple hover effect */
+}
+
+
+/* --- Right Column (Contact Form) --- */
+.contact-form-box {
+    background-color: #2D2640; /* Background color as requested */
+    width: 713px; /* Fixed width as requested */
+    height: 799px; /* Fixed height as requested */
+    padding: 40px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    flex-shrink: 0; /* Prevent shrinking */
+    box-sizing: border-box;
+    display: flex; /* Use flex to manage form internal spacing */
+    flex-direction: column;
+    justify-content: space-around; /* Distribute form elements vertically */
+
+    opacity: 0;
+    transform: translateX(100px); /* Start off-screen to the right */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between form rows/elements */
+    height: 100%; /* Ensure form takes full height of its box */
+}
+
+.form-row-half {
+    display: flex;
+    gap: 29px; /* Space between first name and last name inputs */
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allow each group to take equal space in a row */
+}
+
+.form-group label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-input-half {
+    width: 292px; /* Input width as requested */
+    height: 66px; /* Input height as requested */
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Slightly transparent white border */
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white background */
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+    flex-grow: 1; /* Allow it to grow in flex-row */
+}
+
+.form-input-full,
+.form-textarea {
+    width: 624px; /* Input width as requested */
+    height: 66px; /* Input height as requested */
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 23px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-textarea {
+    height: 174px; /* Textarea height as requested */
+    resize: vertical; /* Allow vertical resizing */
+}
+
+/* Placeholder color for form inputs */
+.form-input-half::placeholder,
+.form-input-full::placeholder,
+.form-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form-input-half:focus,
+.form-input-full:focus,
+.form-textarea:focus {
+    border-color: #BAA9C1; /* Highlight on focus */
+}
+
+.send-message-btn {
+    width: 624px; /* Button width as requested */
+    height: 66px; /* Button height as requested */
+    background-color: #713169;
+    color: #fff !important; /* Dark text on light button */
+    border: none;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    align-self: flex-end; /* Align button to the right if form flex direction is column */
+    margin-top: auto; /* Push button to the bottom if there's extra space */
+}
+
+.send-message-btn:hover {
+    background-color: #A093AB;
+    color: #2D2640;
+}
+
+
+/* --- Animation Trigger Class (.loaded) --- */
+/* This class is added by JavaScript when the section scrolls into view */
+.contact-section.loaded .contact-left-column,
+.contact-section.loaded .contact-form-box {
+    opacity: 1;
+    transform: translateX(0); /* Animate to final position */
+}
+
+/* Stagger animation delays for a cascading effect */
+.contact-section.loaded .contact-left-column { transition-delay: 0s; } /* Left column first */
+.contact-section.loaded .contact-form-box { transition-delay: 0.2s; } /* Right column slightly after */
+
+
+/* --- Responsive Adjustments for Contact Section --- */
+@media (max-width: 1200px) { /* Adjust spacing for slightly smaller desktops */
+    .contact-content-wrapper {
+        gap: 30px;
+    }
+    .contact-left-column,
+    .contact-form-box {
+        width: 100%; /* Allow them to take full width */
+        max-width: 500px; /* Limit their max width when stacked */
+        margin: 0 auto; /* Center individual columns when stacked */
+    }
+    .contact-left-column {
+        height: auto; /* Allow height to adjust on smaller screens */
+    }
+    .contact-info-box {
+        height: auto; /* Allow height to adjust */
+        padding: 25px;
+    }
+    .follow-us-box {
+        height: auto; /* Allow height to adjust */
+        padding: 25px;
+    }
+    .contact-form-box {
+        height: auto; /* Allow height to adjust for form */
+        padding: 30px;
+    }
+    .contact-form {
+        gap: 20px;
+    }
+    .form-input-half,
+    .form-input-full,
+    .form-textarea,
+    .send-message-btn {
+        width: 100%; /* Make all form fields and button full width */
+        height: 60px; /* Slightly reduce height */
+    }
+    .form-textarea {
+        height: 150px; /* Adjust textarea height */
+    }
+}
+
+@media (max-width: 992px) { /* Tablets and smaller desktops */
+    .contact-section {
+        padding: 60px 0;
+    }
+    .contact-content-wrapper {
+        flex-direction: column; /* Stack left and right columns vertically */
+        align-items: center; /* Center the stacked columns */
+        gap: 60px; /* Space between stacked columns */
+    }
+    .contact-left-column {
+        gap: 30px; /* Space between contact info and follow us boxes */
+    }
+    .contact-detail .contact-text a,
+    .contact-detail .contact-text span,
+    .contact-detail .contact-text.address {
+        font-size: 16px; /* Slightly smaller text */
+    }
+    .follow-us-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 576px) { /* Small mobile devices */
+    .contact-section {
+        padding: 40px 0;
+    }
+    .contact-content-wrapper {
+        padding: 0 15px;
+        gap: 40px;
+    }
+    .contact-left-column {
+        width: 100%;
+        max-width: none; /* No max width, let it shrink with padding */
+    }
+    .contact-info-box,
+    .follow-us-box,
+    .contact-form-box {
+        padding: 20px; /* Reduce padding inside boxes */
+        border-radius: 8px;
+    }
+    .contact-detail .contact-icon {
+        width: 45px;
+        height: 50px;
+    }
+    .contact-detail .contact-text a,
+    .contact-detail .contact-text span,
+    .contact-detail .contact-text.address {
+        font-size: 14px;
+    }
+    .follow-us-title {
+        font-size: 24px;
+    }
+    .social-icon {
+        width: 45px;
+        height: 45px;
+    }
+    .contact-form {
+        gap: 15px;
+    }
+    .form-group label {
+        font-size: 14px;
+    }
+    .form-row-half {
+        flex-direction: column; /* Stack first name / last name inputs */
+        gap: 15px; /* Space between stacked inputs */
+    }
+    .form-input-half,
+    .form-input-full,
+    .form-textarea,
+    .send-message-btn {
+        height: 50px; /* Further reduce height */
+        font-size: 14px;
+    }
+    .form-textarea {
+        height: 120px; /* Adjust textarea height */
+    }
+}
+
+/* --- Find Us on Map Section --- */
+.map-section {
+    padding: 80px 0; /* Vertical spacing */
+    background-color: #FFFFFF; /* White background, adjust if needed */
+    text-align: center; /* Center content (heading and image) */
+}
+
+/* Reusing a common section heading style if you have one */
+.map-section .section-heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: 29px;
+    font-weight: 700;
+    margin-bottom: 60px; /* Space below the heading */
+    color: #333; /* Dark text color */
+}
+
+.map-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 1160px; /* Max width as requested */
+    height: 0; /* Important for aspect ratio trick */
+    padding-bottom: calc(494 / 1160 * 100%); /* Maintain 1160:494 aspect ratio */
+    margin: 0 auto; /* Center the image container */
+    overflow: hidden; /* Hide anything outside the aspect ratio */
+    border-radius: 10px; /* Optional: Slightly rounded corners for the map */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+.map-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+    display: block; /* Remove extra space below image if it's inline */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) { /* Tablets and smaller desktops */
+    .map-section .section-heading {
+        font-size: 38px;
+        margin-bottom: 40px;
+    }
+    .map-image-container {
+        padding: 0 15px; /* Add some padding to the container itself on smaller screens */
+        max-width: 90%; /* Allow image to be slightly smaller on tablets */
+    }
+}
+
+@media (max-width: 768px) { /* Smaller tablets */
+    .map-section {
+        padding: 60px 0;
+    }
+    .map-section .section-heading {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+    .map-image-container {
+        max-width: 100%; /* Take full width of parent on smaller screens */
+    }
+}
+
+@media (max-width: 480px) { /* Mobile phones */
+    .map-section {
+        padding: 40px 0;
+    }
+    .map-section .section-heading {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+    .map-image-container {
+        border-radius: 5px; /* Smaller border-radius on mobile */
+    }
+}
+/* --- Vision & Reality Section --- */
+.vision-section {
+    margin-top: 100px;
+    height: 501px; /* Fixed height as requested */
+    background-color: #2D2640; /* Dark background color */
+    color: #FFFFFF; /* Default text color for the section */
+    display: flex;
+    justify-content: center; /* Center the main content block horizontally */
+    align-items: center; /* Center the main content block vertically */
+    overflow: hidden; /* Crucial for animation */
+    margin-bottom: 60px;
+}
+
+.vision-content-wrapper {
+    max-width: 900px; /* Max width for the entire content block */
+    width: 100%; /* Ensures it fills available width */
+    padding: 0 40px; /* Horizontal padding */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Stack children vertically (title, description, buttons row) */
+    align-items: center; /* Center children horizontally within this wrapper */
+    gap: 20px; /* Space between title, description, and buttons row */
+    text-align: center; /* Ensure text content aligns centrally */
+}
+
+/* --- Base styles for all animating items --- */
+.vision-animated-item {
+    opacity: 0; /* Initial state: hidden */
+    /* Transition applied directly in specific classes below for delay control */
+    width: 100%; /* Ensure items take full width of wrapper to animate consistently */
+    display: flex; /* Allow content inside to be centered */
+    justify-content: center; /* Center content horizontally within the animating item */
+    box-sizing: border-box; /* Include padding/border in width */
+}
+
+/* --- Animation from Left --- */
+.vision-animate-left {
+    transform: translateX(-100%); /* Start off-screen to the left */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* --- Animation from Right --- */
+.vision-animate-right {
+    transform: translateX(100%); /* Start off-screen to the right */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* --- Staggered Animation Delays (applied when revealed) --- */
+/* This will target specific instances of the animation classes */
+/* Adjust these delays as needed for the desired sequence */
+.vision-section.revealed .vision-animated-item:nth-child(1).vision-animate-left { /* Title */
+    transition-delay: 0.2s;
+}
+.vision-section.revealed .vision-animated-item:nth-child(2).vision-animate-right { /* Description */
+    transition-delay: 0.4s;
+}
+.vision-section.revealed .vision-buttons-row .vision-animated-item:nth-child(1).vision-animate-left { /* Contact Us Button */
+    transition-delay: 0.6s;
+}
+.vision-section.revealed .vision-buttons-row .vision-animated-item:nth-child(2).vision-animate-right { /* Get a Quote Button */
+    transition-delay: 0.8s;
+}
+
+/* --- Final state for revealed items --- */
+.vision-section.revealed .vision-animated-item {
+    opacity: 1;
+    transform: translateX(0); /* Move to original position */
+}
+
+
+/* --- Specific Styles for Title, Description --- */
+.vision-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 41px;
+    font-weight: 700;   
+    line-height: 1.2;
+    margin: 0; /* Managed by parent container's gap */
+    color: #FFFFFF;
+}
+
+.vision-description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0; /* Managed by parent container's gap */
+    color: #D9D9D9;
+    max-width: 700px; /* Limit description width for readability */
+}
+
+/* --- Buttons Row --- */
+.vision-buttons-row {
+    display: flex;
+    justify-content: center; /* Center the buttons within this row */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    width: 100%;
+    flex-wrap: nowrap; 
+    /* Ensure it spans the width of its parent */
+}
+
+/* --- Specific button style for this section --- */
+.vision-specific-button {
+    width: 231px; /* Fixed width as requested */
+    height: 57px; /* Fixed height as requested */
+    background-color: #BAA9C1; /* Specific background color */
+    color: #333; /* Text color for contrast */
+    border: none;
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.vision-specific-button:hover {
+    background-color: #BAA9C1; /* A darker purple for hover */
+    color: #FFFFFF;
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+
+/* --- Responsive adjustments for Vision & Reality Section --- */
+@media (max-width: 992px) { /* Tablets */
+    .vision-section {
+        height: auto; /* Allow height to adjust */
+        padding: 60px 0;
+    }
+    .vision-content-wrapper {
+        gap: 15px; /* Adjust gap for smaller screens */
+        padding: 0 30px;
+    }
+    .vision-title {
+        font-size: 38px;
+    }
+    .vision-description {
+        font-size: 18px;
+    }
+    .vision-specific-button {
+        width: 200px; /* Adjust button width */
+        height: 50px;
+        font-size: 15px;
+    }
+    .vision-buttons-row {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) { /* Smaller tablets and large phones */
+    .vision-title {
+        font-size: 32px;
+    }
+    .vision-description {
+        font-size: 16px;
+    }
+    .vision-specific-button {
+        width: 180px;
+        height: 45px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile phones */
+    .vision-title {
+        font-size: 28px;
+    }
+    .vision-description {
+        font-size: 14px;
+    }
+    .vision-buttons-row {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px; /* Adjust gap for stacked buttons */
+    }
+    .vision-specific-button {
+        width: 100%; /* Full width buttons on very small screens */
+        max-width: 250px; /* Limit max width for full-width buttons */
+        height: 40px;
+        font-size: 13px;
+    }
+}
+section {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}

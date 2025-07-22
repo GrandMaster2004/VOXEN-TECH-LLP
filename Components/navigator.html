@@ -1,0 +1,53 @@
+<!-- Navigation Component -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="../index.html">
+                <img src="../assets/images/logo.png" alt="VOXEN TECH LLP Logo">
+                <span>VOXEN TECH LLP</span>
+            </a>
+        </div>
+        
+        <div class="nav-links">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About Us</a>
+            <a href="../services.html" class="nav-link">Services</a>
+            <a href="../portfolio.html" class="nav-link">Portfolio</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+            <a href="../contactus.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="../contactus.html" class="contact-btn">Get in Touch</a>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Highlight current page in navigation
+        const currentPage = window.location.pathname.split('/').pop();
+        const navLinkElements = document.querySelectorAll('.nav-link');
+        
+        navLinkElements.forEach(link => {
+            const linkPage = link.getAttribute('href').split('/').pop();
+            if (linkPage === currentPage) {
+                link.classList.add('active');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinksContainer = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', function() {
+            navLinksContainer.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    });
+</script> 

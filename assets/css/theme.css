@@ -1,0 +1,52 @@
+/* --- CSS Variables for Theming (theme.css) --- */
+:root { /* Default (Light) Theme Variables */
+    --bg-color-primary: #FFFFFF; /* Main background color */
+    --bg-color-secondary: #f0f0f0; /* Secondary background for sections, etc. */
+    --text-color-primary: #333333; /* Main body text color */
+    --heading-color: #2D2640; /* Color for h1, h2, h3, etc. */
+    --link-color: #007bff; /* General link color */
+    --link-hover-color: #0056b3; /* General link hover color */
+    --border-color: #dddddd; /* General border color */
+    --footer-bg-color: #201932; /* Footer background color */
+    --footer-text-color: #FFFFFF; /* Footer text color */
+    --footer-link-color: rgba(255, 255, 255, 0.7); /* Footer link color */
+    --footer-border-color: rgba(255, 255, 255, 0.2); /* Footer separator/border color */
+    --button-primary-bg: #2D2640; /* Main button background */
+    --button-primary-text: #FFFFFF; /* Main button text */
+    --button-primary-hover-bg: #4A405F; /* Main button hover */
+
+    /* Add more variables as needed for other colors you use */
+    /* Example: --card-bg: #FFFFFF; --card-border: #E0E0E0; */
+}
+
+.dark-theme { /* Dark Theme Overrides */
+    --bg-color-primary: #1a1a2e;
+    --bg-color-secondary: #2c2c47;
+    --text-color-primary: #e0e0e0;
+    --heading-color: #f0f0f0;
+    --link-color: #79addc;
+    --link-hover-color: #a7d9ff;
+    --border-color: #444466;
+    --footer-bg-color: #10101a;
+    --footer-text-color: #f0f0f0;
+    --footer-link-color: rgba(255, 255, 255, 0.6);
+    --footer-border-color: rgba(255, 255, 255, 0.1);
+    --button-primary-bg: #6a0578;
+    --button-primary-text: #FFFFFF;
+    --button-primary-hover-bg: #8c069b;
+
+    /* Example: --card-bg: #22223b; --card-border: #3a3a5e; */
+}
+
+/* Add any universal transitions for smooth theme changes */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+h1, h2, h3, h4, h5, h6,
+a, p, span, div, section, article { /* Add other elements that might need color transitions */
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+/* Add specific elements from your design here for transitions, e.g.: */
+.next-spotlight-button, .social-icon {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

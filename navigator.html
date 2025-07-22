@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOXEN TECH LLP - Responsive Header</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a1a;
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    .header {
+      background: rgba(45, 38, 64, 0.95);
+      backdrop-filter: blur(6.73px);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      position: relative;
+    }
+
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      color: white;
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2.75rem;
+      list-style: none;
+    }
+
+    .nav-item {
+      color: #CFB8D9;
+      font-size: 1.125rem;
+      font-family: 'Poppins', sans-serif;
+      text-decoration: none;
+      font-weight: 400;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-item.active {
+      font-weight: 600;
+      color: #E5C4C4;
+    }
+
+    .nav-item:hover {
+      color: #E5C4C4;
+      transform: translateY(-1px);
+    }
+
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: #711666;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-item.active::after,
+    .nav-item:hover::after {
+      width: 100%;
+    }
+
+    .contact-btn {
+      background: #533450;
+      color: #E5C4C4;
+      padding: 0.625rem 1.5rem;
+      border-radius: 9px;
+      text-decoration: none;
+      font-size: 1.125rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .contact-btn:hover {
+      background: #711666;
+      color: white;
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(113, 22, 102, 0.3);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #CFB8D9;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #E5C4C4;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        gap: 2rem;
+      }
+
+      .logo-text {
+        font-size: 1.25rem;
+      }
+
+      .nav-item,
+      .contact-btn {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(45, 38, 64, 0.98);
+        backdrop-filter: blur(10px);
+        border-radius: 0 0 12px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        transform: translateY(-10px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-item {
+        padding: 0.875rem 2rem;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .nav-item:last-child {
+        border-bottom: none;
+      }
+
+      .nav-item::after {
+        display: none;
+      }
+
+      .contact-btn {
+        margin: 1rem 2rem 0.5rem;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .logo-text {
+        font-size: 1.125rem;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 0.75rem;
+      }
+
+      .logo-text {
+        font-size: 1rem;
+      }
+
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <div class="logo-section">
+        <div class="logo-icon">
+          <img src="public/assets/images/logos/logo.svg" alt="Voxen Tech Logo">
+        </div>
+        <div class="logo-text">VOXEN TECH LLP</div>
+      </div>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="services.html" class="nav-item">Services</a>
+        <a href="portfolio.html" class="nav-item">Portfolio</a>
+        <a href="blog.html" class="nav-item">Blog</a>
+        <a href="contactus.html" class="contact-btn">Contact Us</a>
+      </nav>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <script>
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+      }
+    });
+
+    // Close menu when clicking on nav items
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+      });
+    });
+  </script>
+
+  <div id="footer-placeholder"></div>
+  <script src="./assets/script/main.js"></script>
+</body>
+
+</html> 

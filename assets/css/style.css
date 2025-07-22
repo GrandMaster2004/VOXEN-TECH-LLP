@@ -1,0 +1,1961 @@
+/* Base Styles */
+:root {
+  --primary-color: #711666;
+  --text-color: #ffffff; /* Used for herohome text and initially for some base elements */
+  --button-primary-bg: #5b2c6f;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-text: #5b2c6f;
+
+  /* Colors for the cards section */
+  --card-bg-color: #877c8b;
+  --card-text-color: #f0f0f0;
+  --card-hover-shadow: rgba(0, 0, 0, 0.2);
+  --learn-more-button-bg: #d9d9d9;
+  --learn-more-button-text: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  background-color: #ffffff; /* General background color for the page */
+  font-family: "Poppins", sans-serif;
+  /* color: var(--text-color); Default text color, overridden in sections like cards */
+  overflow-x: hidden; /* Prevents horizontal scroll */
+  position: relative; /* Useful for absolute positioning children */
+}
+
+/* Utility Class for Mobile Menu Overlay (used by Navbar's JS, but defined here for main body) */
+body.mobile-menu-open {
+  overflow: hidden; /* Prevents background scrolling when mobile menu is open */
+}
+
+/* --- herohome Banner Styles --- */
+
+/* Main wrapper for the herohome section: spans full width, fixed height */
+.herohome-container {
+  margin-top: 15px;
+  width: 100%;
+  height: 832px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2d2640;
+}
+
+.banner-slides {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.banner-slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
+
+.banner-slide.active {
+  opacity: 1;
+}
+
+/* Add your banner images here - Path relative to style.css */
+.banner-slide:nth-child(1) {
+  background-image: url("../images/banner1.png");
+}
+.banner-slide:nth-child(2) {
+  background-image: url("../images/banner2.png");
+}
+.banner-slide:nth-child(3) {
+  background-image: url("../images/banner3.png");
+}
+.banner-slide:nth-child(4) {
+  background-image: url("../images/banner4.png");
+}
+
+/* Inner wrapper for herohome content: applies max-width and padding, and is centered by parent flexbox */
+.herohome-content-inner-wrapper {
+  width: 100%;
+  max-width: 1280px;
+  position: absolute;
+  z-index: 50;
+  padding: 0 40px;
+  text-align: left;
+}
+
+.herohome-content {
+  text-align: left;
+  width: 100%;
+  max-width: 800px;
+}
+
+.herohome-title {
+  font-size: 65px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  font-family: "Inter", sans-serif;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.herohome-subtitle {
+  font-size: 34px;
+  font-weight: 500;
+  margin-bottom: 50px;
+  text-align: left;
+}
+
+.herohome-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+}
+
+.herohome-button {
+  width: 247px;
+  height: 53px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+
+.primary-button {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+
+.secondary-button {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: 2px solid var(--button-primary-bg);
+}
+
+.herohome-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Main Content Wrapper (for content below full-width banner) --- */
+.main-content-wrapper {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  background-color: #ffffff;
+}
+
+/* --- Service Cards Section --- */
+.cards-section {
+  background-color: #ffffff;
+}
+
+.cards-section-title {
+  font-family: "Inter", sans-serif;
+  font-size: 45px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 50px;
+}
+
+.cards-grid {
+  display: grid;
+  /* Forces exactly 3 columns, distributing space evenly */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-items: center;
+  align-items: stretch;
+}
+
+.card-item {
+  width: 359px; /* EXACT DESIRED WIDTH */
+  height: 392px; /* EXACT DESIRED HEIGHT (initial state) */
+  background-color: var(--card-bg-color);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Crucial for controlling initial display and expansion */
+  position: relative;
+  transition: all 0.4s ease-in-out;
+  display: flex; /* Use flex to stack content at top and image at bottom */
+  flex-direction: column;
+  justify-content: space-between; /* Pushes content to top, image to bottom */
+  color: var(--card-text-color);
+  cursor: pointer;
+}
+
+.card-main-image {
+  /* Style for the large image at the bottom of the card (w-359 h-211) */
+  width: 100%;
+  height: 211px; /* EXACT DESIRED IMAGE HEIGHT */
+  object-fit: cover;
+  border-bottom-left-radius: 12px; /* Match card border radius */
+  border-bottom-right-radius: 12px;
+  flex-shrink: 0; /* Prevents image from shrinking */
+}
+
+.card-content {
+  padding: 30px 20px 20px 20px; /* Adjusted: Increased top padding for the title */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden; /* Keep hidden initially to clip description/button */
+  max-height: 181px; /* 392 (card) - 211 (image) = 181px. This is initial space. */
+  justify-content: center; /* Vertically center icon/title initially */
+}
+
+.card-title-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px; /* Space below title */
+  color: var(--card-text-color);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.card-title-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  margin-right: 15px;
+  filter: invert(
+    1
+  ); /* This makes black/dark icons white. If icons are already white, remove this line. */
+}
+
+.card-description {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Initially not visible */
+  max-height: 0; /* Collapse description height */
+  overflow: hidden;
+  transition: opacity 0.4s ease-in-out, max-height 0.4s ease-in-out,
+    visibility 0.4s ease-in-out;
+  margin-bottom: 25px; /* Space below description */
+  flex-shrink: 0;
+}
+
+.learn-more-button {
+  width: 162px;
+  height: 30px;
+  background-color: var(--learn-more-button-bg);
+  color: var(--learn-more-button-text);
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  opacity: 0; /* Initially hidden */
+  visibility: hidden;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.learn-more-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Card Hover Effect for DESKTOP (applied only on screens wider than 768px) */
+@media (min-width: 769px) {
+  .card-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px var(--card-hover-shadow);
+    height: auto;
+    max-height: 600px;
+    overflow: visible;
+  }
+
+  .card-item:hover .card-content {
+    max-height: 500px;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
+  .card-item:hover .card-description {
+    opacity: 1;
+    visibility: visible;
+    max-height: 200px;
+  }
+
+  .card-item:hover .learn-more-button {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Card Active Effect for MOBILE (applied by JS on screens <= 768px) */
+.card-item.active-card {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px var(--card-hover-shadow);
+  height: auto;
+  max-height: 600px;
+  overflow: visible;
+}
+
+.card-item.active-card .card-content {
+  max-height: 500px;
+  justify-content: flex-start;
+  overflow: visible;
+}
+
+.card-item.active-card .card-description {
+  opacity: 1;
+  visibility: visible;
+  max-height: 200px;
+}
+
+.card-item.active-card .learn-more-button {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- About Us Section (Responsive Styles Included) --- */
+.about-us-sectionhome {
+  background-color: #2d2640; /* Section background color */
+  height: 635px;
+  width: 100%; /* Fixed height for desktop */
+  margin-top: 20px; /* Spacing from the section above */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-us-inner-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%; /* Ensure inner wrapper takes full section height */
+  padding: 0;
+  width: fit-content;
+  background-color: #2d2640;
+  gap: 150px; /* Override main-content-wrapper padding to manage it specifically here */
+}
+
+.about-us-content-area {
+  width: 511px;
+  height: 540px; /* Fixed height for desktop */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the top initially */
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden; /* IMPORTANT: Ensures content is clipped */
+  background-color: transparent;
+  padding: 0; /* Padding for the content will be inside text-wrapper */
+  box-sizing: border-box;
+  background-color: #2d2640;
+}
+
+.about-us-text-wrapper {
+  position: absolute; /* Position within .about-us-content-area */
+  top: 0; /* Start at the top of the content area */
+  left: 0;
+  width: 100%;
+  height: 100%; /* Take full height of parent */
+  display: flex; /* Use flex to control internal alignment */
+  flex-direction: column;
+  justify-content: center; /* Vertically center content within wrapper when visible */
+  align-items: flex-start; /* Align text to the left */
+  padding: 20px; /* Padding for the text content itself */
+  box-sizing: border-box; /* Include padding in width/height */
+  background-color: #2d2640;
+  transform: translateY(
+    100%
+  ); /* Initially slide down by its full height (off-screen) */
+  opacity: 0; /* Initially fully transparent */
+  visibility: hidden; /* Not clickable/selectable */
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth transition */
+}
+
+/* State when text should be visible (managed by JS for desktop hover) */
+.about-us-content-area.text-visible .about-us-text-wrapper {
+  transform: translateY(0); /* Slide up to its visible position */
+  opacity: 1; /* Fully opaque */
+  visibility: visible; /* Clickable/selectable */
+}
+
+.about-us-heading {
+  font-family: "Inter", sans-serif; /* Assuming Inter for headings */
+  font-size: 33px;
+  font-weight: 700;
+  color: #eeeeee; /* Default color for VOXEN TECH LLP */
+  margin-bottom: 20px;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.about-us-heading-highlight {
+  color: #793271; /* Color for ABOUT */
+}
+
+.about-us-description {
+  font-family: "Poppins", sans-serif; /* Assuming Poppins for body text */
+  font-size: 17px;
+  color: #eeeeee;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.about-us-learn-more-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 346px;
+  height: 49px;
+  background-color: #baa9c1; /* Button background color */
+  color: #000000; /* Button text color (black) */
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px; /* Curved edges for button */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.about-us-learn-more-button:hover {
+  background-color: #a092a8; /* Slightly darker on hover */
+  transform: translateY(-2px);
+}
+
+.about-us-slider-container {
+  width: 640px;
+  height: 416px;
+  border-radius: 20px; /* Curved edges */
+  overflow: hidden; /* Crucial for image clipping */
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.about-us-slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.about-us-slide.active-slide {
+  opacity: 1;
+}
+
+.about-us-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Images fill the box */
+  display: block;
+}
+
+/* --- Responsive Styles (for ALL sections) --- */
+
+/* Responsive Styles for Home Page/Banner */
+@media (max-width: 1024px) {
+  .herohome-title {
+    font-size: 50px;
+  }
+  .herohome-subtitle {
+    font-size: 28px;
+  }
+  .herohome-button {
+    width: 220px;
+    height: 50px;
+  }
+  .herohome-content {
+    max-width: 600px;
+  }
+
+  /* Cards Responsive */
+  .main-content-wrapper {
+    padding: 50px 30px;
+  }
+  .cards-section-title {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+  .cards-grid {
+    gap: 30px;
+  }
+
+  /* About Us Responsive */
+  .about-us-inner-wrapper {
+    flex-direction: column; /* Stack content and slider vertically */
+    height: auto; /* Allow height to adjust */
+    padding-top: 40px; /* Add top padding when stacked */
+    width: fit-content;
+  }
+  .about-us-content-area,
+  .about-us-slider-container {
+    width: 100%;
+    max-width: 640px; /* Limit max-width to keep elements from stretching too wide */
+    margin-bottom: 40px; /* Spacing between stacked elements */
+  }
+  .about-us-sectionhome {
+    height: auto; /* Allow section to grow */
+    padding: 60px 40px; /* Add more vertical padding */
+  }
+  .about-us-heading {
+    font-size: 28px;
+  }
+  .about-us-description {
+    font-size: 16px;
+  }
+  .about-us-learn-more-button {
+    width: 100%; /* Make button full width of max-width */
+    max-width: 346px; /* Keep button proportional */
+  }
+  .about-us-content-area {
+    height: auto; /* Allow text area to adjust height */
+    margin-bottom: 20px; /* Space between text and slider */
+  }
+}
+
+@media (max-width: 900px) {
+  /* This breakpoint switches to 2 columns */
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .card-item {
+    width: 100%;
+    max-width: 400px;
+    height: 380px;
+  }
+  .card-item.active-card,
+  .card-item:hover {
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .herohome-title {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .herohome-subtitle {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+  .herohome-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .herohome-container {
+    height: 600px;
+  }
+  .herohome-content {
+    max-width: 100%;
+  }
+  .herohome-content-inner-wrapper {
+    padding: 0 20px;
+  }
+
+  /* Cards Responsive */
+  .main-content-wrapper {
+    padding: 40px 20px;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .card-item {
+    width: 100%;
+    max-width: 350px;
+    height: 360px;
+  }
+  .card-item.active-card,
+  .card-item:hover {
+    max-height: 480px;
+  }
+  .cards-section-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  .card-title-with-icon {
+    font-size: 20px;
+  }
+  .card-title-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+  }
+  .card-description {
+    font-size: 15px;
+  }
+  .learn-more-button {
+    width: 140px;
+    height: 28px;
+    font-size: 13px;
+  }
+
+  /* About Us Responsive */
+  .about-us-sectionhome {
+    padding: 40px 20px;
+  }
+  .about-us-heading {
+    font-size: 26px;
+    text-align: center;
+  }
+  .about-us-heading-highlight {
+    display: block; /* Force ABOUT to new line for centering */
+  }
+  .about-us-description {
+    font-size: 15px;
+    text-align: center;
+  }
+  .about-us-learn-more-button {
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    margin: 0 auto; /* Center button */
+  }
+  .about-us-text-wrapper {
+    position: static; /* Remove absolute positioning on mobile */
+    height: auto; /* Allow height to adjust to content */
+    opacity: 1; /* Always visible on mobile */
+    visibility: visible;
+    transform: translateY(0); /* No transform */
+    text-align: center; /* Center text */
+    justify-content: flex-start; /* Let content flow naturally */
+    align-items: center; /* Center internal content */
+    padding: 0; /* Remove padding here, handled by parent .about-us-content-area */
+  }
+  .about-us-content-area {
+    align-items: center; /* Center all content */
+    padding: 20px; /* Padding for the overall content area on mobile */
+  }
+  .about-us-slider-container {
+    height: 300px; /* Adjust slider height for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .herohome-title {
+    font-size: 32px;
+  }
+  .herohome-subtitle {
+    font-size: 18px;
+  }
+  .herohome-button {
+    width: 200px;
+    height: 45px;
+    font-size: 16px;
+  }
+  .herohome-container {
+    height: 500px;
+  }
+  .herohome-content-inner-wrapper {
+    padding: 0 15px;
+  }
+
+  /* Cards Responsive */
+  .main-content-wrapper {
+    padding: 30px 15px;
+  }
+  .cards-section-title {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+  .card-item {
+    width: 100%;
+    max-width: none;
+    height: 330px;
+  }
+  .card-item.active-card,
+  .card-item:hover {
+    max-height: 450px;
+  }
+
+  /* About Us Responsive */
+  .about-us-sectionhome {
+    padding: 30px 15px;
+  }
+  .about-us-heading {
+    font-size: 22px;
+  }
+  .about-us-description {
+    font-size: 14px;
+  }
+  .about-us-slider-container {
+    height: 250px;
+  }
+}
+/* --- Milestones Section --- */
+/* --- Milestones Section (Corrected) --- */
+
+.milestones-section {
+  margin-top: 98px;
+  height: 198px;
+  background-color: #ffffff; /* CHANGED: Set background to white */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.milestones-inner-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  height: 100%;
+  padding: 0;
+  background-color: #ffffff; /* CHANGED: Set background to white */
+}
+
+.milestone-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #2d2640; /* CHANGED: Dark text color for visibility on white background */
+  cursor: default;
+  position: relative;
+  padding: 20px;
+}
+
+/* The rest of the milestone styles can remain the same */
+.milestone-number {
+  font-family: "Inter", sans-serif; /* Assuming Inter for numbers */
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1; /* Tighter line height for numbers */
+  margin-bottom: 10px; /* Padding below each zero/number */
+  height: 34px; /* Fixed height for the container of the numbers (equal to font-size) */
+  position: relative; /* CRUCIAL: Establishes positioning context for absolute children */
+  width: 100px; /* Fixed width for the container of the numbers to prevent text reflow */
+  display: flex; /* For centering the absolute children within this container */
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensure numbers don't overflow this fixed box */
+}
+
+.milestone-number .initial-number,
+.milestone-number .hover-number {
+  position: absolute; /* Stack them on top of each other */
+  top: 0; /* Align to the top of their parent (.milestone-number) */
+  left: 0; /* Align to the left of their parent */
+  width: 100%; /* Take full width of parent */
+  height: 100%; /* Take full height of parent */
+  display: flex; /* Use flex to center content inside these spans */
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth fade and visibility transition */
+}
+
+/* Default state: initial-number is visible, hover-number is hidden */
+.milestone-number .initial-number {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2; /* Ensure it's on top initially */
+}
+
+.milestone-number .hover-number {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1; /* Initially behind */
+}
+
+/* State when .hidden class is applied by JS */
+.milestone-number .initial-number.hidden {
+  opacity: 0;
+  visibility: hidden; /* Hide the initial number */
+  z-index: 1; /* Move it behind */
+}
+
+.milestone-number .hover-number:not(.hidden) {
+  /* When .hidden is removed by JS */
+  opacity: 1;
+  visibility: visible; /* Show the hover number */
+  z-index: 3; /* Bring it to the front */
+}
+
+.milestone-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 10px; /* Space between number and text */
+}
+
+/* Responsive adjustments for Milestones section */
+@media (max-width: 1024px) {
+  .milestones-section {
+    height: auto; /* Allow height to adjust */
+    padding: 40px 20px; /* Adjust vertical padding */
+  }
+  .milestones-inner-wrapper {
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Center items when wrapped */
+    gap: 30px; /* Gap between wrapped items */
+  }
+  .milestone-item {
+    width: 30%; /* Give items some width but allow flex-wrap to manage */
+    min-width: 200px; /* Ensure they don't get too small */
+  }
+  .milestone-number {
+    font-size: 30px;
+    height: 30px;
+  }
+  .milestone-text {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .milestones-section {
+    padding: 30px 15px;
+  }
+  .milestones-inner-wrapper {
+    flex-direction: column; /* Stack items vertically */
+    gap: 25px; /* Vertical gap */
+  }
+  .milestone-item {
+    width: 100%; /* Take full width */
+    max-width: 250px; /* Limit max-width for aesthetic */
+  }
+  .milestone-number {
+    font-size: 28px;
+    height: 28px;
+  }
+  .milestone-text {
+    font-size: 16px;
+  }
+  /* --- NEW/CHANGED: On mobile, show the hover numbers by default, hide the initial '0' --- */
+  .milestone-number .initial-number {
+    opacity: 0 !important; /* Force hide the initial '0' */
+    visibility: hidden !important; /* Force hide the initial '0' */
+    z-index: 1 !important;
+  }
+  .milestone-number .hover-number {
+    /* This targets the 5+, 7+, 10+ */
+    opacity: 1 !important; /* Force show these numbers */
+    visibility: visible !important; /* Force show these numbers */
+    z-index: 2 !important; /* Ensure they are on top */
+  }
+  /* --- END NEW/CHANGED --- */
+}
+
+@media (max-width: 480px) {
+  .milestone-number {
+    font-size: 26px;
+    height: 26px;
+  }
+  .milestone-text {
+    font-size: 15px;
+  }
+}
+/* --- Why Choose Voxen Tech Section (Horizontal Selection) --- */
+.why-choose-voxen-tech-section {
+  margin-top: 98px;
+  background-color: #ffffff; /* Ensure this background color is correctly applied */
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.section-heading {
+  font-family: "Inter", sans-serif;
+  font-size: 45px;
+  font-weight: 700;
+  text-align: center;
+  color: #000000; /* Explicitly setting color to white */
+  margin-bottom: 50px;
+  /* --- FOR DEBUGGING HEADING VISIBILITY --- */
+  /* Temporarily uncomment the lines below to see if the heading box appears */
+  /* background-color: yellow; */ /* Make the heading background yellow to see it */
+  /* z-index: 100; */ /* Ensure it's above other elements */
+  /* position: relative; */ /* Required for z-index to work on non-positioned elements */
+  /* If the yellow box appears but text is missing, it's a font or text-color issue. */
+  /* If the yellow box doesn't appear, it's a display/positioning/visibility issue on its parent. */
+  /* --- END DEBUGGING --- */
+}
+
+.why-choose-horizontal-selection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 40px;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+}
+
+.why-choose-image-item {
+  position: relative;
+  height: 480px;
+  border-radius: 25px; /* <<< Increased border-radius */
+  overflow: hidden; /* Ensures content respects border-radius */
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: width 0.4s ease-in-out, box-shadow 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  flex-shrink: 0;
+}
+
+.why-choose-image-item:not(.active) {
+  width: 158px;
+}
+
+.why-choose-image-item.active {
+  width: 605px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.why-choose-image-item:hover:not(.active) {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.why-choose-image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.why-choose-item-text {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  z-index: 2;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments for Why Choose Voxen Tech Section */
+@media (max-width: 1159px) {
+  /* When screen size is too small for horizontal layout */
+  .section-heading {
+    font-size: 38px;
+  }
+  .why-choose-horizontal-selection {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 15px;
+    flex-wrap: wrap;
+  }
+  .why-choose-image-item {
+    height: 380px;
+    width: 100%;
+    max-width: 500px;
+    /* On mobile/tablet, active/inactive widths don't apply as they're all full width */
+  }
+  .why-choose-image-item:not(.active),
+  .why-choose-image-item.active {
+    width: 100%;
+  }
+  .why-choose-item-text {
+    font-size: 16px;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: 32px;
+    margin-bottom: 25px;
+  }
+  .why-choose-image-item {
+    height: 300px;
+  }
+  .why-choose-item-text {
+    font-size: 14px;
+    bottom: 8px;
+    left: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-heading {
+    font-size: 26px;
+  }
+  .why-choose-image-item {
+    height: 250px;
+  }
+  .why-choose-horizontal-selection {
+    gap: 12px;
+    padding: 0 20px !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+  }
+  .why-choose-image-item {
+    height: 240px;
+    min-width: 180px;
+    max-width: 180px;
+    width: 180px !important;
+    flex: 0 0 180px;
+  }
+}
+/* --- Our Portfolio Section --- */
+.portfolio-sectionhome {
+  padding: 80px 0; /* Vertical padding for the section */
+  background-color: var(--background-light); /* Light background for contrast */
+  text-align: center;
+}
+
+.portfolio-cards-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+  justify-content: center;
+  gap: 30px; /* Space between cards */
+  margin-top: 40px;
+}
+
+.portfolio-card {
+  width: 370px;
+  height: 498px;
+  border-radius: 15px; /* Rounded border for the card */
+  overflow: hidden; /* Ensures content respects border-radius */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  /* --- MODIFIED for Hover Effect --- */
+  position: relative; /* Crucial for absolute positioning of children */
+  display: block; /* Ensures children behave correctly with absolute positioning */
+}
+
+.portfolio-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.portfolio-image-wrapper {
+  /* --- MODIFIED for Hover Effect --- */
+  position: absolute; /* Position relative to .portfolio-card */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Image initially covers the whole card */
+  z-index: 1; /* Below the text content when it appears */
+  transition: transform 0.4s ease; /* Smooth transition for sliding up effect */
+  overflow: hidden; /* Ensures image respects card's border-radius */
+}
+
+.portfolio-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Image fills the container without distortion */
+  display: block; /* Removes any extra space below the image */
+  /* Removed individual transform transition as it's now on the wrapper */
+}
+
+.portfolio-text-content {
+  /* --- MODIFIED for Hover Effect --- */
+  position: absolute; /* Position relative to .portfolio-card */
+  bottom: 0; /* Align to the bottom of the card */
+  left: 0;
+  width: 100%;
+  height: 198px; /* Fixed height for the text area */
+  background-color: #ded9ed; /* Background color for the text area */
+  padding: 20px;
+  box-sizing: border-box; /* Include padding in height calculation */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes buttons to the bottom */
+  text-align: left; /* Align text within the card */
+
+  transform: translateY(
+    100%
+  ); /* Initially hide by moving it down its own height */
+  opacity: 0; /* Initially invisible */
+  transition: transform 0.4s ease, opacity 0.4s ease; /* Smooth transition for both slide and fade */
+  z-index: 2; /* Appears above the image */
+}
+
+.portfolio-text-content h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.portfolio-text-content p {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 15px; /* Space before buttons */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Add ellipsis for hidden text */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit description to 3 lines */
+  -webkit-box-orient: vertical;
+}
+
+.portfolio-buttons-container {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap if needed */
+  margin-top: auto; /* Pushes buttons to the bottom of the flex container */
+}
+
+.portfolio-buttons-container button {
+  width: 83px;
+  height: 20px;
+  background-color: #9c96ab; /* Background color for buttons */
+  color: #ffffff; /* White text for buttons */
+  border: none;
+  border-radius: 4px; /* Small border-radius for buttons */
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.portfolio-buttons-container button:hover {
+  background-color: #7a758d; /* Slightly darker on hover */
+}
+
+/* --- Hover Effects for Portfolio Card --- */
+.portfolio-card:hover .portfolio-image-wrapper {
+  transform: translateY(
+    -198px
+  ); /* Image slides up by the height of the text content */
+}
+
+.portfolio-card:hover .portfolio-text-content {
+  transform: translateY(0); /* Text content slides up into view */
+  opacity: 1; /* Text content becomes fully visible */
+}
+
+/* --- Responsive adjustments for Portfolio Section --- */
+@media (max-width: 1200px) {
+  .portfolio-cards-container {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  /* Tablets */
+  .portfolio-card {
+    width: 320px; /* Adjust width for smaller screens if necessary */
+    height: 460px; /* Adjust height accordingly */
+  }
+  .portfolio-image-wrapper {
+    /* Still covers 100% of the new card height initially */
+  }
+  .portfolio-text-content {
+    height: 198px; /* Maintain fixed height */
+    padding: 15px;
+  }
+  .portfolio-text-content h3 {
+    font-size: 22px;
+  }
+  .portfolio-text-content p {
+    font-size: 15px;
+    -webkit-line-clamp: 3;
+  }
+  .portfolio-buttons-container {
+    gap: 8px;
+  }
+  .portfolio-buttons-container button {
+    width: 75px;
+    height: 18px;
+    font-size: 11px;
+  }
+  /* Adjust hover for the new height */
+  .portfolio-card:hover .portfolio-image-wrapper {
+    transform: translateY(-198px); /* Still slide by text content height */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Smaller tablets and large phones */
+  .portfolio-sectionhome {
+    padding: 60px 0;
+  }
+  .section-heading {
+    font-size: 38px;
+    margin-bottom: 30px;
+  }
+  .portfolio-card {
+    width: 100%; /* Make cards full width on smaller screens */
+    max-width: 370px; /* Keep max width to avoid stretching too much */
+    height: 498px; /* Maintain original height */
+  }
+  .portfolio-image-wrapper {
+    /* Still covers 100% of card height */
+  }
+  .portfolio-text-content {
+    height: 198px; /* Fixed height for mobile */
+    padding: 20px;
+  }
+  /* Hover transform remains the same based on fixed text height */
+  .portfolio-card:hover .portfolio-image-wrapper {
+    transform: translateY(-198px);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Mobile phones */
+  .section-heading {
+    font-size: 32px;
+  }
+  .portfolio-text-content h3 {
+    font-size: 20px;
+  }
+  .portfolio-text-content p {
+    font-size: 14px;
+    -webkit-line-clamp: 3;
+  }
+  .portfolio-buttons-container button {
+    width: 70px;
+    height: 16px;
+    font-size: 10px;
+  }
+}
+/* --- What Our Clients Say Section --- */
+.testimonials-section {
+  padding: 100px 0;
+  background-image: linear-gradient(to bottom, #2d2640 50%, #ffffff 50%);
+  text-align: center;
+  position: relative;
+  color: #ffffff;
+}
+
+.testimonials-section .section-heading {
+  color: var(--text-color);
+  margin-bottom: 50px;
+}
+
+.testimonial-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.testimonial-card {
+  width: 370px;
+  height: 582px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Crucial to clip slides */
+  position: relative; /* Allows absolute positioning of slideshow elements */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover effect for cards */
+.testimonial-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+}
+
+/* --- Styles for the internal slideshow --- */
+.slideshow-container {
+  width: 100%;
+  height: 100%;
+  position: relative; /* Allows slide images to be absolutely positioned within it */
+}
+
+.slide-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover; /* Fills the entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 1s ease-in-out; /* Smooth fade transition */
+}
+
+.slide-image.active-slide {
+  opacity: 1; /* Only active slide is visible */
+}
+
+/* --- Become Our Next Success Story Button --- */
+.success-story-button {
+  width: 477px;
+  height: 81px;
+  border-radius: 10px;
+  background-color: #743a6d;
+  color: #ffffff;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 0 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.success-story-button:hover {
+  background-color: #452441;
+  transform: translateY(-3px);
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 1200px) {
+  .testimonial-cards-container {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  /* Tablets */
+  .testimonial-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .testimonial-card {
+    width: 80%;
+    max-width: 370px;
+  }
+  .success-story-button {
+    width: 80%;
+    max-width: 477px;
+    height: 70px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Smaller tablets and large phones */
+  .testimonials-section {
+    padding: 60px 0;
+  }
+  .testimonials-section .section-heading {
+    font-size: 38px;
+    margin-bottom: 30px;
+  }
+  .testimonial-card {
+    width: 90%;
+  }
+  .success-story-button {
+    width: 90%;
+    height: 60px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Mobile phones */
+  .testimonials-section .section-heading {
+    font-size: 32px;
+  }
+  .testimonial-card {
+    width: 95%;
+  }
+  .success-story-button {
+    width: 95%;
+    height: 50px;
+    font-size: 16px;
+  }
+}
+
+/* --- Latest Insights Section --- */
+.latest-insights-section {
+  padding: 80px 0;
+  background-color: var(--background-light);
+  text-align: center;
+  position: relative;
+}
+
+.latest-insights-section .section-heading {
+  color: #333;
+  margin-bottom: 50px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.1;
+}
+
+/* Container for cards */
+.insights-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Individual insight card */
+.insight-card {
+  width: 372px;
+  height: 466px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background-color: #ffffff;
+  opacity: 0;
+  transform: translateX(0) translateY(0); /* No initial offscreen translate */
+  /* Initial state for animation */
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Initial off-screen positions */
+.insight-card:nth-child(1) {
+  transform: translateX(-100%);
+}
+
+.insight-card:nth-child(2) {
+  transform: translateY(50px);
+}
+
+.insight-card:nth-child(3) {
+  transform: translateX(100%);
+}
+
+/* Revealed state - triggered by JS */
+.insights-cards-container.revealed .insight-card {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* Stagger transition delays */
+.insights-cards-container.revealed .insight-card:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.insights-cards-container.revealed .insight-card:nth-child(2) {
+  transition-delay: 0.3s;
+}
+.insights-cards-container.revealed .insight-card:nth-child(3) {
+  transition-delay: 0.5s;
+}
+
+/* Hover effect */
+.insight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image wrapper */
+.insight-image-wrapper {
+  width: 100%;
+  height: 227px;
+  overflow: hidden;
+}
+
+.insight-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.insight-card:hover .insight-image-wrapper img {
+  transform: scale(1.05);
+}
+
+/* Text content area */
+.insight-text-content {
+  flex-grow: 1;
+  padding: 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  height: 239px; /* 466 - 227 */
+}
+
+/* Date */
+.insight-date {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+/* Title */
+.insight-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 15px 0;
+  line-height: 1.3;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Description */
+.insight-description {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 20px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* Read article button */
+.read-article-button {
+  width: 95px;
+  height: 20px;
+  background-color: #d3d1d9;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.read-article-button:hover {
+  background-color: #b0aeba;
+  color: #111;
+}
+
+/* --- Responsive Styles --- */
+
+/* Large screens (1200px and below) */
+@media (max-width: 1200px) {
+  .insights-cards-container {
+    gap: 20px;
+  }
+}
+
+/* Tablets and below (992px) */
+@media (max-width: 992px) {
+  .insights-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .insight-card {
+    width: 80%;
+    max-width: 372px;
+    height: auto;
+    min-height: 400px;
+  }
+  .insight-image-wrapper {
+    height: 200px;
+  }
+  .insight-text-content {
+    padding: 20px;
+    min-height: 180px;
+  }
+  .insight-title {
+    font-size: 20px;
+  }
+  .insight-description {
+    font-size: 15px;
+    -webkit-line-clamp: 4;
+  }
+  .read-article-button {
+    width: 85px;
+    height: 18px;
+    font-size: 11px;
+  }
+}
+
+/* Smaller tablets and large phones (768px) */
+@media (max-width: 768px) {
+  .latest-insights-section {
+    padding: 60px 0;
+  }
+  .latest-insights-section .section-heading {
+    font-size: 38px;
+    margin-bottom: 30px;
+  }
+  .insight-card {
+    width: 90%;
+  }
+}
+
+/* Mobile phones (480px and below) */
+@media (max-width: 480px) {
+  .latest-insights-section .section-heading {
+    font-size: 32px;
+  }
+  .insight-card {
+    width: 95%;
+  }
+  .insight-image-wrapper {
+    height: 180px;
+  }
+  .insight-text-content {
+    padding: 15px;
+  }
+  .insight-title {
+    font-size: 18px;
+  }
+  .insight-description {
+    font-size: 14px;
+    -webkit-line-clamp: 4;
+  }
+  .read-article-button {
+    width: 80px;
+    height: 16px;
+    font-size: 10px;
+  }
+}
+
+/* --- Contact Details Section --- */
+.contact-section {
+  width: 100%;
+  padding: 80px 20px;
+  background-color: #2d2640;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.contact-content-wrapper {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  padding: 0 20px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-content-wrapper.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.contact-description {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.contact-button {
+  height: 57px;
+  border-radius: 8px;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0 20px;
+  white-space: nowrap;
+  min-width: 200px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.contact-button-primary {
+  background-color: #baa9c1;
+  color: #333;
+}
+
+.contact-button-primary:hover {
+  background-color: #85407d;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.contact-button-white {
+  background-color: #ffffff;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+}
+
+.contact-button-white:hover {
+  transform: translateY(-2px);
+}
+
+.phone-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+/* --- Responsive adjustments for Contact Section --- */
+@media (max-width: 992px) {
+  .contact-section {
+    padding: 60px 15px;
+  }
+  .contact-title {
+    font-size: 38px;
+  }
+  .contact-description {
+    font-size: 18px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+  .contact-buttons-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    max-width: 600px;
+    justify-content: center;
+  }
+  .contact-button {
+    width: auto;
+    min-width: 180px;
+    font-size: 16px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 50px 15px;
+  }
+  .contact-title {
+    font-size: 32px;
+  }
+  .contact-description {
+    font-size: 16px;
+    padding: 0 15px;
+  }
+  .contact-buttons-container {
+    max-width: 500px;
+    gap: 12px;
+  }
+  .contact-button {
+    font-size: 15px;
+    height: 45px;
+    min-width: 160px;
+    padding: 0 15px;
+  }
+  .phone-icon {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 40px 10px;
+  }
+  .contact-title {
+    font-size: 28px;
+  }
+  .contact-description {
+    font-size: 14px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+  .contact-buttons-container {
+    max-width: 100%;
+    gap: 10px;
+    padding: 0 10px;
+  }
+  .contact-button {
+    font-size: 14px;
+    height: 40px;
+    min-width: 140px;
+    padding: 0 12px;
+    width: 100%;
+    max-width: 250px;
+  }
+  .phone-icon {
+    font-size: 16px;
+  }
+}
+
+/* --- Infinite Image Slider Section --- */
+.image-slider-section {
+  padding: 100px 0; /* No vertical padding needed usually */
+  overflow: hidden; /* Crucial: Hides the overflowing parts of the images */
+  width: 100%; /* Ensures the section takes full width */
+  position: relative; /* If you need positioning context for overlays etc. */
+  background-color: #f0f0f0; /* Optional: A subtle background for the section */
+}
+
+.infinite-slider {
+  display: flex; /* Arranges images in a single row */
+  width: calc(
+    1280px * 3
+  ); /* Width of 3 copies of the image (1280px * number of images) */
+  animation: slide-horizontal 30s linear infinite; /* Animation applied here */
+  /* 30s is the duration, linear for constant speed, infinite for looping */
+}
+
+.infinite-slider img {
+  width: 1280px; /* Fixed width for each image as requested */
+  height: 159px; /* Fixed height for each image as requested */
+  flex-shrink: 0; /* Prevents images from shrinking */
+  display: block; /* Removes extra space below image */
+  object-fit: cover; /* Ensures image fills the dimensions without distortion */
+}
+
+/* Keyframes for the horizontal sliding animation */
+@keyframes slide-horizontal {
+  from {
+    transform: translateX(0); /* Start at original position */
+  }
+  to {
+    transform: translateX(-1280px); /* Move left by the width of one image */
+    /* If you have N copies, and want to slide past one copy,
+           this value should be - (width of one image). */
+  }
+}
+
+/* --- Responsive adjustments for Image Slider --- */
+@media (max-width: 1280px) {
+  /* Adjust for screens narrower than the image itself */
+  .infinite-slider img {
+    width: 100vw; /* Make image width relative to viewport for better fit */
+    height: auto; /* Adjust height proportionally */
+    max-height: 159px; /* Cap height to original ratio if preferred */
+  }
+  .infinite-slider {
+    /* Calculate width based on new image width for animation */
+    width: calc(100vw * 3); /* Adjust to 3 times viewport width */
+    animation: slide-horizontal-responsive 30s linear infinite; /* New keyframe for responsiveness */
+  }
+
+  @keyframes slide-horizontal-responsive {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(
+        -100vw
+      ); /* Move left by the width of one viewport */
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  /* Further adjustments for smaller screens if necessary, e.g., slower animation */
+  .infinite-slider {
+    animation-duration: 45s; /* Slow down animation on mobile */
+  }
+}
+
+.contact-form-container,
+.contact-form-box {
+  padding: 48px 36px;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 16px 20px;
+}
+.service-detail-card {
+  padding: 48px 36px;
+}
+
+.services-section {
+  margin-bottom: 0 !important;
+}
+.services-section .services-headline {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 480px) {
+  .service-icon img {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .service-header {
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+}

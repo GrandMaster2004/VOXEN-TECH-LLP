@@ -1,0 +1,637 @@
+/* Base Styles */
+:root {
+    --primary-color: #711666;
+    --text-color: #FFFFFF; /* Used for hero text and initially for some base elements */
+    --button-primary-bg: #5B2C6F;
+    --button-primary-text: #FFFFFF;
+    --button-secondary-bg: #FFFFFF;
+    --button-secondary-text: #5B2C6F;
+
+    /* Colors for the cards section */
+    --card-bg-color: #877C8B; 
+    --card-text-color: #F0F0F0; 
+    --card-hover-shadow: rgba(0, 0, 0, 0.2);
+    --learn-more-button-bg: #D9D9D9; 
+    --learn-more-button-text: #333333; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    background-color: #ffffff; /* General background color for the page */
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color); /* Default text color, overridden in sections like cards */
+    overflow-x: hidden; /* Prevents horizontal scroll */
+    position: relative; /* Useful for absolute positioning children */
+}
+
+/* Utility Class for Mobile Menu Overlay (used by Navbar's JS, but defined here for main body) */
+body.mobile-menu-open {
+    overflow: hidden; /* Prevents background scrolling when mobile menu is open */
+}
+
+/* --- Hero Banner Styles --- */
+
+/* Main wrapper for the hero section: spans full width, fixed height */
+.hero-container {
+    background-size: cover;
+    background-repeat: no-repeat; 
+    margin-top: 10px;
+    width: 100%;
+    height: 832px;
+    position: relative;
+    overflow: hidden;
+    background-color: #333333;
+    /* REMOVED: justify-content and align-items here, as content will be absolutely positioned */
+}
+
+.banner-slides {
+    background-size: cover;
+    background-repeat: no-repeat; 
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+}
+
+.banner-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+
+.banner-slide.active {
+    opacity: 1;
+}
+
+/* Add your banner images here - Path relative to style.css */
+.banner-slide:nth-child(1) {
+    background-image: url('../images/blog.png');
+}
+
+/* Inner wrapper for hero content: applies max-width and padding */
+.hero-content-inner-wrapper {
+    /* MODIFIED: Absolute positioning for bottom-right alignment */
+    position: absolute;
+    bottom: 80px; /* Distance from the bottom edge */
+    right: 80px;  /* Distance from the right edge */
+    max-width: 100%; /* Limit the width of the content block */
+    z-index: 50;
+    padding: 0 40px; /* Internal padding */
+    box-sizing: border-box; /* Ensure padding is included in max-width */
+
+    /* NEW: Initial state for "from left" animation */
+    opacity: 0;
+    transform: translateX(-100%); /* Start off-screen to the left */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Animation properties */
+}
+
+/* NEW: Class to trigger animation (added by JavaScript) */
+.hero-content-inner-wrapper.loaded {
+    opacity: 1;
+    transform: translateX(0); /* Move to final position */
+}
+
+.hero-content {
+    text-align: left; /* Content remains left-aligned within its wrapper */
+    width: 100%;
+}
+
+.hero-title {
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    font-family: 'Poppins';
+    text-transform: uppercase;
+    text-align: right;
+    white-space: nowrap;
+    
+    /* NEW: Bold shadow effect for the heading */
+    text-shadow:#333333;
+}
+
+.hero-subtitle {
+    text-align: right;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.about-us-heading-highlight {
+    color: #793271;
+}
+
+/* ... (Your existing Main Content Wrapper styles) ... */
+
+/* --- Responsive Adjustments for Hero Banner --- */
+@media (max-width: 992px) { /* Tablets */
+    .hero-content-inner-wrapper {
+        bottom: 60px; /* Adjust positioning */
+        right: 60px;
+        max-width: 500px; /* Reduce max-width */
+        padding: 0 30px;
+    }
+    .hero-title {
+        font-size: 55px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Adjust shadow for smaller text */
+    }
+    .hero-subtitle {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) { /* Smaller tablets and large phones */
+    .hero-content-inner-wrapper {
+        bottom: 40px;
+        right: 40px;
+        max-width: 90%; /* Allow content to take more width on smaller screens */
+        padding: 0 20px;
+    }
+    .hero-title {
+        font-size: 45px;
+        margin-bottom: 20px;
+    }
+    .hero-subtitle {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile phones */
+    .hero-container {
+        height: 600px; /* Reduce hero height for smaller screens */
+    }
+    .hero-content-inner-wrapper {
+        bottom: 20px;
+        right: 20px;
+        padding: 0 15px;
+    }
+    .hero-title {
+        font-size: 35px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .hero-subtitle {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+}
+
+/* --- Latest Insights Section --- */
+.latest-insights-section {
+    padding: 80px 0;
+    background-color: var(--background-light);
+    text-align: center;
+    position: relative;
+}
+
+.latest-insights-section .section-heading {
+    color: #333;
+    margin-bottom: 50px;
+}
+
+.insights-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.Insightblog-card {
+    width: 558px;
+    height: 639px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    /* --- MODIFIED: Ensure card background is white --- */
+    background-color: #FFFFFF; /* Restore white background for the card */
+
+    /* Initial state for animation - cards are hidden and off-screen */
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition */
+}
+
+/* Initial off-screen positions for each card */
+.Insightblog-card:nth-child(1) {
+    transform: translateX(-100%); /* Start left card off-screen to the left */
+}
+
+.Insightblog-card:nth-child(2) {
+    transform: translateY(50px); /* Start middle card slightly below */
+}
+
+.Insightblog-card:nth-child(3) {
+    transform: translateX(100%); /* Start right card off-screen to the right */
+}
+
+/* --- NEW: 'revealed' state for cards (triggered by JS) --- */
+.insights-cards-container.revealed .Insightblog-card {
+    opacity: 1; /* Fade in */
+    transform: translateX(0) translateY(0); /* Move to original position */
+}
+
+/* --- NEW: Optional - Stagger the animation for a cooler effect when revealed --- */
+.insights-cards-container.revealed .Insightblog-card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+.insights-cards-container.revealed .Insightblog-card:nth-child(2) {
+    transition-delay: 0.3s;
+}
+.insights-cards-container.revealed .Insightblog-card:nth-child(3) {
+    transition-delay: 0.5s;
+}
+
+/* --- Keep the existing hover effect for the card itself, applied after it's visible --- */
+.Insightblog-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+.Insightblog-image-wrapper {
+    width: 100%;
+    height: 290px; /* Fixed height for the image wrapper */
+    overflow: hidden; /* Ensures image doesn't overflow its boundaries */
+}
+
+.Insightblog-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Image fills the container without distortion */
+    display: block; /* Removes any extra space below the image */
+    transition: transform 0.4s ease; /* Smooth zoom transition on hover */
+}
+
+.Insightblog-card:hover .Insightblog-image-wrapper img {
+    transform: scale(1.05); /* Slight zoom effect on image hover */
+}
+
+.Insightblog-text-content {
+    flex-grow: 1; /* Allows this section to fill remaining height */
+    height: 239px; /* (466 - 227 = 239px) - Explicit height if needed, otherwise flex-grow takes care */
+    padding: 25px; /* Padding around the text content */
+    box-sizing: border-box; /* Include padding in height calculation */
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Align text within the card */
+}
+
+.Insightblog-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #777; /* Muted color for date */
+    margin-bottom: 10px;
+}
+
+.Insightblog-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    /* Limit title to 2 lines if it gets too long */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.Insightblog-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 21px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px; /* Space before the button */
+    /* Limit description to 3 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-align: left;
+}
+
+.read-article-button {
+    width: 115px;
+    height: 26px;
+    background-color: #D3D1D9; /* Background color for the button */
+    color: #333; /* Dark text for readability on light background */
+    border: none;
+    border-radius: 4px; /* Small border-radius for buttons */
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: auto; /* Pushes button to the bottom */
+}
+
+.read-article-button:hover {
+    background-color: #B0AEBA; /* Slightly darker on hover */
+    color: #111; /* Slightly darker text */
+}
+@media (max-width: 1200px) {
+    .insights-cards-container {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 992px) { /* Tablets */
+    .insights-cards-container {
+        flex-direction: column; /* Stack cards vertically */
+        align-items: center;
+    }
+    .Insightblog-card {
+        width: 80%; /* Adjust width for stacked cards */
+        max-width: 372px; /* Keep max width */
+        height: auto; /* Allow height to adjust */
+        min-height: 400px; /* Ensure a minimum height for consistency */
+    }
+    .Insightblog-image-wrapper {
+        height: 200px; /* Adjust image height */
+    }
+    .Insightblog-text-content {
+        padding: 20px;
+        min-height: 180px; /* Adjust text content min height */
+    }
+    .Insightblog-title {
+        font-size: 20px;
+    }
+    .Insightblog-description {
+        font-size: 15px;
+        -webkit-line-clamp: 4; /* Allow more lines if needed */
+    }
+    .read-article-button {
+        width: 85px;
+        height: 18px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) { /* Smaller tablets and large phones */
+    .latest-insights-section {
+        padding: 60px 0;
+    }
+    .latest-insights-section .section-heading {
+        font-size: 38px;
+        margin-bottom: 30px;
+    }
+    .Insightblog-card {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile phones */
+    .latest-insights-section .section-heading {
+        font-size: 32px;
+    }
+    .Insightblog-card {
+        width: 95%;
+    }
+    .Insightblog-image-wrapper {
+        height: 180px;
+    }
+    .Insightblog-text-content {
+        padding: 15px;
+    }
+    .Insightblog-title {
+        font-size: 18px;
+    }
+    .Insightblog-description {
+        font-size: 14px;
+        -webkit-line-clamp: 4;
+    }
+    .read-article-button {
+        width: 80px;
+        height: 16px;
+        font-size: 10px;
+    }
+}
+/* --- Newsletter Section --- */
+.newsletter-section {
+    height: 547px; /* Fixed height as requested */
+    background-color: #2D2640; /* Background color */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    overflow: hidden; /* Hide content initially for animations */
+    padding: 20px; /* Add some padding for responsiveness */
+    box-sizing: border-box; /* Include padding in height */
+    text-align: center; /* Center all text content within the section */
+    margin-bottom: 60px;
+}
+
+.newsletter-content-wrapper {
+    max-width: 1200px; /* Max width for the content area */
+    width: 100%; /* Ensure it takes full width within max-width */
+    display: flex;
+    flex-direction: column; /* !!! NEW: Stack items vertically !!! */
+    align-items: center; /* !!! NEW: Center all items (title, desc, input/btn, privacy) horizontally !!! */
+    gap: 25px; /* !!! NEW: Vertical space between each stacked element !!! */
+    color: #FFFFFF; /* Default text color for the section */
+    /* Text-align: center moved to .newsletter-section for simplicity */
+}
+
+/* --- Base Animation Styles for Individual Elements --- */
+/* These styles apply to all elements that will animate */
+.newsletter-title,
+.newsletter-description,
+.newsletter-input-button,
+.newsletter-privacy-text {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Same transition for all */
+    /* Ensure elements don't get too wide in column layout */
+    max-width: 900px; /* Example max-width, adjust as needed */
+    width: 100%; /* Take full width up to max-width */
+}
+
+/* --- Specific Animation Directions --- */
+.newsletter-animate-left {
+    transform: translateX(-100px); /* Starts off-screen to the left */
+}
+
+.newsletter-animate-right {
+    transform: translateX(100px); /* Starts off-screen to the right */
+}
+
+/* --- Individual Element Styling (No flex containers here) --- */
+.newsletter-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 41px;
+    font-weight: 700;
+    line-height: 1.2;
+    /* margin-bottom is now handled by gap on .newsletter-content-wrapper */
+}
+
+.newsletter-description {
+    color: #D9D9D9;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    line-height: 1.6;
+    max-width: 700px; /* Constrain description width for better readability */
+    /* margin-bottom is now handled by gap */
+}
+
+.newsletter-input-button {
+    display: flex; /* Keep input and button horizontal within this div */
+    justify-content: center; /* Center the input and button inside their container */
+    align-items: center;
+    /* margin-bottom is now handled by gap */
+}
+
+.newsletter-email-input {
+    width: 445px; /* Fixed width as requested */
+    height: 57px; /* Fixed height as requested */
+    padding: 10px 20px;
+    border: 1px solid #BAA9C1;
+    border-radius: 5px 0 0 5px; /* Rounded left corners, sharp right */
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: #FFFFFF;
+    outline: none;
+    box-sizing: border-box;
+    margin-right: 10px;
+    border-radius: 12px;
+}
+
+.newsletter-email-input::placeholder {
+    color: #888;
+}
+
+.newsletter-email-input:focus {
+    border-color: #711666;
+}
+
+.newsletter-subscribe-btn {
+    width: 236px; /* Fixed width as requested */
+    height: 57px; /* Fixed height as requested */
+    background-color: #BAA9C1;
+    color: #333;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    margin-left: 10px; 
+    border-radius: 12px;
+}
+
+.newsletter-subscribe-btn:hover {
+    background-color: #A093AB;
+    color: #2D2640;
+}
+
+.newsletter-privacy-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    color: #948998(255, 255, 255, 0.7);
+    /* margin-top is now handled by gap */
+}
+
+/* --- Animation Trigger Class (.loaded) --- */
+/* This class is added by JavaScript when the section scrolls into view */
+
+/* Animate elements from their starting position to final position */
+.newsletter-section.loaded .newsletter-animate-left,
+.newsletter-section.loaded .newsletter-animate-right {
+    opacity: 1;
+    transform: translateX(0); /* Animate to final position */
+}
+
+/* Staggered animation delays for a cascading effect */
+.newsletter-section.loaded .newsletter-title { transition-delay: 0s; }
+.newsletter-section.loaded .newsletter-description { transition-delay: 0.15s; } /* Slightly delayed */
+.newsletter-section.loaded .newsletter-input-button { transition-delay: 0.3s; } /* More delayed */
+.newsletter-section.loaded .newsletter-privacy-text { transition-delay: 0.45s; } /* Even more delayed */
+
+
+/* --- Responsive Adjustments for Newsletter Section --- */
+@media (max-width: 992px) { /* Tablets and smaller desktops */
+    .newsletter-section {
+        height: auto; /* Allow height to adjust for content */
+        padding: 60px 20px; /* Adjust vertical padding */
+    }
+    .newsletter-content-wrapper {
+        gap: 20px; /* Reduce vertical gap between elements */
+    }
+    .newsletter-title {
+        font-size: 38px;
+    }
+    .newsletter-description {
+        font-size: 16px;
+        max-width: 500px; /* Further constrain width for tablets */
+    }
+    .newsletter-input-button {
+        flex-direction: column; /* Stack input and button vertically */
+        width: 100%; /* Take full available width */
+        max-width: 400px; /* Max width for stacked input/button */
+    }
+    .newsletter-email-input {
+        width: 100%; /* Take full width of its container */
+        border-radius: 5px; /* Full rounded corners when stacked */
+        margin-bottom: 10px; /* Space below input when stacked */
+    }
+    .newsletter-subscribe-btn {
+        width: 100%; /* Take full width of its container */
+        border-radius: 5px; /* Full rounded corners when stacked */
+        height: 50px; /* Slightly smaller height */
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile phones */
+    .newsletter-section {
+        padding: 40px 15px;
+    }
+    .newsletter-title {
+        font-size: 32px;
+    }
+    .newsletter-description {
+        font-size: 15px;
+    }
+    .newsletter-input-button {
+        max-width: 300px; /* Further reduce width on mobile */
+    }
+    .newsletter-email-input,
+    .newsletter-subscribe-btn {
+        height: 45px;
+        font-size: 15px;
+    }
+    .newsletter-privacy-text {
+        font-size: 13px;
+    }
+}
+
+.Insightblog-card.show-hover {
+    transform: translateY(-5px); /* Same as hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+.Insightblog-card.show-hover .Insightblog-image-wrapper img {
+    transform: scale(1.05); /* Same as hover */
+}

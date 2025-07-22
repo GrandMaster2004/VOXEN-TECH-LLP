@@ -1,0 +1,312 @@
+/* Footer Section Styles */
+footer {
+    /* height: 639px; */
+    background-color: #201932;
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding: 0 5%;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.footer-column {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: calc((100% - 4 * 40px) / 5);
+    min-width: 180px;
+    max-width: none;
+}
+
+.footer-column-company-details {
+    min-width: 280px;
+    max-width: none;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.footer-logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.footer-logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+.footer-column-company-details p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+}
+
+.footer-column h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #FFFFFF;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 15px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.footer-column ul li a:hover {
+    transform: scale(1.1);
+    color: #FFFFFF;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.social-icon.facebook { background-color: #1877F2; }
+.social-icon.instagram { background-color: #E4405F; }
+.social-icon.linkedin { background-color: #0A66C2; }
+
+.social-icon:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.contact-info p {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.contact-info p:hover {
+    transform: scale(1.05);
+    color: #FFFFFF;
+}
+
+.contact-info p i {
+    font-size: 18px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.contact-info p:hover i {
+    transform: scale(1.2);
+}
+
+.footer-separator {
+    width: 90%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 60px auto;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin: 10px 0;
+    flex-grow: 1;
+}
+
+.footer-bottom .legal-links {
+    display: flex;
+    gap: 30px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.footer-bottom .legal-links a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.footer-bottom .legal-links a:hover {
+    transform: scale(1.1);
+    color: #FFFFFF;
+}
+
+/* Add this to ensure no margin on body */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Update responsive styles */
+@media (max-width: 1280px) {
+    .footer-content {
+        padding: 0 4%;
+    }
+}
+
+@media (max-width: 992px) {
+    footer {
+        height: auto;
+        padding: 60px 0;
+    }
+    .footer-content {
+        padding: 0 3%;
+        justify-content: space-around;
+    }
+    .footer-column {
+        flex-basis: 45%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+        padding: 0 20px;
+    }
+
+    .footer-column {
+        align-items: center;
+        max-width: 350px; /* Limit width on mobile for readability */
+        width: 100%;
+    }
+
+    .footer-column h3 {
+        margin-bottom: 20px;
+    }
+
+    .footer-column ul {
+        text-align: center;
+    }
+
+    .footer-column-company-details p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.63);
+        text-align: center;
+        width: 196px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .footer-logo {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .contact-info p {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .footer-bottom .legal-links {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .footer-separator {
+        margin: 40px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        padding: 0 15px;
+    }
+    .footer-column h3 {
+        font-size: 20px;
+    }
+    .footer-column ul li a,
+    .footer-column-company-details p,
+    .contact-info p,
+    .footer-bottom p,
+    .footer-bottom .legal-links a {
+        font-size: 14px;
+    }
+    .footer-logo-text {
+        font-size: 20px;
+    }
+} 

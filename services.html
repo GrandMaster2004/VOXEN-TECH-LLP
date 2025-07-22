@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Top Software, Website & Mobile App Development Company | Voxen Tech LLP
+    </title>
+    <meta
+      name="description"
+      content="Voxen Tech LLP is a leading software development company in India, offering custom web, mobile, and software solutions."
+    />
+    <link rel="icon" type="image/png" href="favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. Global & Base Styles --- */
+      :root {
+        --primary-purple: #8b4a84;
+        --dark-purple: #2d2640;
+        --card-bg: #877c8b;
+        --light-accent: #e5c4c4;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #fff;
+        overflow-x: hidden;
+      }
+
+      /* --- 2. Header & Navigation (FIXED) --- */
+      .header {
+        background-color: var(--dark-purple);
+        padding: 1rem 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      .nav-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon img {
+        width: 48px;
+        height: 48px;
+      }
+      .logo-text {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-item {
+        color: #a9a4b3; /* Muted color for inactive links */
+        font-size: 1.1rem;
+        text-decoration: none;
+        padding-bottom: 5px;
+        border-bottom: 3px solid transparent;
+        transition: color 0.3s ease;
+      }
+      .nav-item:hover {
+        color: white;
+      }
+      .nav-item.active {
+        color: white;
+        font-weight: 600;
+        border-bottom-color: var(--primary-purple);
+      }
+      .contact-btn {
+        background: #5c4b69;
+        color: white;
+        padding: 0.75rem 1.75rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+      }
+      .contact-btn:hover {
+        background: var(--primary-purple);
+        transform: translateY(-2px);
+      }
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #cfb8d9;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      /* --- 3. Hero Section --- */
+      .hero-section {
+        padding-top: 80px; /* Offset for fixed header */
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 80px 2rem 0;
+        overflow: hidden;
+      }
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(29, 17, 46, 0.8),
+            rgba(29, 17, 46, 0.8)
+          ),
+          url("https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&q=80&w=2070");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: -1;
+      }
+      .hero-content { z-index: 1; }
+      .hero-title { font-size: 4rem; font-weight: 700; line-height: 1.2; }
+      .hero-title .highlight { color: var(--primary-purple); }
+      .hero-subtitle { font-size: 1.5rem; max-width: 600px; margin: 1.5rem auto 0; }
+
+      /* --- 4. Services Card Section --- */
+      .services-cards-section {
+        padding: 80px 20px;
+        background-color: #f9f9f9;
+      }
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 50px;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .service-card {
+        background: var(--card-bg);
+        border-radius: 18px;
+        position: relative;
+        overflow: hidden;
+        height: 392px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      }
+      .service-card-image {
+        width: 100%;
+        height: 211px;
+        object-fit: cover;
+        transition: height 0.4s ease, opacity 0.4s ease;
+      }
+      .service-card:hover .service-card-image {
+        height: 0;
+        opacity: 0;
+      }
+      .service-card-content {
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex-grow: 1;
+        justify-content: center;
+        transition: all 0.4s ease;
+        color: white;
+      }
+      .service-card:hover .service-card-content {
+        align-items: flex-start;
+        text-align: left;
+        justify-content: center;
+        height: 100%;
+      }
+      .service-card-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 15px;
+      }
+      .service-card-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+      .service-card-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-top: 15px;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, opacity 0.4s ease 0.1s;
+      }
+      .service-card:hover .service-card-description {
+        max-height: 200px;
+        opacity: 1;
+      }
+      
+      /* --- 5. Trusted Technologies Section --- */
+      .tech-slider-section {
+        padding: 60px 0;
+        background: #fff;
+        overflow: hidden;
+      }
+      .infinite-slider {
+        display: flex;
+        animation: scroll 40s linear infinite;
+      }
+      .infinite-slider img {
+        height: 80px;
+        width: auto;
+        margin: 0 40px;
+        filter: grayscale(1);
+        opacity: 0.7;
+      }
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      /* --- 6. Vision/CTA Section --- */
+      .vision-section {
+        background: var(--dark-purple);
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+      }
+      .vision-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      .vision-description {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 2.5rem auto;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .vision-buttons-row {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .vision-button {
+        background-color: #baa9c1;
+        color: #000;
+        border: none;
+        padding: 1rem 2.5rem;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .vision-button:hover {
+        background-color: white;
+        transform: translateY(-3px);
+      }
+      
+      /* --- 7. Footer --- */
+      .footer { background-color: #1e172f; color: #bbb; padding: 60px 20px; }
+      .footer-content { display: flex; flex-wrap: wrap; max-width: 1280px; margin: 0 auto; gap: 40px; }
+      .footer-column { flex: 1; min-width: 220px; }
+      .footer-column h3 { color: white; margin-bottom: 20px; }
+      .footer-column ul { list-style: none; }
+      .footer-column a { color: #bbb; text-decoration: none; line-height: 2; transition: color 0.3s; }
+      .footer-column a:hover { color: white; }
+      .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; }
+
+      /* --- 8. Responsive Styles --- */
+      @media (max-width: 768px) {
+        .header { padding: 1rem; }
+        .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--dark-purple); flex-direction: column; padding: 1rem 0; }
+        .nav-menu.active { display: flex; }
+        .nav-item { padding: 1rem 2rem; width: 100%; border-bottom: none; }
+        .nav-item.active { border-bottom: none; }
+        .mobile-menu-btn { display: block; }
+        .hero-title { font-size: 2.5rem; }
+        .hero-subtitle { font-size: 1.2rem; }
+        .section-title { font-size: 2rem; }
+        .services-grid { grid-template-columns: 1fr; }
+        .infinite-slider img { height: 60px; margin: 0 20px; }
+        .vision-title { font-size: 1.8rem; }
+        .vision-description { font-size: 1rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header" id="mainHeader">
+      <div class="nav-container">
+        <a href="#" class="logo-section">
+          <div class="logo-icon">
+            <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
+          </div>
+          <div class="logo-text">VOXEN TECH LLP</div>
+        </a>
+        <nav class="nav-menu" id="navMenu">
+          <a href="./index.html" class="nav-item">Home</a>
+          <a href="./about.html" class="nav-item">About</a>
+          <a href="./services.html" class="nav-item active">Services</a>
+          <a href="./portfolio.html" class="nav-item">Portfolio</a>
+          <a href="./blog.html" class="nav-item">Blog</a>
+          <a href="./contactus.html" class="contact-btn">Contact Us</a>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">Our <span class="highlight">Services</span></h1>
+          <p class="hero-subtitle">
+            We provide full-cycle digital solutions — from concept to launch.
+          </p>
+        </div>
+      </section>
+
+      <section class="services-cards-section">
+        <h2 class="section-title">What We Offer</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-card-content">
+              <img src="./assets/images/icons/icon1.png" alt="Icon" class="service-card-icon"/>
+              <h3 class="service-card-title">Website Design & Development</h3>
+              <p class="service-card-description">Custom websites that are fast, responsive, and optimized for search engines to help your business stand out online.</p>
+            </div>
+            <img class="service-card-image" src="./assets/images/card1.png" alt="Website Design"/>
+          </div>
+          <div class="service-card">
+            <div class="service-card-content">
+              <img src="./assets/images/icons/icon2.png" alt="Icon" class="service-card-icon"/>
+              <h3 class="service-card-title">Web Application Development</h3>
+              <p class="service-card-description">Our team creates powerful and scalable web applications to streamline your business processes.</p>
+            </div>
+            <img class="service-card-image" src="./assets/images/card2.png" alt="Web Application"/>
+          </div>
+          <div class="service-card">
+            <div class="service-card-content">
+              <img src="./assets/images/icons/icon3.png" alt="Icon" class="service-card-icon"/>
+              <h3 class="service-card-title">Mobile Application Development</h3>
+              <p class="service-card-description">We develop intuitive and engaging mobile apps for both iOS and Android platforms to connect with your users.</p>
+            </div>
+            <img class="service-card-image" src="./assets/images/card3.png" alt="Mobile Application"/>
+          </div>
+          <div class="service-card">
+            <div class="service-card-content">
+              <img src="./assets/images/icons/icon4.png" alt="Icon" class="service-card-icon"/>
+              <h3 class="service-card-title">Custom Software Development</h3>
+              <p class="service-card-description">Get tailor-made software solutions designed to meet your unique business requirements.</p>
+            </div>
+            <img class="service-card-image" src="./assets/images/card4.png" alt="Custom Software"/>
+          </div>
+          <div class="service-card">
+            <div class="service-card-content">
+              <img src="./assets/images/icons/icon5.png" alt="Icon" class="service-card-icon"/>
+              <h3 class="service-card-title">Enterprise Software Development</h3>
+              <p class="service-card-description">Scalable and robust enterprise solutions to improve your operational efficiency.</p>
+            </div>
+            <img class="service-card-image" src="./assets/images/card5.png" alt="Enterprise Software"/>
+          </div>
+          <div class="service-card">
+            <div class="service-card-content">
+              <img src="./assets/images/icons/icon6.png" alt="Icon" class="service-card-icon"/>
+              <h3 class="service-card-title">Billing Solutions</h3>
+              <p class="service-card-description">Secure and efficient billing and payment systems with advanced analytics.</p>
+            </div>
+            <img class="service-card-image" src="./assets/images/card6.png" alt="Billing Solutions"/>
+          </div>
+        </div>
+      </section>
+
+      <section class="tech-slider-section">
+        <h2 class="section-title">Trusted Technologies</h2>
+        <div class="infinite-slider">
+          <img src="./assets/images/slide.png" alt="Tech Logos" />
+          <img src="./assets/images/slide2.png" alt="Tech Logos" />
+          <img src="./assets/images/slide3.png" alt="Tech Logos" />
+          <img src="./assets/images/slide.png" alt="Tech Logos" />
+          <img src="./assets/images/slide2.png" alt="Tech Logos" />
+          <img src="./assets/images/slide3.png" alt="Tech Logos" />
+        </div>
+      </section>
+
+      <section class="vision-section">
+        <h3 class="vision-title">Let's Turn Your Vision Into Reality</h3>
+        <p class="vision-description">
+          Let's discuss how we can help transform your ideas into powerful
+          digital solutions.
+        </p>
+        <div class="vision-buttons-row">
+          <button class="vision-button">Contact Us</button>
+          <button class="vision-button">Get a Quote</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-column">
+              <div class="logo-section">
+                  <div class="logo-icon"><img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo"></div>
+                  <div class="logo-text">VOXEN TECH LLP</div>
+              </div>
+              <p style="margin-top: 1rem; line-height: 1.6;">A leading software development company in India, providing full-stack development, ecommerce solutions, and BPO services.</p>
+          </div>
+          <div class="footer-column">
+              <h3>Quick Links</h3>
+              <ul>
+                  <li><a href="./index.html">Home</a></li>
+                  <li><a href="./about.html">About Us</a></li>
+                  <li><a href="./services.html">Services</a></li>
+                  <li><a href="./contactus.html">Contact</a></li>
+              </ul>
+          </div>
+          <div class="footer-column">
+              <h3>Our Services</h3>
+              <ul>
+                  <li><a href="#">Website Development</a></li>
+                  <li><a href="#">Mobile App Development</a></li>
+                  <li><a href="#">Custom Software</a></li>
+                  <li><a href="#">BPO Services</a></li>
+              </ul>
+          </div>
+          <div class="footer-column">
+              <h3>Contact Us</h3>
+              <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala, India</p>
+              <p><i class="fas fa-phone-alt"></i> <a href="tel:+917736126160">+91 7736126160</a></p>
+              <p><i class="fas fa-envelope"></i> <a href="mailto:info@voxen.co.in">info@voxen.co.in</a></p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 VOXEN TECH LLP. All Rights Reserved.</p>
+        </div>
+   </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const navMenu = document.getElementById("navMenu");
+
+        mobileMenuBtn.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+          mobileMenuBtn.textContent = navMenu.classList.contains("active")
+            ? "✕"
+            : "☰";
+        });
+      });
+    </script>
+  </body>
+</html>

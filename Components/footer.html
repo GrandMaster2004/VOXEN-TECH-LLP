@@ -1,0 +1,112 @@
+<!-- Footer Component -->
+<link rel="stylesheet" href="./Components/footer.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-column footer-column-company-details">
+            <div class="footer-logo">
+                <img src="./assets/images/logos/logo.svg" alt="VOXEN TECH LLP Logo" class="footer-logo-img">
+                <span class="footer-logo-text">VOXEN TECH LLP</span>
+            </div>
+            <p>
+                VOXEN TECH LLP is a leading software development company in Kochi, India, providing full-stack development, ecommerce solutions, mobile app development, and BPO services.
+            </p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/1AVfoKhuSe/" target="_blank" aria-label="Facebook" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/voxen.llp?igsh=MXVmOWg1ZzRpZHk4Nw==" target="_blank" aria-label="Instagram" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/voxentech/" target="_blank" aria-label="LinkedIn" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About Us</a></li>
+                <li><a href="./services.html">Services</a></li>
+                <li><a href="./portfolio.html">Portfolio</a></li>
+                <li><a href="./blog.html">Blog</a></li>
+                <li><a href="./contactus.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Our Services</h3>
+            <ul>
+                <li><a href="./services.html#web-development">Website Development</a></li>
+                <li><a href="./services.html#mobile-app">Mobile App Development</a></li>
+                <li><a href="./services.html#ecommerce">Ecommerce Solutions</a></li>
+                <li><a href="./services.html#custom-software">Custom Software</a></li>
+                <li><a href="./services.html#api-development">API Development</a></li>
+                <li><a href="./services.html#bpo-services">BPO Services</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column contact-info">
+            <h3>Contact Us</h3>
+            <p>
+                <i class="fas fa-map-marker-alt"></i> 
+                <a href="https://maps.google.com/?q=Kochi,Kerala,India" target="_blank">VOXEN TECH LLP, Kochi, Kerala, India</a>
+            </p>
+            <p>
+                <i class="fas fa-phone-alt"></i> 
+                <a href="tel:+917736126160">+91 7736126160</a>
+            </p>
+            <p>
+                <i class="fas fa-envelope"></i> 
+                <a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
+            </p>
+            <p>
+                <i class="fas fa-clock"></i> Mon-Fri: 9AM – 6PM
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-separator"></div>
+
+    <div class="footer-bottom">
+        <p>
+            © 2025 VOXEN TECH LLP. All Rights Reserved.
+        </p>
+                    <div class="legal-links">
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="./terms-of-service.html">Terms of Service</a>
+            </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add click event for contact links
+        document.querySelectorAll('.contact-info a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Allow default behavior for mailto: and tel: links
+                if (this.href.startsWith('mailto:') || this.href.startsWith('tel:')) {
+                    return;
+                }
+                // For other links, open in new tab
+                e.preventDefault();
+                window.open(this.href, '_blank');
+            });
+        });
+    });
+</script>
