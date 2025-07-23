@@ -1,77 +1,1239 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Top Software, Website & Mobile App Development Company | Branding &
-      Digital Marketing Experts – Voxen Tech LLP
-    </title>
-    <meta
-      name="description"
-      content="Voxen Tech LLP is a leading software, website, and mobile app development company in India. We offer end-to-end branding, digital marketing, social media management, and BPO solutions to grow your business online."
-    />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Poppins:wght@400;500;600;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Poppins:wght@500;600&display=swap"
       rel="stylesheet"
     />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-
+    <link rel="stylesheet" href="./assets/css/theme.css" />
+    <link rel="stylesheet" href="./assets/css/tablet.css" />
+    <link rel="stylesheet" href="./Components/footer.css" />
     <link rel="icon" type="image/png" href="favicon.ico" />
+    <meta
+      name="description"
+      content="Voxen Tech LLP is a leading software, website, and mobile app development company in India. We offer end-to-end branding, digital marketing, social media management, and BPO solutions to grow your business online."
+    />
+    <title>
+      Top Software, Website & Mobile App Development Company | Branding &
+      Digital Marketing Experts – Voxen Tech LLP
+    </title>
 
     <style>
-      /* --- 1. Global Styles & Variables --- */
       :root {
-        /* Original About Page variables */
         --primary-color: #711666;
         --text-color: #ffffff;
-        --dark-bg: #2d2640;
-        --footer-bg: #1e172f;
+        --button-primary-bg: #5b2c6f;
+        --button-primary-text: #ffffff;
+        --button-secondary-bg: #ffffff;
+        --button-secondary-text: #5b2c6f;
 
-        /* Added from Services Page for Navbar */
+        /* --- FIX: Added variables from blog page for navbar compatibility --- */
         --primary-purple: #8b4a84;
         --dark-purple: #2d2640;
       }
-
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
       html,
       body {
         width: 100%;
         height: 100%;
-        overflow-x: hidden;
-        font-family: "Poppins", sans-serif;
+        min-height: 100%;
       }
-
       body {
         background-color: #fff;
-        color: #000;
+        font-family: "Poppins", sans-serif;
+        color: var(--text-color);
+        overflow-x: hidden;
         position: relative;
       }
 
-      .content-wrapper {
+      /* Prevent horizontal scroll on mobile */
+      html,
+      body {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+      @media (max-width: 768px) {
+        .services-section,
+        .why-choose-voxen-tech-section,
+        .portfolio-sectionhome,
+        .latest-insights-section,
+        .who-we-are-section {
+          width: 100% !important;
+          left: 0 !important;
+          right: 0 !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+      }
+
+      /* Hero Section */
+      .heroabout-container {
+        width: 100%;
+        height: 832px; /* Original height */
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* --- FIX: Added padding to offset for the fixed navbar --- */
+        padding-top: 80px; 
+      }
+      .banner-slides {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .banner-slide {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        background-size: cover;
+        background-position: center;
+      }
+      .banner-slide.active {
+        opacity: 1;
+      }
+      .heroabout-content-inner-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center; /* vertical centering */
+        justify-content: center; /* horizontal centering */
+        position: relative;
+        z-index: 50;
+        padding: 0 40px;
+        text-align: center;
+      }
+      .heroabout-content {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* horizontal centering */
+        justify-content: center; /* vertical centering */
+        text-align: center;
+      }
+      .heroabout-title {
+        font-size: 100px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 30px;
+        font-family: "Poppins", sans-serif;
+        text-transform: none;
+        text-align: center;
+        white-space: normal; /* allow wrapping */
+      }
+      .heroabout-title span {
+        color: white;
+        text-shadow: 3px -2px 10px rgba(135, 124, 139, 1);
+      }
+      .heroabout-title .hero-highlight {
+        color: var(--primary-color, #711666);
+      }
+      .heroabout-subtitle {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 50px;
+        color: white;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* About Us Section */
+      .about-us-sectionhome {
+        background-color: #fff;
+        color: #000;
+        padding: 80px 0;
+      }
+      .about-us-inner-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
       }
+      .about-us-content-area {
+        flex: 1;
+        max-width: 600px;
+      }
+      .about-us-heading {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        font-family: "Poppins", sans-serif;
+      }
+      .about-us-heading-highlight {
+        color: #711666;
+      }
+      .about-us-description {
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 30px;
+        color: rgba(0, 0, 0, 0.8);
+      }
+      .about-us-learn-more-button {
+        background-color: var(--button-primary-bg, #5b2c6f);
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+      .about-us-learn-more-button:hover {
+        background-color: var(--primary-color, #711666);
+      }
+      .about-us-slider-container {
+        flex: 1;
+        max-width: 500px;
+        position: relative;
+        height: 400px;
+      }
+      .about-us-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      .about-us-slide.active-slide {
+        opacity: 1;
+      }
+      .about-us-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      }
 
-      /* --- 2. Header & Navigation (FIXED) --- */
+      /* Why Choose Us Section */
+      .why-choose-voxen-tech-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        background: #fff;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        overflow-x: hidden;
+        padding: 100px 0 100px 0; /* Increased top and bottom padding */
+      }
+      .why-choose-voxen-tech-section .main-content-wrapper {
+        margin: 0 auto;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .why-choose-horizontal-selection {
+        margin: 0 auto;
+      }
+      @media (max-width: 1200px) {
+        .why-choose-horizontal-selection {
+          justify-content: center !important;
+          margin: 0 auto !important;
+        }
+      }
+      .why-choose-voxen-tech-section .section-heading {
+        text-align: center !important;
+        color: #000;
+        margin-bottom: 40px !important;
+      }
+      .why-choose-image-item {
+        height: 480px !important;
+        border-radius: 28px !important;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        position: relative;
+        flex: 0 0 15%;
+      }
+      .why-choose-image-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 28px !important;
+      }
+      .why-choose-image-item.active {
+        flex: 1 1 55%;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 1159px) {
+        .about-us-inner-wrapper {
+          gap: 30px;
+        }
+      }
+      @media (max-width: 992px) {
+        .about-us-inner-wrapper {
+          flex-direction: column;
+          gap: 40px;
+          text-align: center;
+        }
+        .about-us-content-area,
+        .about-us-slider-container {
+          max-width: 100%;
+        }
+      }
+      @media (max-width: 768px) {
+        .heroabout-title {
+          font-size: 32px !important;
+          color: #fff !important;
+          text-align: center !important;
+          margin-bottom: 18px !important;
+          white-space: normal !important;
+          display: block !important;
+        }
+        .heroabout-title .hero-highlight {
+          color: #711666 !important;
+        }
+        .about-us-heading {
+          font-size: 32px;
+        }
+        .about-us-description {
+          font-size: 15px;
+        }
+        .about-us-sectionhome {
+          padding: 40px 0;
+        }
+        .about-us-slider-container {
+          height: 250px;
+        }
+        .why-choose-voxen-tech-section .section-heading {
+          font-size: 24px !important;
+          margin-bottom: 20px !important;
+        }
+        .why-choose-horizontal-selection {
+          flex-direction: row !important;
+          justify-content: flex-start !important;
+          align-items: stretch !important;
+          gap: 15px;
+          padding: 0 20px;
+          overflow-x: auto;
+          overflow-y: hidden;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          flex-wrap: nowrap !important;
+          width: 100%;
+          max-width: none;
+        }
+        .why-choose-horizontal-selection::-webkit-scrollbar {
+          display: none;
+        }
+        .why-choose-image-item {
+          height: 300px !important;
+          min-width: 200px;
+          max-width: 200px;
+          border-radius: 28px !important;
+        }
+        .about-us-slider-container {
+          height: 180px;
+        }
+        .carousel-container {
+          margin-bottom: 40px;
+        }
+        .why-choose-voxen-tech-section {
+          margin-top: 0 !important;
+          padding-top: 160px;
+        }
+        .main-content-wrapper {
+          overflow-x: auto !important;
+        }
+        .why-choose-horizontal-selection {
+          width: max-content !important;
+          min-width: 100% !important;
+        }
+      }
+      @media (max-width: 480px) {
+        .heroabout-title {
+          font-size: 32px;
+        }
+        .about-us-heading {
+          font-size: 20px;
+        }
+        .about-us-sectionhome {
+          padding: 24px 0;
+        }
+        .about-us-slider-container {
+          height: 120px;
+        }
+        .why-choose-voxen-tech-section .section-heading {
+          font-size: 20px !important;
+          margin-bottom: 16px !important;
+        }
+        .why-choose-horizontal-selection {
+          gap: 12px;
+          padding: 0 16px;
+        }
+        .why-choose-image-item {
+          height: 250px !important;
+          min-width: 180px;
+          max-width: 180px;
+          border-radius: 28px !important;
+        }
+      }
+      /* --- HERO ANIMATION --- */
+      .heroabout-text-animated {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%) translateX(-100vw);
+        opacity: 0;
+        transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s;
+        width: 100vw;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .heroabout-container.heroabout-text-visible .heroabout-text-animated {
+        transform: translateY(-50%) translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .heroabout-content-inner-wrapper {
+        position: relative;
+        height: 100%;
+      }
+      @media (max-width: 900px) {
+        .heroabout-content-inner-wrapper {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: center !important;
+          height: 100% !important;
+          min-height: 320px;
+          text-align: center !important;
+        }
+        .heroabout-content {
+          width: 100% !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: center !important;
+          text-align: center !important;
+        }
+        .heroabout-text-animated {
+          display: block !important;
+          opacity: 1 !important;
+          position: static !important;
+          transform: none !important;
+          pointer-events: auto !important;
+          width: 100% !important;
+          text-align: center !important;
+          margin: 0 auto !important;
+        }
+        .heroabout-title {
+          font-size: 32px !important;
+          color: #fff !important;
+          text-align: center !important;
+          margin-bottom: 18px !important;
+          white-space: normal !important;
+          display: block !important;
+          width: 100% !important;
+        }
+        .heroabout-subtitle {
+          text-align: center !important;
+          width: 100% !important;
+          margin: 0 auto 12px auto !important;
+          color: #fff !important;
+          font-size: 18px !important;
+        }
+      }
+      /* --- ABOUT US ANIMATION --- */
+      .about-animated-text {
+        opacity: 0;
+        transform: translateX(-80px);
+        transition: opacity 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+          transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+      }
+      .about-us-sectionhome.about-animated-text-visible .about-animated-text {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      @media (max-width: 900px) {
+        .about-animated-text {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+      /* --- WHO WE ARE SECTION --- */
+      .who-we-are-section {
+        position: relative;
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        height: 742px;
+        min-height: 500px;
+        background: #121212;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .who-we-are-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: #121212;
+        z-index: 1;
+      }
+
+      .Property1Variant2 {
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      /* Animation styles */
+      .Property1Variant2 > * {
+        transform: translateY(50px);
+        opacity: 0;
+        transition: all 0.6s ease;
+      }
+
+      .Property1Variant2.timeline-animate > * {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Stagger the animations */
+      .Property1Variant2 > *:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      .Property1Variant2 > *:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      .Property1Variant2 > *:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+      .Property1Variant2 > *:nth-child(4) {
+        transition-delay: 0.4s;
+      }
+      .Property1Variant2 > *:nth-child(5) {
+        transition-delay: 0.5s;
+      }
+      .Property1Variant2 > *:nth-child(6) {
+        transition-delay: 0.6s;
+      }
+      .Property1Variant2 > *:nth-child(7) {
+        transition-delay: 0.7s;
+      }
+      .Property1Variant2 > *:nth-child(8) {
+        transition-delay: 0.8s;
+      }
+      .who-we-are-content {
+        position: relative;
+        z-index: 2;
+        width: 1280px;
+        height: 742px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .who-we-are-heading {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 32px;
+        margin: 0 auto;
+        color: black;
+        font-size: 29px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        text-align: center;
+        width: 100%;
+        z-index: 2;
+      }
+      .who-we-are-description {
+        width: 651px;
+        left: 60px;
+        top: 208px;
+        position: absolute;
+        color: #000000;
+        font-size: 21px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        text-align: left;
+      }
+      .who-we-are-image-placeholder {
+        position: absolute;
+        left: 786px;
+        top: 185px;
+        width: 434px;
+        height: 527px;
+        background: #121212;
+        border-radius: 20px;
+        box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
+      }
+
+      .carousel-container {
+        width: 100%;
+        height: 863px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 5px;
+        background: #ffffff;
+        margin: 0px auto;
+        max-width: 100%;
+        margin-bottom: 80px;
+      }
+      .carousel-wrapper {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        height: 100%;
+      }
+      .slide {
+        min-width: 100%;
+        height: 100%;
+        position: relative;
+        padding: 20px;
+      }
+      .nav-circle {
+        width: 47px;
+        height: 47px;
+        background: #2d2640;
+        border-radius: 50%;
+        position: absolute;
+        top: 238px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+        transition: all 0.3s ease;
+      }
+      .nav-circle:hover {
+        background: #3d3650;
+        transform: scale(1.1);
+      }
+      .nav-circle.prev {
+        left: 0px;
+      }
+      .nav-circle.next {
+        right: 0px;
+      }
+      .nav-arrow {
+        width: 13px;
+        height: 23px;
+        background: rgba(255, 255, 255, 0.8);
+        clip-path: polygon(0 0, 60% 50%, 0 100%);
+      }
+      .nav-arrow.left {
+        transform: rotate(180deg);
+      }
+      .bg-rect-left {
+        width: 176px;
+        height: 332px;
+        left: 109px;
+        top: 96px;
+        position: absolute;
+        background: #877c8b;
+        box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        filter: blur(7.5px);
+      }
+      .bg-rect-right {
+        width: 176px;
+        height: 332px;
+        right: 109px;
+        top: 96px;
+        position: absolute;
+        background: #877c8b;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        filter: blur(5px);
+      }
+      .main-card {
+        width: 433px;
+        height: 523px;
+        left: 50%;
+        top: 0px;
+        position: absolute;
+        transform: translateX(-50%);
+        background: #2d2640;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 40px 30px;
+      }
+      .main-icon {
+        width: 72px;
+        height: 72px;
+        fill: #d9d9d9;
+        margin-bottom: 20px;
+      }
+      .main-card h2 {
+        color: white;
+        font-size: 28px;
+        font-family: Poppins;
+        font-weight: 900;
+        margin-bottom: 30px;
+      }
+      .main-card p {
+        width: 288px;
+        color: white;
+        font-size: 28px;
+        font-family: Poppins;
+        font-weight: 400;
+        line-height: 1.3;
+        text-align: center;
+      }
+      .support-icon-left {
+        width: 56px;
+        height: 84px;
+        left: 169px;
+        top: 220px;
+        position: absolute;
+        background: #2d2640;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        filter: blur(2.5px);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .support-icon-right {
+        width: 90px;
+        height: 55px;
+        right: 169px;
+        top: 235px;
+        position: absolute;
+        background: #2d2640;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        filter: blur(2.5px);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .support-icon {
+        fill: rgba(255, 255, 255, 0.4);
+      }
+      .support-icon.small {
+        width: 24px;
+        height: 24px;
+      }
+      .support-icon.medium {
+        width: 32px;
+        height: 32px;
+      }
+      @media (max-width: 1200px) {
+        .carousel-container {
+          width: 100%;
+        }
+        .main-card {
+          width: 90vw;
+        }
+      }
+      @media (max-width: 768px) {
+        .carousel-container {
+          height: 550px;
+        }
+        .main-card {
+          width: 80%;
+          height: 360px;
+          padding: 30px 20px;
+        }
+        .main-card h2 {
+          font-size: 24px;
+        }
+        .main-card p {
+          width: 100%;
+          font-size: 18px;
+        }
+        .main-icon {
+          width: 60px;
+          height: 60px;
+        }
+        .bg-rect-left,
+        .bg-rect-right {
+          width: 120px;
+          height: 250px;
+        }
+        .support-icon-left,
+        .support-icon-right {
+          display: none;
+        }
+      }
+      .why-choose-voxen-tech-section {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+
+      .portfolio-sectionhome {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+
+      .portfolio-sectionhome .section-heading {
+        font-family: "Poppins", sans-serif !important;
+        font-weight: 700 !important;
+      }
+
+      .why-choose-voxen-tech-section .section-heading,
+      .portfolio-sectionhome .section-heading,
+      .testimonials-section .section-heading {
+        text-align: center !important;
+      }
+
+      /* Mobile horizontal scrolling for Why Choose Us section */
+      @media (max-width: 768px) {
+        .why-choose-voxen-tech-section .section-heading {
+          font-size: 24px !important;
+          margin-bottom: 20px !important;
+          height: auto !important;
+        }
+
+        .portfolio-sectionhome .section-heading {
+          font-size: 24px !important;
+          margin-bottom: 20px !important;
+        }
+
+        .why-choose-horizontal-selection {
+          display: flex !important;
+          flex-direction: row !important;
+          overflow-x: auto !important;
+          overflow-y: hidden !important;
+          gap: 15px !important;
+          padding: 0 16px !important;
+          flex-wrap: nowrap !important;
+          width: 100% !important;
+          max-width: none !important;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .why-choose-horizontal-selection::-webkit-scrollbar {
+          display: none;
+        }
+
+        .why-choose-image-item {
+          width: 200px !important;
+          min-width: 200px !important;
+          max-width: 200px !important;
+          height: 159px !important;
+          border-radius: 15px !important;
+          flex: 0 0 200px !important;
+          scroll-snap-align: start;
+        }
+
+        .why-choose-image-item img {
+          width: 100% !important;
+          height: 159px !important;
+          border-radius: 15px !important;
+          object-fit: cover !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .why-choose-voxen-tech-section .section-heading {
+          font-size: 20px !important;
+          margin-bottom: 16px !important;
+        }
+
+        .portfolio-sectionhome .section-heading {
+          font-size: 20px !important;
+          margin-bottom: 16px !important;
+        }
+
+        .why-choose-horizontal-selection {
+          gap: 12px;
+          padding: 0 16px;
+          flex-wrap: nowrap !important;
+        }
+
+        .why-choose-image-item {
+          height: 240px;
+          min-width: 180px;
+          max-width: 180px;
+          width: 180px !important;
+          flex: 0 0 180px;
+        }
+
+        .why-choose-image-item:not(.active),
+        .why-choose-image-item.active {
+          width: 180px !important;
+          flex: 0 0 180px;
+        }
+
+        .why-choose-item-text {
+          font-size: 12px;
+          bottom: 8px;
+          left: 8px;
+        }
+      }
+
+      .image-slider-section {
+        padding: 100px 0;
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        background-color: #f0f0f0;
+      }
+      .infinite-slider {
+        display: flex;
+        width: calc(1280px * 3);
+        animation: slide-horizontal 30s linear infinite;
+      }
+      .infinite-slider img {
+        width: 1280px;
+        height: 159px;
+        flex-shrink: 0;
+        display: block;
+        object-fit: cover;
+      }
+      @keyframes slide-horizontal {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-1280px);
+        }
+      }
+      @media (max-width: 1280px) {
+        .infinite-slider img {
+          width: 100vw;
+          height: auto;
+          max-height: 159px;
+        }
+        .infinite-slider {
+          width: calc(100vw * 3);
+          animation: slide-horizontal-responsive 30s linear infinite;
+        }
+        @keyframes slide-horizontal-responsive {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-100vw);
+          }
+        }
+      }
+      @media (max-width: 768px) {
+        .infinite-slider {
+          animation-duration: 45s;
+        }
+      }
+
+      .team-cards-wrapper::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Desktop style for Who We Are text box */
+      @media (min-width: 992px) {
+        .custom-about-text {
+          width: 651px;
+          height: 516.52px;
+          color: black;
+          font-size: 21px;
+          font-family: "Poppins", sans-serif;
+          font-weight: 400;
+          word-wrap: break-word;
+          padding: 32px;
+          border-radius: 25px;
+          background: #fff;
+          box-shadow: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      /* Responsive style for smaller screens */
+      @media (max-width: 991px) {
+        .custom-about-text {
+          width: 100%;
+          height: auto;
+          color: black;
+          font-size: 16px;
+          font-family: "Poppins", sans-serif;
+          font-weight: 400;
+          word-wrap: break-word;
+          padding: 16px;
+          border-radius: 18px;
+          background: #fff;
+          box-shadow: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      /* Add to CSS section */
+      .about-us-title-centered {
+        color: black;
+        font-size: 29px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        word-wrap: break-word;
+        text-align: center;
+        width: 100%;
+        margin-top: 40px;
+        margin-bottom: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Add Figma-style Who We Are section CSS */
+      .who-we-are-figma-container {
+        width: 1280px;
+        height: 783.27px;
+        position: relative;
+        margin: 60px auto 0 auto;
+        margin-bottom: 60px;
+      }
+      .who-we-are-bg {
+        width: 1280px;
+        height: 755px;
+        left: 0;
+        top: 0;
+        position: absolute;
+        background: #eeeeee;
+        border-radius: 20px;
+      }
+      .who-we-are-heading {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 82px;
+        margin: 0 auto;
+        color: black;
+        font-size: 29px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        text-align: center;
+        width: 100%;
+        z-index: 2;
+      }
+      .who-we-are-text {
+        width: 651px;
+        height: 516.52px;
+        left: 60px;
+        top: 266.75px;
+        position: absolute;
+        color: black;
+        font-size: 21px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        word-wrap: break-word;
+        background: #fff;
+        border-radius: 20px;
+        padding: 32px;
+        box-sizing: border-box;
+        z-index: 2;
+        box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
+      }
+      .who-we-are-image-container {
+        width: 434px;
+        height: 527px;
+        left: 786px;
+        top: 166px;
+        position: absolute;
+        z-index: 2;
+      }
+      .who-we-are-image-bg {
+        width: 434px;
+        height: 527px;
+        background: #fff;
+        border-radius: 20px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
+      }
+      .who-we-are-shape {
+        position: absolute;
+        background: #711666;
+        outline: 1px white solid;
+        outline-offset: -0.5px;
+        border-radius: 8px;
+      }
+      .shape1 {
+        width: 64.1px;
+        height: 76.46px;
+        left: 44px;
+        top: 220.93px;
+      }
+      .shape2 {
+        width: 64.66px;
+        height: 76.46px;
+        left: 147.46px;
+        top: 275.46px;
+        transform: rotate(180deg);
+      }
+      .shape3 {
+        width: 64.35px;
+        height: 76.49px;
+        left: 65.85px;
+        top: 291.62px;
+        transform: rotate(-61deg);
+      }
+      .who-we-are-image-text {
+        position: absolute;
+        left: 164px;
+        top: 216px;
+        width: 100px;
+        text-align: center;
+        color: black;
+        font-size: 64px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        z-index: 3;
+      }
+      @media (max-width: 1300px) {
+        .who-we-are-figma-container,
+        .who-we-are-bg {
+          width: 100vw;
+          min-width: 0;
+          max-width: 100vw;
+        }
+      }
+      @media (max-width: 900px) {
+        .who-we-are-figma-container {
+          height: auto;
+          min-height: 400px;
+          width: 100vw;
+        }
+        .who-we-are-bg {
+          height: auto;
+          min-height: 400px;
+          width: 100vw;
+        }
+        .who-we-are-text,
+        .who-we-are-image-container {
+          position: static;
+          width: 90vw;
+          max-width: 100%;
+          height: auto;
+          margin: 24px auto;
+          left: unset;
+          top: unset;
+        }
+        .who-we-are-heading {
+          position: static;
+          margin-top: 32px;
+          margin-bottom: 16px;
+          font-size: 22px;
+        }
+        .who-we-are-image-bg {
+          width: 100%;
+          height: 300px;
+        }
+        .who-we-are-image-text {
+          left: 50%;
+          top: 120px;
+          transform: translateX(-50%);
+          font-size: 32px;
+        }
+        .who-we-are-shape {
+          display: none;
+        }
+      }
+
+      /* Add Figma-style Why Choose Voxen section CSS */
+      .why-choose-voxen-figma-group {
+        width: 1160px;
+        height: 480px;
+        position: relative;
+        margin: 0 auto;
+      }
+      .why-choose-voxen-figma-group img,
+      .why-choose-voxen-figma-group > div[style*="background: #2D2640"],
+      .why-choose-voxen-figma-group > div[style*="background: #D9D9D9"] {
+        border-radius: 28px !important;
+      }
+      .why-choose-voxen-figma-group > div,
+      .why-choose-voxen-figma-group img {
+        position: absolute;
+      }
+      .why-choose-voxen-figma-group .feature-title,
+      .why-choose-voxen-figma-group .feature-desc {
+        font-family: "Poppins", sans-serif;
+      }
+      @media (max-width: 1200px) {
+        .why-choose-voxen-figma-group {
+          width: 100vw;
+          min-width: 0;
+          max-width: 100vw;
+          height: auto;
+        }
+      }
+
+      /* Use only padding for spacing between carousel-container and why-choose-voxen-tech-section */
+      .carousel-container {
+        margin-bottom: 0 !important;
+        padding-bottom: 80px;
+      }
+      .why-choose-voxen-tech-section {
+        margin-top: 0 !important;
+        padding-top: 120px;
+      }
+      @media (max-width: 768px) {
+        .carousel-container {
+          padding-bottom: 40px;
+        }
+        .why-choose-voxen-tech-section {
+          padding-top: 90px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .carousel-container {
+          padding-bottom: 0 !important;
+        }
+      }
+
+      .why-choose-voxen-tech-section {
+        height: auto !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+      }
+      .main-content-wrapper {
+        height: auto !important;
+      }
+
+      section {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+    </style>
+    <style>
+      /* --- Copied Navbar CSS --- */
       .header {
         background-color: var(--dark-purple);
         padding: 1rem 2rem;
@@ -112,6 +1274,7 @@
       .nav-item {
         color: #a9a4b3; /* Muted color for inactive links */
         font-size: 1.1rem;
+        font-family: "Poppins", sans-serif;
         text-decoration: none;
         padding-bottom: 5px;
         border-bottom: 3px solid transparent;
@@ -130,6 +1293,7 @@
         color: white;
         padding: 0.75rem 1.75rem;
         border-radius: 12px;
+        font-family: "Poppins", sans-serif;
         text-decoration: none;
         font-size: 1.1rem;
         transition: all 0.3s ease;
@@ -147,585 +1311,65 @@
         cursor: pointer;
         z-index: 1001;
       }
-
-      /* --- 3. Hero Section --- */
-      .heroabout-container {
-        padding-top: 80px; /* Offset for fixed header */
-        width: 100%;
-        height: 832px;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
-      }
-      .banner-slides {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .banner-slide {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-        background-size: cover;
-        background-position: center;
-      }
-      .banner-slide.active {
-        opacity: 1;
-      }
-      .heroabout-content {
-        position: relative;
-        z-index: 2;
-        padding: 0 20px;
-      }
-      .heroabout-title {
-        font-size: 5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-      }
-      .heroabout-title .hero-highlight {
-        color: var(--primary-color);
-      }
-      .heroabout-subtitle {
-        font-size: 1.5rem;
-        font-weight: 500;
-      }
-
-      /* --- 4. About Us Section --- */
-      .about-us-sectionhome {
-        padding: 80px 0;
-      }
-      .about-us-inner-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 60px;
-      }
-      .about-us-content-area {
-        flex: 1;
-        max-width: 600px;
-      }
-      .about-us-title-centered {
-        text-align: center;
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-      }
-      .about-us-heading-highlight {
-        color: var(--primary-color);
-      }
-      .about-us-description {
-        line-height: 1.8;
-      }
-      .about-us-slider-container {
-        flex: 1;
-        max-width: 500px;
-        height: 400px;
-        position: relative;
-      }
-      .about-us-slide {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-      }
-      .about-us-slide.active-slide {
-        opacity: 1;
-      }
-      .about-us-slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-
-      /* --- 5. Our Mission Section --- */
-      .our-mission-section {
-        background: var(--dark-bg);
-        color: white;
-        padding: 80px 20px;
-      }
-      .mission-content-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 40px;
-      }
-      .mission-text-content {
-        max-width: 450px;
-      }
-      .mission-title {
-        color: #e1b8dc;
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-      }
-      .mission-description {
-        font-size: 1.2rem;
-        line-height: 1.6;
-      }
-      .mission-stats {
-        display: flex;
-        gap: 30px;
-      }
-      .mission-stat-item {
-        background: rgba(238, 238, 238, 0.5);
-        border-radius: 15px;
-        padding: 20px;
-        text-align: center;
-        width: 200px;
-      }
-      .mission-stat-number {
-        color: #000;
-        font-size: 4.5rem;
-        font-weight: 700;
-      }
-      .mission-stat-label {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 1rem;
-        margin-top: 10px;
-      }
-
-      /* --- 6. Timeline Sections (Desktop & Mobile) --- */
-      .timeline-section-fullwidth {
-        background: #b2aeb3;
-        padding: 80px 20px;
-      }
-      .timeline-inner {
-        position: relative;
-        padding: 40px 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
-      }
-      .timeline-circle {
-        position: absolute;
-        top: -41px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 83px;
-        height: 83px;
-        background: var(--dark-bg);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-size: 2.5rem;
-        font-weight: 700;
-        z-index: 2;
-      }
-      .timeline-line {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 3px;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.2);
-        z-index: 1;
-      }
-      .timeline-content-box,
-      .timeline-image-box {
-        width: 45%;
-        max-width: 500px;
-      }
-      .timeline-content-box {
-        background: var(--dark-bg);
-        color: white;
-        padding: 30px;
-        border-radius: 25px;
-      }
-      .timeline-content-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-      }
-      .timeline-content-year {
-        font-size: 1.5rem;
-        color: rgba(255, 255, 255, 0.5);
-        margin-bottom: 15px;
-      }
-      .timeline-image-box img {
-        width: 100%;
-        border-radius: 25px;
-        object-fit: cover;
-      }
-      .timeline-inner.reverse {
-        flex-direction: row-reverse;
-      }
-      .mobile-timeline-section {
-        display: none; /* Hidden on desktop */
-      }
-
-      /* --- 7. Core Values Carousel --- */
-      .carousel-section {
-        padding: 80px 0;
-      }
-      .section-title {
-        text-align: center;
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 40px;
-      }
-      .carousel-container {
-        position: relative;
-        overflow: hidden;
-        height: 550px;
-      }
-      .carousel-wrapper {
-        display: flex;
-        height: 100%;
-        transition: transform 0.5s ease-in-out;
-      }
-      .slide {
-        min-width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .main-card {
-        width: 433px;
-        height: 480px;
-        background: var(--dark-bg);
-        color: white;
-        border-radius: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 40px;
-      }
-      .main-icon {
-        width: 72px;
-        height: 72px;
-        fill: #d9d9d9;
-        margin-bottom: 20px;
-      }
-      .main-card h2 {
-        font-size: 1.75rem;
-        font-weight: 900;
-        margin-bottom: 20px;
-      }
-      .main-card p {
-        line-height: 1.6;
-        max-width: 300px;
-      }
-      .nav-circle {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 47px;
-        height: 47px;
-        background: #2d2640;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
-      }
-      .nav-circle.prev {
-        left: 20px;
-      }
-      .nav-circle.next {
-        right: 20px;
-      }
-      .nav-arrow {
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 3px;
-      }
-      .nav-arrow.left {
-        transform: rotate(135deg);
-      }
-      .nav-arrow.right {
-        transform: rotate(-45deg);
-      }
-
-      /* --- 8. Why Choose Us Section --- */
-      .why-choose-voxen-tech-section {
-        padding: 80px 20px;
-      }
-      .why-choose-horizontal-selection {
-        display: flex;
-        gap: 15px;
-        height: 480px;
-      }
-      .why-choose-image-item {
-        flex: 0 0 15%;
-        border-radius: 28px;
-        overflow: hidden;
-        cursor: pointer;
-        transition: flex 0.6s ease;
-      }
-      .why-choose-image-item.active {
-        flex: 1 1 55%;
-      }
-      .why-choose-image-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      /* --- 9. Technology Stack Section --- */
-      .image-slider-section {
-        padding: 80px 0;
-        overflow: hidden;
-        background: #f0f0f0;
-      }
-      .infinite-slider {
-        display: flex;
-        width: calc(1280px * 3); /* Width of image x3 */
-        animation: slide-horizontal 30s linear infinite;
-      }
-      .infinite-slider img {
-        width: 1280px;
-      }
-      @keyframes slide-horizontal {
-        from {
-          transform: translateX(0);
-        }
-        to {
-          transform: translateX(-1280px);
-        }
-      }
-
-      /* --- 10. Call to Action (CTA) Section --- */
-      .build-amazing-section {
-        background: var(--dark-bg);
-        padding: 80px 20px;
-        text-align: center;
-        color: white;
-      }
-      .cta-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-      }
-      .cta-description {
-        max-width: 680px;
-        margin: 0 auto 40px auto;
-        font-size: 1.2rem;
-        color: #d9d9d9;
-      }
-      .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-      }
-      .cta-btn {
-        width: 231px;
-        height: 57px;
-        background: #baa9c1;
-        border-radius: 18px;
-        border: none;
-        color: black;
-        font-size: 1.5rem;
-        font-family: "Poppins", sans-serif;
-        font-weight: 500;
-        cursor: pointer;
-      }
-
-      /* --- 11. Footer --- */
-      .footer {
-        background-color: var(--footer-bg);
-        color: #bbb;
-        padding: 70px 0 0;
-      }
-      .footer-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 30px;
-      }
-      .footer-col {
-        width: 100%;
-        padding: 0 15px;
-      }
-      .footer-col.about {
-        flex-basis: 35%;
-      }
-      .footer-col.links {
-        flex-basis: 20%;
-      }
-      .footer-col.contact {
-        flex-basis: 35%;
-      }
-      .footer-col h4 {
-        font-size: 18px;
-        color: #fff;
-        margin-bottom: 30px;
-        position: relative;
-      }
-      .footer-col h4::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -10px;
-        background-color: var(--primary-color);
-        height: 2px;
-        width: 50px;
-      }
-      .footer-col ul {
-        list-style: none;
-      }
-      .footer-col ul li:not(:last-child) {
-        margin-bottom: 10px;
-      }
-      .footer-col ul li a {
-        font-size: 16px;
-        text-decoration: none;
-        color: #bbb;
-        transition: color 0.3s ease;
-      }
-      .footer-col ul li a:hover {
-        color: #fff;
-        padding-left: 5px;
-      }
-      .footer-about-text {
-        margin-top: 20px;
-        line-height: 1.8;
-      }
-      .social-links a {
-        display: inline-block;
-        height: 40px;
-        width: 40px;
-        background-color: rgba(255, 255, 255, 0.2);
-        margin: 0 10px 10px 0;
-        text-align: center;
-        line-height: 40px;
-        border-radius: 50%;
-        color: #fff;
-        transition: all 0.5s ease;
-      }
-      .social-links a:hover {
-        color: #24262b;
-        background-color: #fff;
-      }
-      .footer-bottom {
-        text-align: center;
-        padding: 20px 0;
-        margin-top: 50px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      /* --- Responsive --- */
-      @media (max-width: 992px) {
-        .about-us-inner-wrapper,
-        .mission-content-wrapper {
-          flex-direction: column;
-          text-align: center;
-        }
-        .timeline-section-fullwidth {
-          display: none;
-        }
-        .mobile-timeline-section {
-          display: block;
-        }
-      }
-
       @media (max-width: 768px) {
         .header {
           padding: 1rem;
         }
-        /* Mobile Header */
-        .mobile-menu-btn {
-          display: block;
-        }
         .nav-menu {
-          display: none; /* Initially hidden */
-          position: absolute;
-          top: 100%; /* Position below the header */
-          left: 0;
-          right: 0;
+          display: none;
+          position: fixed;
+          top: 0;
+          right: -100%;
           background: var(--dark-purple);
           flex-direction: column;
-          padding: 1rem 0;
-          gap: 0;
+          padding-top: 5rem;
+          height: 100vh;
+          width: 250px;
+          transition: right 0.3s ease-in-out;
         }
         .nav-menu.active {
-          display: flex; /* Show when active */
+          display: flex;
+          right: 0;
         }
         .nav-item {
           padding: 1rem 2rem;
           width: 100%;
           border-bottom: none;
         }
-        .nav-item.active {
-          border-bottom: none;
-        }
-        .contact-btn {
+        .mobile-menu-btn {
           display: block;
-          margin: 1rem 2rem;
-          text-align: center;
         }
-
-        .heroabout-title {
-          font-size: 2.5rem;
+      }
+    </style>
+    <style>
+      @media (max-width: 480px) {
+        .carousel-container {
+          position: relative !important;
         }
-        .about-us-slider-container {
-          height: 250px;
+        .nav-circle.prev,
+        .nav-circle.next {
+          position: absolute !important;
+          top: 50% !important;
+          transform: translateY(-50%) !important;
+          width: 36px !important;
+          height: 36px !important;
+          z-index: 10 !important;
+          /* background: #1877F2 !important; */
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
         }
-
-        .mission-content-wrapper {
-          gap: 40px;
+        .nav-circle.prev {
+          left: 8px !important;
         }
-        .mission-stats {
-          flex-direction: column;
+        .nav-circle.next {
+          right: 8px !important;
         }
-
-        /* Mobile Why Choose Us (Horizontal Scroll) */
-        .why-choose-horizontal-selection {
-          flex-direction: row;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          height: 300px;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
-        }
-        .why-choose-horizontal-selection::-webkit-scrollbar {
-          display: none;
-        }
-        .why-choose-image-item {
-          flex: 0 0 200px;
-        }
-
-        .infinite-slider {
-          width: calc(100vw * 3);
-          animation-name: slide-horizontal-mobile;
-        }
-        .infinite-slider img {
-          width: 100vw;
-        }
-        @keyframes slide-horizontal-mobile {
-          to {
-            transform: translateX(-100vw);
-          }
-        }
-
-        /* Mobile Footer */
-        .footer-col {
-          flex-basis: 100%;
-          text-align: center;
-        }
-        .footer-col h4::before {
-          left: 50%;
-          transform: translateX(-50%);
-        }
-        .social-links {
-          text-align: center;
+        .nav-arrow.left,
+        .nav-arrow.right {
+          width: 16px !important;
+          height: 16px !important;
         }
       }
     </style>
@@ -733,87 +1377,154 @@
   <body>
     <header class="header" id="mainHeader">
       <div class="nav-container">
-        <a href="index.html" class="logo-section">
+        <a href="./index.html" class="logo-section">
           <div class="logo-icon">
             <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
           </div>
           <div class="logo-text">VOXEN TECH LLP</div>
         </a>
         <nav class="nav-menu" id="navMenu">
-          <a href="index.html" class="nav-item">Home</a>
-          <a href="about.html" class="nav-item active">About</a>
-          <a href="services.html" class="nav-item">Services</a>
-          <a href="portfolio.html" class="nav-item">Portfolio</a>
-          <a href="blog.html" class="nav-item">Blog</a>
-          <a href="contactus.html" class="contact-btn">Contact Us</a>
+          <a href="./index.html" class="nav-item">Home</a>
+          <a href="./about.html" class="nav-item active">About</a>
+          <a href="./services.html" class="nav-item">Services</a>
+          <a href="./portfolio.html" class="nav-item">Portfolio</a>
+          <a href="./blog.html" class="nav-item">Blog</a>
+          <a href="./contactus.html" class="contact-btn">Contact Us</a>
         </nav>
         <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
       </div>
     </header>
 
+    <div id="navbar-placeholder"></div>
+    <script src="./assets/script/services.js"></script>
     <div class="heroabout-container" id="heroabout-animated">
       <div class="banner-slides">
         <div
           class="banner-slide active"
           style="background-image: url('./assets/images/about3.png')"
         ></div>
-        <div
-          class="banner-slide"
-          style="background-image: url('./assets/images/about2.png')"
-        ></div>
-        <div
-          class="banner-slide"
-          style="background-image: url('./assets/images/about1.png')"
-        ></div>
       </div>
-      <div class="heroabout-content">
-        <h1 class="heroabout-title">
-          <span>About </span><span class="hero-highlight">Voxen</span>
-        </h1>
-        <p class="heroabout-subtitle">
-          Driven by innovation, powered by people.
-        </p>
+      <div class="heroabout-content-inner-wrapper">
+        <div class="heroabout-content">
+          <h1 class="heroabout-title">
+            <span>About </span>
+            <span class="hero-highlight">Voxen</span>
+          </h1>
+          <p class="heroabout-subtitle">
+            Driven by innovation, powered by people.
+          </p>
+        </div>
       </div>
     </div>
-
     <section class="about-us-sectionhome">
-      <div class="content-wrapper about-us-inner-wrapper">
+      <div class="main-content-wrapper about-us-inner-wrapper">
         <div class="about-us-content-area">
-          <h2 class="about-us-title-centered">
-            <span class="about-us-heading-highlight">WHO WE ARE</span>
-          </h2>
-          <div class="about-us-description">
-            Founded in 2025, VOXEN TECH LLP has grown from a small startup to a
-            leading software development company with a global client base. Our
-            team of passionate developers, designers, and strategists work
-            together to deliver exceptional digital solutions that drive
-            business growth.<br /><br />
-            At Voxen, we don't just build software — we build long-term
-            partnerships grounded in trust, quality, and measurable results.
+          <div class="about-animated-text">
+            <h2 class="about-us-title-centered">
+              <span class="about-us-heading-highlight">WHO WE ARE</span>
+            </h2>
+            <div class="about-us-description custom-about-text">
+              Founded in 2025, VOXEN TECH LLP has grown from a small startup to
+              a leading software development company with a global client base.
+              Our team of passionate developers, designers, and strategists work
+              together to deliver exceptional digital solutions that drive
+              business growth.<br />
+              With a commitment to innovation and a focus on client success, we
+              specialize in building scalable web, mobile, and custom software
+              solutions tailored to meet real-world business needs. Our agile
+              approach, deep technical expertise, and collaborative mindset
+              allow us to adapt quickly and deliver value at every stage of the
+              digital journey.<br />
+              At Voxen, we don't just build software — we build long-term
+              partnerships grounded in trust, quality, and measurable results.
+            </div>
           </div>
         </div>
         <div class="about-us-slider-container">
           <div class="about-us-slide active-slide">
-            <img src="./assets/images/logos/logo1.png" alt="Client Logo 1" />
+            <img src="./assets/images/logos/logo1.png" alt="About Us Slide 1" />
           </div>
           <div class="about-us-slide">
-            <img src="./assets/images/logos/logo2.png" alt="Client Logo 2" />
+            <img src="./assets/images/logos/logo2.png" alt="About Us Slide 2" />
           </div>
           <div class="about-us-slide">
-            <img src="./assets/images/logos/logo3.png" alt="Client Logo 3" />
+            <img src="./assets/images/logos/logo3.png" alt="About Us Slide 3" />
           </div>
           <div class="about-us-slide">
-            <img src="./assets/images/logos/logo4.png" alt="Client Logo 4" />
+            <img src="./assets/images/logos/logo4.png" alt="About Us Slide 4" />
+          </div>
+          <div class="about-us-slide">
+            <img src="./assets/images/logos/logo5.png" alt="About Us Slide 5" />
+          </div>
+          <div class="about-us-slide">
+            <img src="./assets/images/logos/logo6.png" alt="About Us Slide 6" />
+          </div>
+          <div class="about-us-slide">
+            <img src="./assets/images/logos/logo7.png" alt="About Us Slide 7" />
+          </div>
+          <div class="about-us-slide">
+            <img src="./assets/images/logos/logo8.png" alt="About Us Slide 8" />
+          </div>
+          <div class="about-us-slide">
+            <img src="./assets/images/logos/logo9.png" alt="About Us Slide 9" />
+          </div>
+          <div class="about-us-slide">
+            <img
+              src="./assets/images/logos/logo10.png"
+              alt="About Us Slide 10"
+            />
+          </div>
+          <div class="about-us-slide">
+            <img
+              src="./assets/images/logos/logo11.png"
+              alt="About Us Slide 11"
+            />
+          </div>
+          <div class="about-us-slide">
+            <img
+              src="./assets/images/logos/logo12.png"
+              alt="About Us Slide 12"
+            />
+          </div>
+          <div class="about-us-slide">
+            <img
+              src="./assets/images/logos/logo13.png"
+              alt="About Us Slide 13"
+            />
+          </div>
+          <div class="about-us-slide">
+            <img
+              src="./assets/images/logos/logo14.png"
+              alt="About Us Slide 14"
+            />
+          </div>
+          <div class="about-us-slide">
+            <img
+              src="./assets/images/logos/logo15.png"
+              alt="About Us Slide 15"
+            />
+          </div>
+          <div class="about-us-slide">
+            <img
+              src="./assets/images/logos/logo16.png"
+              alt="About Us Slide 16"
+            />
+          </div>
+          <div class="about-us-slide">
+            <img
+              src="./assets/images/logos/logo17.png"
+              alt="About Us Slide 17"
+            />
           </div>
         </div>
       </div>
     </section>
 
-    <section class="our-mission-section">
-      <div class="content-wrapper mission-content-wrapper">
-        <div class="mission-text-content">
+    <section class="mission-section">
+      <div class="mission-container">
+        <div class="mission-content">
           <h2 class="mission-title">Our Mission</h2>
-          <p class="mission-description">
+          <p class="mission-text">
             To empower businesses through innovative technology solutions that
             solve real-world problems, enhance efficiency, and create meaningful
             digital experiences.
@@ -832,89 +1543,536 @@
       </div>
     </section>
 
-    <section class="timeline-section-fullwidth">
-      <h2 class="section-title">Our Journey</h2>
-      <div class="content-wrapper" style="position: relative">
-        <div class="timeline-line"></div>
-        <div class="timeline-inner">
-          <div class="timeline-circle">1</div>
-          <div class="timeline-image-box">
+    <style>
+      @media (max-width: 768px) {
+        .timeline-section-fullwidth {
+          display: none !important;
+        }
+        .mobile-timeline-section {
+          display: block !important;
+        }
+      }
+      @media (min-width: 769px) {
+        .mobile-timeline-section {
+          display: none !important;
+        }
+      }
+      .mobile-timeline-section {
+        background: #b2aeb3;
+        padding: 32px 0 24px 0;
+        width: 100vw;
+        margin-left: -50vw;
+        left: 50%;
+        position: relative;
+        display: none;
+        z-index: 2;
+      }
+      .mobile-timeline-container {
+        max-width: 393px;
+        margin: 0 auto;
+        position: relative;
+        background: #b2aeb3;
+        border-radius: 18px;
+        overflow: hidden;
+        padding-bottom: 20px;
+      }
+      .mobile-timeline-title {
+        text-align: center;
+        color: #000;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        font-family: "Poppins", sans-serif;
+      }
+      .mobile-timeline-circle {
+        width: 38px;
+        height: 38px;
+        background: #2d2640;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 auto 12px auto;
+      }
+      .mobile-timeline-line {
+        width: 2px;
+        height: 32px;
+        background: rgba(0, 0, 0, 0.2);
+        margin: 0 auto 12px auto;
+      }
+      .mobile-timeline-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 0 16px 24px 16px;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+      .mobile-timeline-step.visible {
+        opacity: 1;
+        animation: fadeInUp 0.8s;
+      }
+      .mobile-timeline-image {
+        width: 100px;
+        height: 100px;
+        background: #2d2640;
+        border-radius: 17px;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .mobile-timeline-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 17px;
+        display: block;
+      }
+      .mobile-timeline-box {
+        flex: 1;
+        background: #2d2640;
+        border-radius: 11px;
+        padding: 12px;
+        color: #fff;
+        min-height: 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .mobile-timeline-title-step {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .mobile-timeline-year {
+        font-size: 13px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 8px;
+      }
+      .mobile-timeline-desc {
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 1.4;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+    <style>
+      /* --- Timeline Section Styles --- */
+      .timeline-section {
+        background-color: #b2aeb3;
+        padding: 100px 20px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .timeline-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 60px;
+      }
+
+      .timeline-container {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      /* The central line of the timeline */
+      .timeline-container::after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        background-color: rgba(0, 0, 0, 0.2);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        opacity: 0; /* Hidden by default for animation */
+        transform: translateY(50px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .timeline-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Alternating sides */
+      .timeline-item.left {
+        left: 0;
+      }
+      .timeline-item.right {
+        left: 50%;
+      }
+
+      /* Circle markers on the timeline */
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background-color: white;
+        border: 4px solid #2d2640;
+        top: 20px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+      .timeline-item.left::after {
+        right: -14px;
+      }
+      .timeline-item.right::after {
+        left: -14px;
+      }
+
+      .timeline-content {
+        padding: 20px;
+        background-color: #2d2640;
+        color: white;
+        position: relative;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .timeline-content-inner {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .timeline-image {
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+        border-radius: 12px;
+        object-fit: cover;
+      }
+
+      .timeline-year {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 5px;
+      }
+
+      .timeline-step-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .timeline-desc {
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      /* Responsive Styles for Timeline */
+      @media (max-width: 768px) {
+        .timeline-container::after {
+          left: 30px;
+        }
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 15px;
+        }
+        .timeline-item.left,
+        .timeline-item.right {
+          left: 0;
+        }
+        .timeline-item::after {
+          left: 18px; /* Adjusted for mobile */
+        }
+        .timeline-content-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+        .timeline-image {
+          width: 100%;
+          height: 150px;
+          margin-bottom: 15px;
+        }
+      }
+    </style>
+    <div class="mobile-timeline-section">
+      <div class="mobile-timeline-container">
+        <div class="mobile-timeline-title" style="color: #000000">
+          Our Journey
+        </div>
+        <div class="mobile-timeline-circle">1</div>
+        <div class="mobile-timeline-step">
+          <div class="mobile-timeline-image">
             <img
               src="./assets/images/Voxen Website Images/Journey 1.png"
-              alt="Company Founding"
+              alt="Company Founded"
             />
           </div>
-          <div class="timeline-content-box">
-            <h3 class="timeline-content-title">Company Founded</h3>
-            <div class="timeline-content-year">2025</div>
-            <p>
-              VOXEN TECH was founded by engineers with a vision to bridge
+          <div class="mobile-timeline-box">
+            <div class="mobile-timeline-title-step">Company Founded</div>
+            <div class="mobile-timeline-year">2025</div>
+            <div class="mobile-timeline-desc">
+              VOXEN TECH LLP was founded by three software engineers with a
+              vision to create custom solutions that bridge the gap between
               business needs and technology.
-            </p>
+            </div>
           </div>
         </div>
-        <div class="timeline-inner reverse">
-          <div class="timeline-circle">2</div>
-          <div class="timeline-image-box">
+        <div class="mobile-timeline-line"></div>
+        <div class="mobile-timeline-circle">2</div>
+        <div class="mobile-timeline-step">
+          <div class="mobile-timeline-image">
             <img
               src="./assets/images/Voxen Website Images/Journey 2.png"
               alt="First Major Client"
             />
           </div>
-          <div class="timeline-content-box">
-            <h3 class="timeline-content-title">First Major Client</h3>
-            <div class="timeline-content-year">2026</div>
-            <p>
-              Secured our first major client, developing a custom Mobile & Web
-              App to streamline operations.
-            </p>
+          <div class="mobile-timeline-box">
+            <div class="mobile-timeline-title-step">First Major Client</div>
+            <div class="mobile-timeline-desc">
+              We secured our first client, developing a custom Mobile & Web
+              Application as per Client requirement
+            </div>
+          </div>
+        </div>
+        <div class="mobile-timeline-line"></div>
+        <div class="mobile-timeline-circle">3</div>
+        <div class="mobile-timeline-step">
+          <div class="mobile-timeline-image">
+            <img
+              src="./assets/images/Rectangle 261.png"
+              alt="Expanded Services"
+            />
+          </div>
+          <div class="mobile-timeline-box">
+            <div class="mobile-timeline-title-step">Expanded Services</div>
+            <div class="mobile-timeline-desc">
+              Added mobile app development and cloud solutions to our service
+              offerings, responding to growing market demand.
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    <script>
+      // Animation on scroll for mobile timeline
+      document.querySelectorAll(".mobile-timeline-step").forEach((section) => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        observer.observe(section);
+      });
+    </script>
+    <div
+      class="timeline-section-fullwidth"
+      style="
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        background: #b2aeb3;
+      "
+    >
+      <section class="timeline-section">
+        <h1 class="timeline-title">Our Journey</h1>
+        <div class="timeline-container">
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <div class="timeline-content-inner">
+                <img
+                  src="./assets/images/Voxen Website Images/Journey 1.png"
+                  alt="Company Founding"
+                  class="timeline-image"
+                />
+                <div>
+                  <h3 class="timeline-step-title">Company Founded</h3>
+                  <div class="timeline-year">2025</div>
+                  <p class="timeline-desc">
+                    VOXEN TECH was founded by three engineers with a vision to
+                    bridge the gap between business needs and technology.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <section class="mobile-timeline-section"></section>
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <div class="timeline-content-inner">
+                <img
+                  src="./assets/images/Voxen Website Images/Journey 2.png"
+                  alt="First Major Client"
+                  class="timeline-image"
+                />
+                <div>
+                  <h3 class="timeline-step-title">First Major Client</h3>
+                  <div class="timeline-year">2026</div>
+                  <p class="timeline-desc">
+                    We secured our first major client, developing a custom
+                    Mobile & Web Application that streamlined their operations.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <section class="carousel-section">
-      <h2 class="section-title">Our Core Values</h2>
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <div class="timeline-content-inner">
+                <img
+                  src="./assets/images/Voxen Website Images/service 1.png"
+                  alt="Expanded Services"
+                  class="timeline-image"
+                />
+                <div>
+                  <h3 class="timeline-step-title">Expanded Services</h3>
+                  <div class="timeline-year">2027</div>
+                  <p class="timeline-desc">
+                    Added mobile app development and cloud solutions to our
+                    service offerings in response to growing market demand.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <div class="carousel-container">
+        <div
+          style="
+            color: black;
+            font-size: 29px;
+            font-family: Poppins;
+            font-weight: 700;
+            word-wrap: break-word;
+            text-align: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+          "
+        >
+          Our Core Values
+        </div>
         <div class="carousel-wrapper" id="carouselWrapper">
           <div class="slide">
+            <div class="bg-rect-left"></div>
+            <div class="bg-rect-right"></div>
+
+            <div class="support-icon-left">
+              <svg class="support-icon small" viewBox="0 0 24 24">
+                <path
+                  d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM15.1 8H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"
+                />
+              </svg>
+            </div>
+
+            <div class="support-icon-right">
+              <svg class="support-icon medium" viewBox="0 0 24 24">
+                <path
+                  d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 7.5V8.5C15 9.6 14.1 10.5 13 10.5S11 9.6 11 8.5V7.5L5 7V9C5 10.1 5.9 11 7 11V12.5C7 13.3 7.7 14 8.5 14S10 13.3 10 12.5V11H14V12.5C14 13.3 14.7 14 15.5 14S17 13.3 17 12.5V11C18.1 11 19 10.1 19 9Z"
+                />
+              </svg>
+            </div>
+
             <div class="main-card">
               <svg class="main-icon" viewBox="0 0 24 24">
                 <path
-                  fill="currentColor"
                   d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 7C13.1 7 14 7.9 14 9S13.1 11 12 11 10 10.1 10 9 10.9 7 12 7ZM12 17C10.67 17 9.4 16.64 8.31 16L8.33 14.5C8.33 13.17 10.67 12.5 12 12.5S15.67 13.17 15.67 14.5L15.69 16C14.6 16.64 13.33 17 12 17Z"
                 />
               </svg>
               <h2>Integrity</h2>
               <p>
-                We build trust through transparency, honesty, and ethical
-                business practices in all our relationships.
+                We build trust through transparency, honesty, and ethical business
+                practices in all our relationships.
               </p>
             </div>
           </div>
+
           <div class="slide">
+            <div class="bg-rect-left"></div>
+            <div class="bg-rect-right"></div>
+
+            <div class="support-icon-left">
+              <svg class="support-icon small" viewBox="0 0 24 24">
+                <path
+                  d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-2.06 11L15 15.28 12.06 17l.78-3.33-2.59-2.24 3.41-.29L15 8l1.34 3.14 3.41.29-2.59 2.24L17.94 17z"
+                />
+              </svg>
+            </div>
+
+            <div class="support-icon-right">
+              <svg class="support-icon medium" viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                />
+              </svg>
+            </div>
+
             <div class="main-card">
               <svg class="main-icon" viewBox="0 0 24 24">
                 <path
-                  fill="currentColor"
                   d="M16 4C18.2 4 20 5.8 20 8S18.2 12 16 12 12 10.2 12 8 13.8 4 16 4ZM8 4C10.2 4 12 5.8 12 8S10.2 12 8 12 4 10.2 4 8 5.8 4 8 4ZM8 13C10.67 13 16 14.33 16 17V20H0V17C0 14.33 5.33 13 8 13ZM16 13C16.67 13 17.27 13.08 17.8 13.2C18.53 13.9 19 14.9 19 16V20H24V17C24 14.33 18.67 13 16 13Z"
                 />
               </svg>
               <h2>Collaboration</h2>
               <p>
-                We believe the best solutions emerge from teamwork—both within
-                our company and with our clients.
+                We believe the best solutions emerge from teamwork—both within our
+                company and with our clients.
               </p>
             </div>
           </div>
+
           <div class="slide">
+            <div class="bg-rect-left"></div>
+            <div class="bg-rect-right"></div>
+
+            <div class="support-icon-left">
+              <svg class="support-icon small" viewBox="0 0 24 24">
+                <path
+                  d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"
+                />
+              </svg>
+            </div>
+
+            <div class="support-icon-right">
+              <svg class="support-icon medium" viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-2.85 0-5.4-1.49-6.86-3.88l1.71-1.71C7.94 15.5 9.84 16.5 12 16.5s4.06-1 5.15-2.09l1.71 1.71C17.4 18.51 14.85 20 12 20zm6.86-6.12l-1.71-1.71c1.09-1.09 1.71-2.59 1.71-4.17s-.62-3.08-1.71-4.17l1.71-1.71C20.51 4.6 22 8.15 22 12s-1.49 7.4-3.14 9.88z"
+                />
+              </svg>
+            </div>
+
             <div class="main-card">
               <svg class="main-icon" viewBox="0 0 24 24">
                 <path
-                  fill="currentColor"
-                  d="M9 21C9 22.1 9.9 23 11 23H13C14.1 23 15 22.1 15 21V20H9V21ZM12 2C8.14 2 5 5.14 5 9C5 11.38 6.19 13.47 8 14.74V17C8 17.55 8.45 18 9 18H15C15.55 18 16 17.55 16 17V14.74C17.81 13.47 19 11.38 19 9C19 5.14 15.86 2 12 2Z"
+                  d="M9 21C9 22.1 9.9 23 11 23H13C14.1 23 15 22.1 15 21V20H9V21ZM12 2C8.14 2 5 5.14 5 9C5 11.38 6.19 13.47 8 14.74V17C8 17.55 8.45 18 9 18H15C15.55 18 16 17.55 16 17V14.74C17.81 13.47 19 11.38 19 9C19 5.14 15.86 2 12 2ZM14.85 13.1L14 13.7V16H10V13.7L9.15 13.1C7.8 12.16 7 10.63 7 9C7 6.24 9.24 4 12 4S17 6.24 17 9C17 10.63 16.2 12.16 14.85 13.1Z"
                 />
               </svg>
               <h2>Innovation</h2>
@@ -925,181 +2083,800 @@
             </div>
           </div>
         </div>
-        <div class="nav-circle prev" id="prevSlideBtn">
+
+        <div class="nav-circle prev" onclick="prevSlide()">
           <div class="nav-arrow left"></div>
         </div>
-        <div class="nav-circle next" id="nextSlideBtn">
+        <div class="nav-circle next" onclick="nextSlide()">
           <div class="nav-arrow right"></div>
         </div>
       </div>
-    </section>
 
-    <section class="why-choose-voxen-tech-section">
-      <div class="content-wrapper">
-        <h2 class="section-title">Why Choose Voxen Tech</h2>
-        <div class="why-choose-horizontal-selection">
-          <div class="why-choose-image-item">
-            <img src="./assets/images/flip/thumb1.png" alt="Reason 1" />
-          </div>
-          <div class="why-choose-image-item">
-            <img src="./assets/images/flip/thumb2.png" alt="Reason 2" />
-          </div>
-          <div class="why-choose-image-item">
-            <img src="./assets/images/flip/thumb3.png" alt="Reason 3" />
-          </div>
-          <div class="why-choose-image-item active">
-            <img src="./assets/images/flip/thumb4.png" alt="Reason 4" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="image-slider-section">
-      <h2 class="section-title">Our Technology Stack</h2>
-      <div class="infinite-slider">
-        <img src="./assets/images/Frame 39.png" alt="Technology Stack Logos" />
-        <img src="./assets/images/Frame 39.png" alt="Technology Stack Logos" />
-        <img src="./assets/images/Frame 39.png" alt="Technology Stack Logos" />
-      </div>
-    </section>
-
-    <section class="build-amazing-section">
-      <div class="content-wrapper">
-        <h2 class="cta-title">Let's Turn Your Vision Into Reality</h2>
-        <p class="cta-description">
-          Let's discuss how we can help transform your ideas into powerful
-          digital solutions.
-        </p>
-        <div class="cta-buttons">
-          <button class="cta-btn">Contact Us</button>
-          <button class="cta-btn">Get a Quote</button>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="content-wrapper footer-container">
-        <div class="footer-col about">
-          <div class="logo-section">
-            <div class="logo-icon">
-              <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
+      <section
+        class="why-choose-voxen-tech-section"
+        style="
+          width: 100%;
+          position: relative;
+          background: #fff;
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+          overflow-x: hidden;
+          padding: 80px 0;
+        "
+      >
+        <div class="main-content-wrapper">
+          <h2
+            class="section-heading"
+            style="font-size: 36px; margin-bottom: 40px"
+          >
+            Why Choose Voxen Tech
+          </h2>
+          <div
+            class="why-choose-horizontal-selection"
+            style="
+              display: flex;
+              flex-direction: row;
+              flex-wrap: nowrap;
+              gap: 15px;
+              padding: 0 40px;
+              padding-right: 40px;
+              overflow-x: auto;
+              overflow-y: hidden;
+              scroll-snap-type: x mandatory;
+              -webkit-overflow-scrolling: touch;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+              width: max-content;
+              min-width: 1200px;
+              height: 480px;
+              position: relative;
+            "
+          >
+            <div
+              class="why-choose-image-item"
+              data-thumb-src="./assets/images/flip/thumb1.png"
+              data-large-src="./assets/images/flip/flip3.png"
+            >
+              <img
+                src="./assets/images/flip/thumb1.png"
+                alt="Reason 1 Thumbnail"
+              />
             </div>
-            <div class="logo-text">VOXEN TECH LLP</div>
-          </div>
-          <p class="footer-about-text">
-            A leading software development company delivering high-quality web,
-            mobile, and custom software solutions to fuel business growth.
-          </p>
-        </div>
-        <div class="footer-col links">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contactus.html">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col contact">
-          <h4>Contact Us</h4>
-          <ul>
-            <li>
-              <i class="fas fa-map-marker-alt"></i> Varanasi, Uttar Pradesh,
-              India
-            </li>
-            <li><i class="fas fa-phone"></i> +91 12345 67890</li>
-            <li><i class="fas fa-envelope"></i> contact@voxentech.com</li>
-          </ul>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <div
+              class="why-choose-image-item"
+              data-thumb-src="./assets/images/flip/thumb2.png"
+              data-large-src="./assets/images/flip/flip4.png"
+            >
+              <img
+                src="./assets/images/flip/thumb2.png"
+                alt="Reason 2 Thumbnail"
+              />
+            </div>
+            <div
+              class="why-choose-image-item"
+              data-thumb-src="./assets/images/flip/thumb3.png"
+              data-large-src="./assets/images/flip/flip2.png"
+            >
+              <img
+                src="./assets/images/flip/thumb3.png"
+                alt="Reason 3 Thumbnail"
+              />
+            </div>
+            <div
+              class="why-choose-image-item active"
+              data-thumb-src="./assets/images/flip/thumb4.png"
+              data-large-src="./assets/images/flip/flip1.png"
+            >
+              <img
+                src="./assets/images/flip/thumb4.png"
+                alt="Our Strength Default Large"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 Voxen Tech LLP. All Rights Reserved.</p>
-      </div>
-    </footer>
+      </section>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // --- Mobile Menu ---
-        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-        const navMenu = document.getElementById("navMenu");
-        mobileMenuBtn.addEventListener("click", () => {
-          navMenu.classList.toggle("active");
-          mobileMenuBtn.textContent = navMenu.classList.contains("active")
-            ? "✕"
-            : "☰";
-        });
-
-        // --- Hero Slideshow ---
-        const slides = document.querySelectorAll(".banner-slide");
-        let currentSlide = 0;
-        if (slides.length > 1) {
-          setInterval(() => {
-            slides[currentSlide].classList.remove("active");
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add("active");
-          }, 3000);
+      <section class="image-slider-section">
+        <div
+          data-layer="Our Technology Stack"
+          class="OurTechnologyStack"
+          style="
+            color: black;
+            font-size: 29px;
+            font-family: Poppins;
+            font-weight: 700;
+            word-wrap: break-word;
+            text-align: center;
+            margin-bottom: 40px;
+          "
+        >
+          Our Technology Stack
+        </div>
+        <div class="infinite-slider">
+          <img src="./assets/images/Frame 39.png" alt="Moving Image 1" />
+          <img src="./assets/images/Frame 39.png" alt="Moving Image 2" />
+          <img src="./assets/images/Frame 39.png" alt="Moving Image 3" />
+        </div>
+      </section>
+      <style>
+        /* Base Styles */
+        .team_center {
+          background-color: #1e172f;
+        }
+        .team-carousel-section {
+          margin: 0 auto;
+          max-width: 1000px;
+          background-color: #1e172f;
+          color: white;
+          padding: 60px 20px;
+          text-align: center;
+          font-family: "Arial", sans-serif;
         }
 
-        // --- About Us Logo Slider ---
-        const aboutSlides = document.querySelectorAll(".about-us-slide");
-        let aboutIndex = 0;
-        if (aboutSlides.length > 1) {
-          setInterval(() => {
-            aboutSlides[aboutIndex].classList.remove("active-slide");
-            aboutIndex = (aboutIndex + 1) % aboutSlides.length;
-            aboutSlides[aboutIndex].classList.add("active-slide");
-          }, 2000);
+        .team-carousel-title {
+          font-size: 2.5rem;
+          margin-bottom: 30px;
         }
 
-        // --- Core Values Carousel ---
-        const carouselWrapper = document.getElementById("carouselWrapper");
-        if (carouselWrapper) {
-          const prevBtn = document.getElementById("prevSlideBtn");
-          const nextBtn = document.getElementById("nextSlideBtn");
-          const totalSlides = carouselWrapper.children.length;
-          let carouselIndex = 0;
+        /* Carousel Wrapper */
+        .team-carousel-wrapper {
+          position: relative;
+          overflow: hidden;
+          max-width: 100%;
+          padding: 0 40px;
+        }
 
-          function updateCarousel() {
-            carouselWrapper.style.transform = `translateX(-${
-              carouselIndex * 100
-            }%)`;
+        /* Scrollable Container */
+        .team-carousel-container {
+          display: flex;
+          overflow-x: auto;
+          scroll-behavior: smooth;
+          gap: 20px;
+          padding-bottom: 10px;
+        }
+
+        .team-carousel-container::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* Individual Team Cards */
+        .team-carousel-member {
+          flex: 0 0 auto;
+          width: 200px;
+          background-color: #2a203f;
+          border-radius: 12px;
+          padding: 20px;
+          text-align: center;
+          transition: transform 0.3s;
+        }
+
+        .team-carousel-member:hover {
+          transform: translateY(-5px);
+        }
+
+        .team-carousel-avatar {
+          width: 100px;
+          height: 100px;
+          background-color: #ccc;
+          border-radius: 50%;
+          margin: 0 auto 15px;
+        }
+
+        .team-carousel-member h3 {
+          margin: 0;
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: #fff;
+        }
+
+        .team-carousel-member p {
+          margin-top: 5px;
+          font-size: 0.9rem;
+          color: #bbb;
+        }
+
+        /* Arrows */
+        .team-carousel-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: #ffffff22;
+          border: none;
+          color: white;
+          font-size: 2rem;
+          padding: 10px;
+          cursor: pointer;
+          z-index: 10;
+          transition: background 0.3s;
+        }
+
+        .team-carousel-btn:hover {
+          background: #ffffff55;
+        }
+
+        .team-carousel-left {
+          left: 0;
+        }
+
+        .team-carousel-right {
+          right: 0;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+          .team-carousel-member {
+            width: 160px;
+            padding: 15px;
           }
 
-          nextBtn.addEventListener("click", () => {
-            carouselIndex = (carouselIndex + 1) % totalSlides;
-            updateCarousel();
-          });
+          .team-carousel-avatar {
+            width: 80px;
+            height: 80px;
+          }
 
-          prevBtn.addEventListener("click", () => {
-            carouselIndex = (carouselIndex - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-          });
+          .team-carousel-btn {
+            font-size: 1.5rem;
+            padding: 8px;
+          }
+        }
+      </style>
+      <div class="team_center">
+        <section class="team-carousel-section">
+          <h2 class="team-carousel-title">Meet the Team</h2>
+          <div class="team-carousel-wrapper">
+            <button
+              class="team-carousel-btn team-carousel-left"
+              onclick="scrollTeamCarousel(-1)"
+            >
+              ❮
+            </button>
+            <div class="team-carousel-container" id="teamCarouselContainer">
+              <div class="team-carousel-member">
+                <div class="team-carousel-avatar"></div>
+                <h3>Arjun Menon</h3>
+                <p>Co-Founder</p>
+              </div>
+              <div class="team-carousel-member">
+                <div class="team-carousel-avatar"></div>
+                <h3>Nikita Rao</h3>
+                <p>Co-Founder</p>
+              </div>
+              <div class="team-carousel-member">
+                <div class="team-carousel-avatar"></div>
+                <h3>Meera Suresh</h3>
+                <p>Head of Design</p>
+              </div>
+              <div class="team-carousel-member">
+                <div class="team-carousel-avatar"></div>
+                <h3>Rahul Dev</h3>
+                <p>Head of Development</p>
+              </div>
+            </div>
+            <button
+              class="team-carousel-btn team-carousel-right"
+              onclick="scrollTeamCarousel(1)"
+            >
+              ❯
+            </button>
+          </div>
+        </section>
+      </div>
 
-          setInterval(() => {
-            nextBtn.click();
-          }, 5000);
+      <div
+        data-layer="Property 1=Variant2"
+        class="Property1Variant2 build-amazing-section"
+        style="
+          width: 100vw;
+          min-width: 100vw;
+          max-width: 100vw;
+          left: 50%;
+          right: 50%;
+          margin-left: -50vw;
+          margin-right: -50vw;
+          background: #2d2640;
+          height: 501px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        "
+      >
+        <div
+          style="
+            width: 1280px;
+            height: 501px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <div
+            data-layer="Rectangle 278"
+            class="Rectangle278"
+            style="
+              width: 1280px;
+              height: 501px;
+              left: 0px;
+              top: 0px;
+              position: absolute;
+              background: #2d2640;
+            "
+          ></div>
+
+          <div
+            data-layer="Let's Turn Your Vision Into Reality"
+            class="LetSTurnYourVisionIntoReality"
+            style="
+              position: relative;
+              color: #fff;
+              font-size: 41px;
+              font-family: Poppins;
+              font-weight: 700;
+              text-align: center;
+              margin-top: 117px;
+            "
+          >
+            Let's Turn Your Vision Into Reality
+          </div>
+          <div
+            data-layer="Let's discuss how we can help transform your ideas into powerful digital solutions."
+            class="LetSDiscussHowWeCanHelpTransformYourIdeasIntoPowerfulDigitalSolutions"
+            style="
+              width: 680px;
+              max-width: 90vw;
+              position: relative;
+              color: #d9d9d9;
+              font-size: 28px;
+              font-family: Poppins;
+              font-weight: 400;
+              text-align: center;
+              margin: 24px 0 0 0;
+            "
+          >
+            Let's discuss how we can help transform your ideas into powerful
+            digital solutions.
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 30px;
+              margin-top: 60px;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <div
+              data-layer="Component 50"
+              class="Component50"
+              style="width: 231px; height: 57px; position: relative"
+            >
+              <button
+                class="cta-btn"
+                style="
+                  width: 231px;
+                  height: 57px;
+                  background: #baa9c1;
+                  border-radius: 18px;
+                  border: none;
+                  color: black;
+                  font-size: 24px;
+                  font-family: Poppins;
+                  font-weight: 500;
+                  text-align: center;
+                  cursor: pointer;
+                "
+              >
+                Contact Us
+              </button>
+            </div>
+            <div
+              data-layer="Component 51"
+              class="Component51"
+              style="width: 231px; height: 57px; position: relative"
+            >
+              <button
+                class="cta-btn"
+                style="
+                  width: 231px;
+                  height: 57px;
+                  background: #baa9c1;
+                  border-radius: 18px;
+                  border: none;
+                  color: black;
+                  font-size: 24px;
+                  font-family: Poppins;
+                  font-weight: 500;
+                  text-align: center;
+                  cursor: pointer;
+                "
+              >
+                Get a Quote
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>
+        @media (max-width: 1300px) {
+          .Property1Variant2.build-amazing-section > div {
+            width: 100vw !important;
+          }
+          .Property1Variant2.build-amazing-section {
+            height: auto !important;
+            min-height: 400px;
+          }
+        }
+        @media (max-width: 900px) {
+          .Property1Variant2.build-amazing-section > div {
+            padding: 0 10px;
+          }
+          .LetSTurnYourVisionIntoReality {
+            font-size: 28px !important;
+            margin-top: 60px !important;
+          }
+          .LetSDiscussHowWeCanHelpTransformYourIdeasIntoPowerfulDigitalSolutions {
+            font-size: 18px !important;
+            width: 95vw !important;
+          }
+          .Property1Variant2.build-amazing-section {
+            height: auto !important;
+            min-height: 300px;
+          }
+        }
+        @media (max-width: 600px) {
+          .Property1Variant2.build-amazing-section > div {
+            padding: 0 5px;
+          }
+          .LetSTurnYourVisionIntoReality {
+            font-size: 20px !important;
+            margin-top: 40px !important;
+          }
+          .LetSDiscussHowWeCanHelpTransformYourIdeasIntoPowerfulDigitalSolutions {
+            font-size: 14px !important;
+            width: 98vw !important;
+          }
+          .Property1Variant2.build-amazing-section {
+            height: auto !important;
+            min-height: 200px;
+          }
+          .Component50,
+          .Component51 {
+            width: 100% !important;
+          }
+          .cta-btn {
+            width: 200px !important;
+            font-size: 18px !important;
+          }
+          .Property1Variant2.build-amazing-section .Component50,
+          .Property1Variant2.build-amazing-section .Component51 {
+            margin-bottom: 12px;
+          }
+          .Property1Variant2.build-amazing-section
+            > div
+            > div[style*="display: flex"] {
+            flex-direction: column !important;
+            gap: 16px !important;
+          }
+        }
+      </style>
+
+      <style>
+        /* --- FIXED: Centered Mission Section Styles --- */
+
+        .mission-section {
+          background-color: #2d2640;
+          color: #ffffff;
+          padding: 80px 20px;
+          font-family: "Poppins", sans-serif;
+          overflow: hidden; /* Ensures no horizontal scroll */
         }
 
-        // --- Why Choose Us Click Handler ---
-        const whyChooseItems = document.querySelectorAll(
-          ".why-choose-image-item"
-        );
-        whyChooseItems.forEach((item) => {
-          item.addEventListener("click", () => {
-            if (window.innerWidth > 768 || !item.classList.contains("active")) {
-              whyChooseItems.forEach((i) => i.classList.remove("active"));
-              item.classList.add("active");
+        .mission-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 40px;
+        }
+
+        .mission-content {
+          flex: 1;
+          max-width: 500px;
+        }
+
+        .mission-title {
+          color: #e1b8dc;
+          font-size: 29px;
+          font-weight: 700;
+          margin-bottom: 20px;
+        }
+
+        .mission-text {
+          font-size: 21px;
+          line-height: 1.6;
+        }
+
+        .mission-stats {
+          display: flex;
+          gap: 30px;
+        }
+
+        .mission-stat-item {
+          background: rgba(238, 238, 238, 0.5);
+          border-radius: 15px;
+          padding: 20px;
+          text-align: center;
+          width: 200px;
+        }
+
+        .mission-stat-number {
+          color: #000000;
+          font-size: 80px;
+          font-weight: 700;
+          line-height: 1;
+        }
+
+        .mission-stat-label {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 18px;
+          margin-top: 10px;
+        }
+
+        /* --- Responsive adjustments for Mission Section --- */
+        @media (max-width: 992px) {
+          .mission-container {
+            flex-direction: column;
+            text-align: center;
+          }
+          .mission-stats {
+            margin-top: 40px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .mission-stats {
+            flex-direction: column;
+            width: 100%;
+          }
+          .mission-stat-item {
+            width: 100%;
+          }
+          .mission-title {
+            font-size: 24px;
+          }
+          .mission-text {
+            font-size: 18px;
+          }
+          .mission-stat-number {
+            font-size: 60px;
+          }
+          .mission-stat-label {
+            font-size: 16px;
+          }
+        }
+      </style>
+
+      <div id="footer-placeholder"></div>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+      <script src="./assets/script/script.js"></script>
+      <script src="./assets/js/about.js"></script>
+      <script src="./assets/script/main.js"></script>
+      <script>
+        // Hero image slideshow
+        document.addEventListener("DOMContentLoaded", function () {
+          // Hero banner slides
+          const slides = document.querySelectorAll(".banner-slide");
+          let currentSlide = 0;
+          if (slides.length > 0) {
+            setInterval(() => {
+              slides[currentSlide].classList.remove("active");
+              currentSlide = (currentSlide + 1) % slides.length;
+              slides[currentSlide].classList.add("active");
+            }, 1000);
+          }
+
+          // About section logo slider
+          const aboutSlides = document.querySelectorAll(".about-us-slide");
+          let aboutIndex = 0;
+          if (aboutSlides.length > 0) {
+            setInterval(() => {
+              aboutSlides[aboutIndex].classList.remove("active-slide");
+              aboutIndex = (aboutIndex + 1) % aboutSlides.length;
+              aboutSlides[aboutIndex].classList.add("active-slide");
+            }, 2000);
+          }
+
+          // Hero text animation on desktop
+          var hero = document.getElementById("heroabout-animated");
+          if (hero && window.matchMedia("(pointer: fine)").matches) {
+            hero.addEventListener("mouseenter", function () {
+              hero.classList.add("heroabout-text-visible");
+            });
+            hero.addEventListener("mouseleave", function () {
+              hero.classList.remove("heroabout-text-visible");
+            });
+          }
+
+          // About Us section text animation on desktop
+          var aboutSection = document.querySelector(".about-us-sectionhome");
+          if (aboutSection && window.matchMedia("(pointer: fine)").matches) {
+            aboutSection.addEventListener("mouseenter", function () {
+              aboutSection.classList.add("about-animated-text-visible");
+            });
+            aboutSection.addEventListener("mouseleave", function () {
+              aboutSection.classList.remove("about-animated-text-visible");
+            });
+          } else if (aboutSection) {
+            aboutSection.classList.add("about-animated-text-visible");
+          }
+
+          // Timeline scroll animation
+          const timelineSections =
+            document.querySelectorAll(".Property1Variant2");
+          if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add("timeline-animate");
+                  } else {
+                    entry.target.classList.remove("timeline-animate");
+                  }
+                });
+              },
+              { threshold: 0.3 }
+            );
+            timelineSections.forEach((section) => {
+              observer.observe(section);
+            });
+          } else {
+            // Fallback: animate all if IntersectionObserver not supported
+            timelineSections.forEach((section) =>
+              section.classList.add("timeline-animate")
+            );
+          }
+        });
+      </script>
+      <script>
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const wrapper = document.getElementById("carouselWrapper");
+
+        function updateCarousel() {
+          if (wrapper) {
+            wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+          }
+        }
+
+        function nextSlide() {
+          currentSlide = (currentSlide + 1) % totalSlides;
+          updateCarousel();
+        }
+
+        function prevSlide() {
+          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+          updateCarousel();
+        }
+
+        // Auto-advance slides every 6 seconds
+        setInterval(nextSlide, 6000);
+
+        if (wrapper) {
+            // Touch/swipe support for mobile
+            let startX = 0;
+            let endX = 0;
+
+            wrapper.addEventListener("touchstart", (e) => {
+                startX = e.touches[0].clientX;
+            });
+
+            wrapper.addEventListener("touchend", (e) => {
+                endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+
+                if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+                }
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") {
+            prevSlide();
+          } else if (e.key === "ArrowRight") {
+            nextSlide();
+          }
+        });
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          if (window.innerWidth <= 768) {
+            document
+              .querySelectorAll(
+                ".service-card, .portfolio-card, .Insightblog-card, .testimonial-card"
+              )
+              .forEach(function (card) {
+                card.classList.add("show-hover");
+              });
+          }
+        });
+      </script>
+      <script>
+        function scrollTeamCarousel(direction) {
+          const container = document.getElementById("teamCarouselContainer");
+          if(container) {
+            const scrollAmount = 220; // Adjust to match card width + gap
+            container.scrollBy({
+                left: direction * scrollAmount,
+                behavior: "smooth",
+            });
+          }
+        }
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const timelineItems = document.querySelectorAll(".timeline-item");
+
+          // Fallback for older browsers that don't support IntersectionObserver
+          if (!("IntersectionObserver" in window)) {
+            timelineItems.forEach((item) => item.classList.add("visible"));
+            return;
+          }
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                  observer.unobserve(entry.target); // Stop observing after it becomes visible
+                }
+              });
+            },
+            {
+              threshold: 0.1, // Trigger when 10% of the item is visible
             }
+          );
+
+          timelineItems.forEach((item) => {
+            observer.observe(item);
           });
         });
-      });
-    </script>
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+          const navMenu = document.getElementById("navMenu");
+
+          if (mobileMenuBtn && navMenu) {
+            mobileMenuBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                navMenu.classList.toggle("active");
+                mobileMenuBtn.textContent = navMenu.classList.contains("active")
+                ? "✕"
+                : "☰";
+            });
+
+            document.addEventListener("click", (e) => {
+                if (
+                navMenu.classList.contains("active") &&
+                !navMenu.contains(e.target) &&
+                e.target !== mobileMenuBtn
+                ) {
+                navMenu.classList.remove("active");
+                mobileMenuBtn.textContent = "☰";
+                }
+            });
+          }
+        });
+      </script>
   </body>
 </html>

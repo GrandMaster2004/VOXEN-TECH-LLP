@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Top Software, Website & Mobile App Development Company | Branding &
+      Digital Marketing Experts – Voxen Tech LLP
+    </title>
+    <meta
+      name="description"
+      content="Voxen Tech LLP is a leading software, website, and mobile app development company in India. We offer end-to-end branding, digital marketing, social media management, and BPO solutions to grow your business online."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Poppins:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <link rel="icon" type="image/png" href="favicon.ico" />
+
+    <style>
+      /* --- 1. Global Styles & Variables --- */
+      :root {
+        /* Original About Page variables */
+        --primary-color: #711666;
+        --text-color: #ffffff;
+        --dark-bg: #2d2640;
+        --footer-bg: #1e172f;
+
+        /* Added from Services Page for Navbar */
+        --primary-purple: #8b4a84;
+        --dark-purple: #2d2640;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #fff;
+        color: #000;
+        position: relative;
+      }
+
+      .content-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* --- 2. Header & Navigation (FIXED) --- */
+      .header {
+        background-color: var(--dark-purple);
+        padding: 1rem 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      .nav-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon img {
+        width: 48px;
+        height: 48px;
+      }
+      .logo-text {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-item {
+        color: #a9a4b3; /* Muted color for inactive links */
+        font-size: 1.1rem;
+        text-decoration: none;
+        padding-bottom: 5px;
+        border-bottom: 3px solid transparent;
+        transition: color 0.3s ease;
+      }
+      .nav-item:hover {
+        color: white;
+      }
+      .nav-item.active {
+        color: white;
+        font-weight: 600;
+        border-bottom-color: var(--primary-purple);
+      }
+      .contact-btn {
+        background: #5c4b69;
+        color: white;
+        padding: 0.75rem 1.75rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+      }
+      .contact-btn:hover {
+        background: var(--primary-purple);
+        transform: translateY(-2px);
+      }
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #cfb8d9;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      /* --- 3. Hero Section --- */
+      .heroabout-container {
+        padding-top: 80px; /* Offset for fixed header */
+        width: 100%;
+        height: 832px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+      }
+      .banner-slides {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .banner-slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        background-size: cover;
+        background-position: center;
+      }
+      .banner-slide.active {
+        opacity: 1;
+      }
+      .heroabout-content {
+        position: relative;
+        z-index: 2;
+        padding: 0 20px;
+      }
+      .heroabout-title {
+        font-size: 5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      }
+      .heroabout-title .hero-highlight {
+        color: var(--primary-color);
+      }
+      .heroabout-subtitle {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+
+      /* --- 4. About Us Section --- */
+      .about-us-sectionhome {
+        padding: 80px 0;
+      }
+      .about-us-inner-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+      }
+      .about-us-content-area {
+        flex: 1;
+        max-width: 600px;
+      }
+      .about-us-title-centered {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .about-us-heading-highlight {
+        color: var(--primary-color);
+      }
+      .about-us-description {
+        line-height: 1.8;
+      }
+      .about-us-slider-container {
+        flex: 1;
+        max-width: 500px;
+        height: 400px;
+        position: relative;
+      }
+      .about-us-slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      .about-us-slide.active-slide {
+        opacity: 1;
+      }
+      .about-us-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      /* --- 5. Our Mission Section --- */
+      .our-mission-section {
+        background: var(--dark-bg);
+        color: white;
+        padding: 80px 20px;
+      }
+      .mission-content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+      }
+      .mission-text-content {
+        max-width: 450px;
+      }
+      .mission-title {
+        color: #e1b8dc;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .mission-description {
+        font-size: 1.2rem;
+        line-height: 1.6;
+      }
+      .mission-stats {
+        display: flex;
+        gap: 30px;
+      }
+      .mission-stat-item {
+        background: rgba(238, 238, 238, 0.5);
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        width: 200px;
+      }
+      .mission-stat-number {
+        color: #000;
+        font-size: 4.5rem;
+        font-weight: 700;
+      }
+      .mission-stat-label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+
+      /* --- 6. Timeline Sections (Desktop & Mobile) --- */
+      .timeline-section-fullwidth {
+        background: #b2aeb3;
+        padding: 80px 20px;
+      }
+      .timeline-inner {
+        position: relative;
+        padding: 40px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+      }
+      .timeline-circle {
+        position: absolute;
+        top: -41px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 83px;
+        height: 83px;
+        background: var(--dark-bg);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 700;
+        z-index: 2;
+      }
+      .timeline-line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+      .timeline-content-box,
+      .timeline-image-box {
+        width: 45%;
+        max-width: 500px;
+      }
+      .timeline-content-box {
+        background: var(--dark-bg);
+        color: white;
+        padding: 30px;
+        border-radius: 25px;
+      }
+      .timeline-content-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .timeline-content-year {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 15px;
+      }
+      .timeline-image-box img {
+        width: 100%;
+        border-radius: 25px;
+        object-fit: cover;
+      }
+      .timeline-inner.reverse {
+        flex-direction: row-reverse;
+      }
+      .mobile-timeline-section {
+        display: none; /* Hidden on desktop */
+      }
+
+      /* --- 7. Core Values Carousel --- */
+      .carousel-section {
+        padding: 80px 0;
+      }
+      .section-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+      }
+      .carousel-container {
+        position: relative;
+        overflow: hidden;
+        height: 550px;
+      }
+      .carousel-wrapper {
+        display: flex;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+      }
+      .slide {
+        min-width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .main-card {
+        width: 433px;
+        height: 480px;
+        background: var(--dark-bg);
+        color: white;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px;
+      }
+      .main-icon {
+        width: 72px;
+        height: 72px;
+        fill: #d9d9d9;
+        margin-bottom: 20px;
+      }
+      .main-card h2 {
+        font-size: 1.75rem;
+        font-weight: 900;
+        margin-bottom: 20px;
+      }
+      .main-card p {
+        line-height: 1.6;
+        max-width: 300px;
+      }
+      .nav-circle {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 47px;
+        height: 47px;
+        background: #2d2640;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+      .nav-circle.prev {
+        left: 20px;
+      }
+      .nav-circle.next {
+        right: 20px;
+      }
+      .nav-arrow {
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px;
+      }
+      .nav-arrow.left {
+        transform: rotate(135deg);
+      }
+      .nav-arrow.right {
+        transform: rotate(-45deg);
+      }
+
+      /* --- 8. Why Choose Us Section --- */
+      .why-choose-voxen-tech-section {
+        padding: 80px 20px;
+      }
+      .why-choose-horizontal-selection {
+        display: flex;
+        gap: 15px;
+        height: 480px;
+      }
+      .why-choose-image-item {
+        flex: 0 0 15%;
+        border-radius: 28px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: flex 0.6s ease;
+      }
+      .why-choose-image-item.active {
+        flex: 1 1 55%;
+      }
+      .why-choose-image-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* --- 9. Technology Stack Section --- */
+      .image-slider-section {
+        padding: 80px 0;
+        overflow: hidden;
+        background: #f0f0f0;
+      }
+      .infinite-slider {
+        display: flex;
+        width: calc(1280px * 3); /* Width of image x3 */
+        animation: slide-horizontal 30s linear infinite;
+      }
+      .infinite-slider img {
+        width: 1280px;
+      }
+      @keyframes slide-horizontal {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-1280px);
+        }
+      }
+
+      /* --- 10. Call to Action (CTA) Section --- */
+      .build-amazing-section {
+        background: var(--dark-bg);
+        padding: 80px 20px;
+        text-align: center;
+        color: white;
+      }
+      .cta-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .cta-description {
+        max-width: 680px;
+        margin: 0 auto 40px auto;
+        font-size: 1.2rem;
+        color: #d9d9d9;
+      }
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      .cta-btn {
+        width: 231px;
+        height: 57px;
+        background: #baa9c1;
+        border-radius: 18px;
+        border: none;
+        color: black;
+        font-size: 1.5rem;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      /* --- 11. Footer --- */
+      .footer {
+        background-color: var(--footer-bg);
+        color: #bbb;
+        padding: 70px 0 0;
+      }
+      .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 30px;
+      }
+      .footer-col {
+        width: 100%;
+        padding: 0 15px;
+      }
+      .footer-col.about {
+        flex-basis: 35%;
+      }
+      .footer-col.links {
+        flex-basis: 20%;
+      }
+      .footer-col.contact {
+        flex-basis: 35%;
+      }
+      .footer-col h4 {
+        font-size: 18px;
+        color: #fff;
+        margin-bottom: 30px;
+        position: relative;
+      }
+      .footer-col h4::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        background-color: var(--primary-color);
+        height: 2px;
+        width: 50px;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col ul li:not(:last-child) {
+        margin-bottom: 10px;
+      }
+      .footer-col ul li a {
+        font-size: 16px;
+        text-decoration: none;
+        color: #bbb;
+        transition: color 0.3s ease;
+      }
+      .footer-col ul li a:hover {
+        color: #fff;
+        padding-left: 5px;
+      }
+      .footer-about-text {
+        margin-top: 20px;
+        line-height: 1.8;
+      }
+      .social-links a {
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        background-color: rgba(255, 255, 255, 0.2);
+        margin: 0 10px 10px 0;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        color: #fff;
+        transition: all 0.5s ease;
+      }
+      .social-links a:hover {
+        color: #24262b;
+        background-color: #fff;
+      }
+      .footer-bottom {
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 50px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* --- Responsive --- */
+      @media (max-width: 992px) {
+        .about-us-inner-wrapper,
+        .mission-content-wrapper {
+          flex-direction: column;
+          text-align: center;
+        }
+        .timeline-section-fullwidth {
+          display: none;
+        }
+        .mobile-timeline-section {
+          display: block;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header {
+          padding: 1rem;
+        }
+        /* Mobile Header */
+        .mobile-menu-btn {
+          display: block;
+        }
+        .nav-menu {
+          display: none; /* Initially hidden */
+          position: absolute;
+          top: 100%; /* Position below the header */
+          left: 0;
+          right: 0;
+          background: var(--dark-purple);
+          flex-direction: column;
+          padding: 1rem 0;
+          gap: 0;
+        }
+        .nav-menu.active {
+          display: flex; /* Show when active */
+        }
+        .nav-item {
+          padding: 1rem 2rem;
+          width: 100%;
+          border-bottom: none;
+        }
+        .nav-item.active {
+          border-bottom: none;
+        }
+        .contact-btn {
+          display: block;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+
+        .heroabout-title {
+          font-size: 2.5rem;
+        }
+        .about-us-slider-container {
+          height: 250px;
+        }
+
+        .mission-content-wrapper {
+          gap: 40px;
+        }
+        .mission-stats {
+          flex-direction: column;
+        }
+
+        /* Mobile Why Choose Us (Horizontal Scroll) */
+        .why-choose-horizontal-selection {
+          flex-direction: row;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          height: 300px;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .why-choose-horizontal-selection::-webkit-scrollbar {
+          display: none;
+        }
+        .why-choose-image-item {
+          flex: 0 0 200px;
+        }
+
+        .infinite-slider {
+          width: calc(100vw * 3);
+          animation-name: slide-horizontal-mobile;
+        }
+        .infinite-slider img {
+          width: 100vw;
+        }
+        @keyframes slide-horizontal-mobile {
+          to {
+            transform: translateX(-100vw);
+          }
+        }
+
+        /* Mobile Footer */
+        .footer-col {
+          flex-basis: 100%;
+          text-align: center;
+        }
+        .footer-col h4::before {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .social-links {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header" id="mainHeader">
+      <div class="nav-container">
+        <a href="index.html" class="logo-section">
+          <div class="logo-icon">
+            <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
+          </div>
+          <div class="logo-text">VOXEN TECH LLP</div>
+        </a>
+        <nav class="nav-menu" id="navMenu">
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="about.html" class="nav-item active">About</a>
+          <a href="services.html" class="nav-item">Services</a>
+          <a href="portfolio.html" class="nav-item">Portfolio</a>
+          <a href="blog.html" class="nav-item">Blog</a>
+          <a href="contactus.html" class="contact-btn">Contact Us</a>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+      </div>
+    </header>
+
+    <div class="heroabout-container" id="heroabout-animated">
+      <div class="banner-slides">
+        <div
+          class="banner-slide active"
+          style="background-image: url('./assets/images/about3.png')"
+        ></div>
+        <!-- <div
+          class="banner-slide"
+          style="background-image: url('./assets/images/about2.png')"
+        ></div>
+        <div
+          class="banner-slide"
+          style="background-image: url('./assets/images/about1.png')"
+        ></div> -->
+      </div>
+      <div class="heroabout-content">
+        <h1 class="heroabout-title">
+          <span>About </span><span class="hero-highlight">Voxen</span>
+        </h1>
+        <p class="heroabout-subtitle">
+          Driven by innovation, powered by people.
+        </p>
+      </div>
+    </div>
+
+    <section class="about-us-sectionhome">
+      <div class="content-wrapper about-us-inner-wrapper">
+        <div class="about-us-content-area">
+          <h2 class="about-us-title-centered">
+            <span class="about-us-heading-highlight">WHO WE ARE</span>
+          </h2>
+          <div class="about-us-description">
+            Founded in 2025, VOXEN TECH LLP has grown from a small startup to a
+            leading software development company with a global client base. Our
+            team of passionate developers, designers, and strategists work
+            together to deliver exceptional digital solutions that drive
+            business growth.<br /><br />
+            At Voxen, we don't just build software — we build long-term
+            partnerships grounded in trust, quality, and measurable results.
+          </div>
+        </div>
+        <div class="about-us-slider-container">
+          <div class="about-us-slide active-slide">
+            <img src="./assets/images/logos/logo1.png" alt="Client Logo 1" />
+          </div>
+          <div class="about-us-slide">
+            <img src="./assets/images/logos/logo2.png" alt="Client Logo 2" />
+          </div>
+          <div class="about-us-slide">
+            <img src="./assets/images/logos/logo3.png" alt="Client Logo 3" />
+          </div>
+          <div class="about-us-slide">
+            <img src="./assets/images/logos/logo4.png" alt="Client Logo 4" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="our-mission-section">
+      <div class="content-wrapper mission-content-wrapper">
+        <div class="mission-text-content">
+          <h2 class="mission-title">Our Mission</h2>
+          <p class="mission-description">
+            To empower businesses through innovative technology solutions that
+            solve real-world problems, enhance efficiency, and create meaningful
+            digital experiences.
+          </p>
+        </div>
+        <div class="mission-stats">
+          <div class="mission-stat-item">
+            <div class="mission-stat-number">75+</div>
+            <div class="mission-stat-label">Projects Completed</div>
+          </div>
+          <div class="mission-stat-item">
+            <div class="mission-stat-number">25+</div>
+            <div class="mission-stat-label">Satisfied Clients</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline-section-fullwidth">
+      <h2 class="section-title">Our Journey</h2>
+      <div class="content-wrapper" style="position: relative">
+        <div class="timeline-line"></div>
+        <div class="timeline-inner">
+          <div class="timeline-circle">1</div>
+          <div class="timeline-image-box">
+            <img
+              src="./assets/images/Voxen Website Images/Journey 1.png"
+              alt="Company Founding"
+            />
+          </div>
+          <div class="timeline-content-box">
+            <h3 class="timeline-content-title">Company Founded</h3>
+            <div class="timeline-content-year">2025</div>
+            <p>
+              VOXEN TECH was founded by engineers with a vision to bridge
+              business needs and technology.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-inner reverse">
+          <div class="timeline-circle">2</div>
+          <div class="timeline-image-box">
+            <img
+              src="./assets/images/Voxen Website Images/Journey 2.png"
+              alt="First Major Client"
+            />
+          </div>
+          <div class="timeline-content-box">
+            <h3 class="timeline-content-title">First Major Client</h3>
+            <div class="timeline-content-year">2026</div>
+            <p>
+              Secured our first major client, developing a custom Mobile & Web
+              App to streamline operations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-timeline-section"></section>
+
+    <section class="carousel-section">
+      <h2 class="section-title">Our Core Values</h2>
+      <div class="carousel-container">
+        <div class="carousel-wrapper" id="carouselWrapper">
+          <div class="slide">
+            <div class="main-card">
+              <svg class="main-icon" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 7C13.1 7 14 7.9 14 9S13.1 11 12 11 10 10.1 10 9 10.9 7 12 7ZM12 17C10.67 17 9.4 16.64 8.31 16L8.33 14.5C8.33 13.17 10.67 12.5 12 12.5S15.67 13.17 15.67 14.5L15.69 16C14.6 16.64 13.33 17 12 17Z"
+                />
+              </svg>
+              <h2>Integrity</h2>
+              <p>
+                We build trust through transparency, honesty, and ethical
+                business practices in all our relationships.
+              </p>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="main-card">
+              <svg class="main-icon" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M16 4C18.2 4 20 5.8 20 8S18.2 12 16 12 12 10.2 12 8 13.8 4 16 4ZM8 4C10.2 4 12 5.8 12 8S10.2 12 8 12 4 10.2 4 8 5.8 4 8 4ZM8 13C10.67 13 16 14.33 16 17V20H0V17C0 14.33 5.33 13 8 13ZM16 13C16.67 13 17.27 13.08 17.8 13.2C18.53 13.9 19 14.9 19 16V20H24V17C24 14.33 18.67 13 16 13Z"
+                />
+              </svg>
+              <h2>Collaboration</h2>
+              <p>
+                We believe the best solutions emerge from teamwork—both within
+                our company and with our clients.
+              </p>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="main-card">
+              <svg class="main-icon" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M9 21C9 22.1 9.9 23 11 23H13C14.1 23 15 22.1 15 21V20H9V21ZM12 2C8.14 2 5 5.14 5 9C5 11.38 6.19 13.47 8 14.74V17C8 17.55 8.45 18 9 18H15C15.55 18 16 17.55 16 17V14.74C17.81 13.47 19 11.38 19 9C19 5.14 15.86 2 12 2Z"
+                />
+              </svg>
+              <h2>Innovation</h2>
+              <p>
+                We constantly push boundaries to create cutting-edge solutions
+                that set our clients apart in their industries.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="nav-circle prev" id="prevSlideBtn">
+          <div class="nav-arrow left"></div>
+        </div>
+        <div class="nav-circle next" id="nextSlideBtn">
+          <div class="nav-arrow right"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-choose-voxen-tech-section">
+      <div class="content-wrapper">
+        <h2 class="section-title">Why Choose Voxen Tech</h2>
+        <div class="why-choose-horizontal-selection">
+          <div class="why-choose-image-item">
+            <img src="./assets/images/flip/thumb1.png" alt="Reason 1" />
+          </div>
+          <div class="why-choose-image-item">
+            <img src="./assets/images/flip/thumb2.png" alt="Reason 2" />
+          </div>
+          <div class="why-choose-image-item">
+            <img src="./assets/images/flip/thumb3.png" alt="Reason 3" />
+          </div>
+          <div class="why-choose-image-item active">
+            <img src="./assets/images/flip/thumb4.png" alt="Reason 4" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="image-slider-section">
+      <h2 class="section-title">Our Technology Stack</h2>
+      <div class="infinite-slider">
+        <img src="./assets/images/Frame 39.png" alt="Technology Stack Logos" />
+        <img src="./assets/images/Frame 39.png" alt="Technology Stack Logos" />
+        <img src="./assets/images/Frame 39.png" alt="Technology Stack Logos" />
+      </div>
+    </section>
+
+    <section class="build-amazing-section">
+      <div class="content-wrapper">
+        <h2 class="cta-title">Let's Turn Your Vision Into Reality</h2>
+        <p class="cta-description">
+          Let's discuss how we can help transform your ideas into powerful
+          digital solutions.
+        </p>
+        <div class="cta-buttons">
+          <button class="cta-btn">Contact Us</button>
+          <button class="cta-btn">Get a Quote</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content-wrapper footer-container">
+        <div class="footer-col about">
+          <div class="logo-section">
+            <div class="logo-icon">
+              <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
+            </div>
+            <div class="logo-text">VOXEN TECH LLP</div>
+          </div>
+          <p class="footer-about-text">
+            A leading software development company delivering high-quality web,
+            mobile, and custom software solutions to fuel business growth.
+          </p>
+        </div>
+        <div class="footer-col links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contactus.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col contact">
+          <h4>Contact Us</h4>
+          <ul>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> Varanasi, Uttar Pradesh,
+              India
+            </li>
+            <li><i class="fas fa-phone"></i> +91 12345 67890</li>
+            <li><i class="fas fa-envelope"></i> contact@voxentech.com</li>
+          </ul>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Voxen Tech LLP. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Mobile Menu ---
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const navMenu = document.getElementById("navMenu");
+        mobileMenuBtn.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+          mobileMenuBtn.textContent = navMenu.classList.contains("active")
+            ? "✕"
+            : "☰";
+        });
+
+        // --- Hero Slideshow ---
+        const slides = document.querySelectorAll(".banner-slide");
+        let currentSlide = 0;
+        if (slides.length > 1) {
+          setInterval(() => {
+            slides[currentSlide].classList.remove("active");
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add("active");
+          }, 3000);
+        }
+
+        // --- About Us Logo Slider ---
+        const aboutSlides = document.querySelectorAll(".about-us-slide");
+        let aboutIndex = 0;
+        if (aboutSlides.length > 1) {
+          setInterval(() => {
+            aboutSlides[aboutIndex].classList.remove("active-slide");
+            aboutIndex = (aboutIndex + 1) % aboutSlides.length;
+            aboutSlides[aboutIndex].classList.add("active-slide");
+          }, 2000);
+        }
+
+        // --- Core Values Carousel ---
+        const carouselWrapper = document.getElementById("carouselWrapper");
+        if (carouselWrapper) {
+          const prevBtn = document.getElementById("prevSlideBtn");
+          const nextBtn = document.getElementById("nextSlideBtn");
+          const totalSlides = carouselWrapper.children.length;
+          let carouselIndex = 0;
+
+          function updateCarousel() {
+            carouselWrapper.style.transform = `translateX(-${
+              carouselIndex * 100
+            }%)`;
+          }
+
+          nextBtn.addEventListener("click", () => {
+            carouselIndex = (carouselIndex + 1) % totalSlides;
+            updateCarousel();
+          });
+
+          prevBtn.addEventListener("click", () => {
+            carouselIndex = (carouselIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+          });
+
+          setInterval(() => {
+            nextBtn.click();
+          }, 5000);
+        }
+
+        // --- Why Choose Us Click Handler ---
+        const whyChooseItems = document.querySelectorAll(
+          ".why-choose-image-item"
+        );
+        whyChooseItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            if (window.innerWidth > 768 || !item.classList.contains("active")) {
+              whyChooseItems.forEach((i) => i.classList.remove("active"));
+              item.classList.add("active");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

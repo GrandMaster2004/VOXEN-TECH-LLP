@@ -161,28 +161,45 @@
 
       /* --- 3. Hero Section --- */
       .hero-container {
-        padding-top: 0;
-        /* UPDATED: This makes the hero section fill the entire screen height below the header */
         height: calc(100vh - 80px);
-        min-height: 600px; /* Ensures a decent height on very wide but short screens */
+        min-height: 600px;
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: white;
-        background: linear-gradient(
-            rgba(29, 17, 46, 0.7),
-            rgba(29, 17, 46, 0.7)
-          ),
-          url("http://googleusercontent.com/file_content/0") no-repeat center
-            center/cover;
+        overflow: hidden; /* Ensures child elements don't overflow */
       }
 
+      /* FIX: Dedicated container for the background image */
+      .hero-background {
+  position: absolute;
+  top: 0;
+  left: 50%; /* Center the element's start point */
+  transform: translateX(-50%); /* Shift it back by half its own width */
+  width: 100vw; /* Make it the full width of the viewport */
+  height: 100%;
+  z-index: 1;
+}
+
+      .hero-background img {
+        width: 100%;
+        height: 100%;
+        /* This ensures the image covers the container without distortion or blur from stretching */
+        object-fit: cover;
+        object-position: center;
+      }
+
+      /* FIX: Removed the hero-overlay */
       .hero-content {
         max-width: 800px;
-        z-index: 1;
+        position: relative; /* Changed to relative */
+        z-index: 3; /* Sits on top of the overlay */
         padding: 1rem;
+  
+        padding: 2rem;
+        border-radius: 10px;
       }
 
       .hero-title {
@@ -425,7 +442,6 @@
           left: 0;
           right: 0;
           background: rgba(45, 38, 64, 0.98);
-          backdrop-filter: blur(10px);
           flex-direction: column;
           gap: 0;
           padding: 1rem 0;
@@ -501,6 +517,13 @@
 
     <main>
       <div class="hero-container">
+        <div class="hero-background">
+          <img
+            src="./assets/images/Landing Blogs.png"
+            alt="A team collaborating on a project in a modern office"
+          />
+        </div>
+
         <div class="hero-content">
           <h1 class="hero-title">
             <span>Our </span>

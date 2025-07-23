@@ -126,33 +126,50 @@
       .hero-section {
         padding-top: 80px; /* Offset for fixed header */
         height: 100vh;
+        width: 100vw;
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: white;
-        padding: 80px 2rem 0;
+        margin: 0;
         overflow: hidden;
       }
       .hero-section::before {
         content: "";
         position: absolute;
-        inset: 0;
-        background-image: linear-gradient(
-            rgba(29, 17, 46, 0.8),
-            rgba(29, 17, 46, 0.8)
-          ),
-          url("https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&q=80&w=2070");
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("./assets/images/Landing Services.png");
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
         background-attachment: fixed;
         z-index: -1;
       }
-      .hero-content { z-index: 1; }
-      .hero-title { font-size: 4rem; font-weight: 700; line-height: 1.2; }
-      .hero-title .highlight { color: var(--primary-purple); }
-      .hero-subtitle { font-size: 1.5rem; max-width: 600px; margin: 1.5rem auto 0; }
+      .hero-content {
+        z-index: 1;
+        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+        max-width: 90%;
+      }
+      .hero-title {
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      .hero-title .highlight {
+        color: var(--primary-purple);
+      }
+      .hero-subtitle {
+        font-size: 1.5rem;
+        max-width: 600px;
+        margin: 1.5rem auto 0;
+      }
 
       /* --- 4. Services Card Section --- */
       .services-cards-section {
@@ -238,7 +255,7 @@
         max-height: 200px;
         opacity: 1;
       }
-      
+
       /* --- 5. Trusted Technologies Section --- */
       .tech-slider-section {
         padding: 60px 0;
@@ -257,8 +274,12 @@
         opacity: 0.7;
       }
       @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
       }
 
       /* --- 6. Vision/CTA Section --- */
@@ -300,32 +321,108 @@
         background-color: white;
         transform: translateY(-3px);
       }
-      
+
       /* --- 7. Footer --- */
-      .footer { background-color: #1e172f; color: #bbb; padding: 60px 20px; }
-      .footer-content { display: flex; flex-wrap: wrap; max-width: 1280px; margin: 0 auto; gap: 40px; }
-      .footer-column { flex: 1; min-width: 220px; }
-      .footer-column h3 { color: white; margin-bottom: 20px; }
-      .footer-column ul { list-style: none; }
-      .footer-column a { color: #bbb; text-decoration: none; line-height: 2; transition: color 0.3s; }
-      .footer-column a:hover { color: white; }
-      .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; }
+      .footer {
+        background-color: #1e172f;
+        color: #bbb;
+        padding: 60px 20px;
+      }
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1280px;
+        margin: 0 auto;
+        gap: 40px;
+      }
+      .footer-column {
+        flex: 1;
+        min-width: 220px;
+      }
+      .footer-column h3 {
+        color: white;
+        margin-bottom: 20px;
+      }
+      .footer-column ul {
+        list-style: none;
+      }
+      .footer-column a {
+        color: #bbb;
+        text-decoration: none;
+        line-height: 2;
+        transition: color 0.3s;
+      }
+      .footer-column a:hover {
+        color: white;
+      }
+      .footer-bottom {
+        text-align: center;
+        border-top: 1px solid #333;
+        padding-top: 20px;
+        margin-top: 40px;
+      }
 
       /* --- 8. Responsive Styles --- */
       @media (max-width: 768px) {
-        .header { padding: 1rem; }
-        .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--dark-purple); flex-direction: column; padding: 1rem 0; }
-        .nav-menu.active { display: flex; }
-        .nav-item { padding: 1rem 2rem; width: 100%; border-bottom: none; }
-        .nav-item.active { border-bottom: none; }
-        .mobile-menu-btn { display: block; }
-        .hero-title { font-size: 2.5rem; }
-        .hero-subtitle { font-size: 1.2rem; }
-        .section-title { font-size: 2rem; }
-        .services-grid { grid-template-columns: 1fr; }
-        .infinite-slider img { height: 60px; margin: 0 20px; }
-        .vision-title { font-size: 1.8rem; }
-        .vision-description { font-size: 1rem; }
+        .header {
+          padding: 1rem;
+        }
+        .nav-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--dark-purple);
+          flex-direction: column;
+          padding: 1rem 0;
+        }
+        .nav-menu.active {
+          display: flex;
+        }
+        .nav-item {
+          padding: 1rem 2rem;
+          width: 100%;
+          border-bottom: none;
+        }
+        .nav-item.active {
+          border-bottom: none;
+        }
+        .mobile-menu-btn {
+          display: block;
+        }
+        .hero-section::before {
+          background-attachment: scroll;
+        }
+        .hero-title {
+          font-size: 2.5rem;
+        }
+        .hero-subtitle {
+          font-size: 1.2rem;
+        }
+        .section-title {
+          font-size: 2rem;
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .infinite-slider img {
+          height: 60px;
+          margin: 0 20px;
+        }
+        .vision-title {
+          font-size: 1.8rem;
+        }
+        .vision-description {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-section::before {
+          background-attachment: scroll;
+          background-size: cover;
+        }
       }
     </style>
   </head>
@@ -353,7 +450,9 @@
     <main>
       <section class="hero-section">
         <div class="hero-content">
-          <h1 class="hero-title">Our <span class="highlight">Services</span></h1>
+          <h1 class="hero-title">
+            Our <span class="highlight">Services</span>
+          </h1>
           <p class="hero-subtitle">
             We provide full-cycle digital solutions — from concept to launch.
           </p>
@@ -365,51 +464,119 @@
         <div class="services-grid">
           <div class="service-card">
             <div class="service-card-content">
-              <img src="./assets/images/icons/icon1.png" alt="Icon" class="service-card-icon"/>
+              <img
+                src="./assets/images/icons/icon1.png"
+                alt="Icon"
+                class="service-card-icon"
+              />
               <h3 class="service-card-title">Website Design & Development</h3>
-              <p class="service-card-description">Custom websites that are fast, responsive, and optimized for search engines to help your business stand out online.</p>
+              <p class="service-card-description">
+                Custom websites that are fast, responsive, and optimized for
+                search engines to help your business stand out online.
+              </p>
             </div>
-            <img class="service-card-image" src="./assets/images/card1.png" alt="Website Design"/>
+            <img
+              class="service-card-image"
+              src="./assets/images/card1.png"
+              alt="Website Design"
+            />
           </div>
           <div class="service-card">
             <div class="service-card-content">
-              <img src="./assets/images/icons/icon2.png" alt="Icon" class="service-card-icon"/>
+              <img
+                src="./assets/images/icons/icon2.png"
+                alt="Icon"
+                class="service-card-icon"
+              />
               <h3 class="service-card-title">Web Application Development</h3>
-              <p class="service-card-description">Our team creates powerful and scalable web applications to streamline your business processes.</p>
+              <p class="service-card-description">
+                Our team creates powerful and scalable web applications to
+                streamline your business processes.
+              </p>
             </div>
-            <img class="service-card-image" src="./assets/images/card2.png" alt="Web Application"/>
+            <img
+              class="service-card-image"
+              src="./assets/images/card2.png"
+              alt="Web Application"
+            />
           </div>
           <div class="service-card">
             <div class="service-card-content">
-              <img src="./assets/images/icons/icon3.png" alt="Icon" class="service-card-icon"/>
+              <img
+                src="./assets/images/icons/icon3.png"
+                alt="Icon"
+                class="service-card-icon"
+              />
               <h3 class="service-card-title">Mobile Application Development</h3>
-              <p class="service-card-description">We develop intuitive and engaging mobile apps for both iOS and Android platforms to connect with your users.</p>
+              <p class="service-card-description">
+                We develop intuitive and engaging mobile apps for both iOS and
+                Android platforms to connect with your users.
+              </p>
             </div>
-            <img class="service-card-image" src="./assets/images/card3.png" alt="Mobile Application"/>
+            <img
+              class="service-card-image"
+              src="./assets/images/card3.png"
+              alt="Mobile Application"
+            />
           </div>
           <div class="service-card">
             <div class="service-card-content">
-              <img src="./assets/images/icons/icon4.png" alt="Icon" class="service-card-icon"/>
+              <img
+                src="./assets/images/icons/icon4.png"
+                alt="Icon"
+                class="service-card-icon"
+              />
               <h3 class="service-card-title">Custom Software Development</h3>
-              <p class="service-card-description">Get tailor-made software solutions designed to meet your unique business requirements.</p>
+              <p class="service-card-description">
+                Get tailor-made software solutions designed to meet your unique
+                business requirements.
+              </p>
             </div>
-            <img class="service-card-image" src="./assets/images/card4.png" alt="Custom Software"/>
+            <img
+              class="service-card-image"
+              src="./assets/images/card4.png"
+              alt="Custom Software"
+            />
           </div>
           <div class="service-card">
             <div class="service-card-content">
-              <img src="./assets/images/icons/icon5.png" alt="Icon" class="service-card-icon"/>
-              <h3 class="service-card-title">Enterprise Software Development</h3>
-              <p class="service-card-description">Scalable and robust enterprise solutions to improve your operational efficiency.</p>
+              <img
+                src="./assets/images/icons/icon5.png"
+                alt="Icon"
+                class="service-card-icon"
+              />
+              <h3 class="service-card-title">
+                Enterprise Software Development
+              </h3>
+              <p class="service-card-description">
+                Scalable and robust enterprise solutions to improve your
+                operational efficiency.
+              </p>
             </div>
-            <img class="service-card-image" src="./assets/images/card5.png" alt="Enterprise Software"/>
+            <img
+              class="service-card-image"
+              src="./assets/images/card5.png"
+              alt="Enterprise Software"
+            />
           </div>
           <div class="service-card">
             <div class="service-card-content">
-              <img src="./assets/images/icons/icon6.png" alt="Icon" class="service-card-icon"/>
+              <img
+                src="./assets/images/icons/icon6.png"
+                alt="Icon"
+                class="service-card-icon"
+              />
               <h3 class="service-card-title">Billing Solutions</h3>
-              <p class="service-card-description">Secure and efficient billing and payment systems with advanced analytics.</p>
+              <p class="service-card-description">
+                Secure and efficient billing and payment systems with advanced
+                analytics.
+              </p>
             </div>
-            <img class="service-card-image" src="./assets/images/card6.png" alt="Billing Solutions"/>
+            <img
+              class="service-card-image"
+              src="./assets/images/card6.png"
+              alt="Billing Solutions"
+            />
           </div>
         </div>
       </section>
@@ -440,43 +607,54 @@
     </main>
 
     <footer class="footer">
-        <div class="footer-content">
-          <div class="footer-column">
-              <div class="logo-section">
-                  <div class="logo-icon"><img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo"></div>
-                  <div class="logo-text">VOXEN TECH LLP</div>
-              </div>
-              <p style="margin-top: 1rem; line-height: 1.6;">A leading software development company in India, providing full-stack development, ecommerce solutions, and BPO services.</p>
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="logo-section">
+            <div class="logo-icon">
+              <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
+            </div>
+            <div class="logo-text">VOXEN TECH LLP</div>
           </div>
-          <div class="footer-column">
-              <h3>Quick Links</h3>
-              <ul>
-                  <li><a href="./index.html">Home</a></li>
-                  <li><a href="./about.html">About Us</a></li>
-                  <li><a href="./services.html">Services</a></li>
-                  <li><a href="./contactus.html">Contact</a></li>
-              </ul>
-          </div>
-          <div class="footer-column">
-              <h3>Our Services</h3>
-              <ul>
-                  <li><a href="#">Website Development</a></li>
-                  <li><a href="#">Mobile App Development</a></li>
-                  <li><a href="#">Custom Software</a></li>
-                  <li><a href="#">BPO Services</a></li>
-              </ul>
-          </div>
-          <div class="footer-column">
-              <h3>Contact Us</h3>
-              <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala, India</p>
-              <p><i class="fas fa-phone-alt"></i> <a href="tel:+917736126160">+91 7736126160</a></p>
-              <p><i class="fas fa-envelope"></i> <a href="mailto:info@voxen.co.in">info@voxen.co.in</a></p>
-          </div>
+          <p style="margin-top: 1rem; line-height: 1.6">
+            A leading software development company in India, providing
+            full-stack development, ecommerce solutions, and BPO services.
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 VOXEN TECH LLP. All Rights Reserved.</p>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./contactus.html">Contact</a></li>
+          </ul>
         </div>
-   </footer>
+        <div class="footer-column">
+          <h3>Our Services</h3>
+          <ul>
+            <li><a href="#">Website Development</a></li>
+            <li><a href="#">Mobile App Development</a></li>
+            <li><a href="#">Custom Software</a></li>
+            <li><a href="#">BPO Services</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala, India</p>
+          <p>
+            <i class="fas fa-phone-alt"></i>
+            <a href="tel:+917736126160">+91 7736126160</a>
+          </p>
+          <p>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 VOXEN TECH LLP. All Rights Reserved.</p>
+      </div>
+    </footer>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {

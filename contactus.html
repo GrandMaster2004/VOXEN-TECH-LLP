@@ -104,10 +104,6 @@
       .logo-icon img {
         width: 48px;
         height: 48px;
-        transition: transform 0.3s ease;
-      }
-      .logo-icon img:hover {
-        transform: rotate(15deg);
       }
 
       .logo-text {
@@ -127,7 +123,6 @@
         font-size: 1.1rem;
         padding-bottom: 5px;
         border-bottom: 3px solid transparent;
-        transition: color 0.3s ease, border-bottom-color 0.3s ease;
       }
 
       .nav-item:hover {
@@ -146,22 +141,18 @@
         padding: 0.75rem 1.75rem;
         border-radius: 12px;
         font-size: 1.1rem;
-        transition: all 0.3s ease;
         border: none;
       }
 
       .contact-btn:hover {
         background: var(--primary-purple);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(113, 22, 102, 0.3);
       }
       .nav-item.contact-btn.active {
-        /* Ensure active state doesn't have an underline */
         border-bottom-color: transparent;
       }
 
       .mobile-menu-btn {
-        display: none; /* Hidden by default */
+        display: none;
         background: none;
         border: none;
         color: #cfb8d9;
@@ -172,7 +163,7 @@
 
       /* --- 3. Hero Section --- */
       .hero-container {
-        height: calc(100vh - 80px); /* Full viewport height minus header */
+        height: calc(100vh - 80px);
         min-height: 500px;
         position: relative;
         display: flex;
@@ -188,29 +179,27 @@
         content: "";
         position: absolute;
         inset: 0;
-        background-image: linear-gradient(
-            rgba(29, 17, 46, 0.8),
-            rgba(29, 17, 46, 0.8)
-          ),
-          url("https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&q=80&w=2070");
+        /* Gradient overlay removed, keeping only the image */
+        background-image: url("https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&q=80&w=2070");
         background-size: cover;
         background-position: center;
-        background-attachment: fixed;
         z-index: -1;
       }
 
       .hero-content {
-        max-width: 800px; /* Control line length */
+        max-width: 800px;
         z-index: 1;
+        /* Adding a subtle shadow to text for better readability */
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
       }
 
       .hero-title {
-        font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem); /* Fluid typography */
+        font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
         font-weight: 700;
       }
 
       .hero-subtitle {
-        font-size: clamp(1.1rem, 2vw + 0.5rem, 1.5rem); /* Fluid typography */
+        font-size: clamp(1.1rem, 2vw + 0.5rem, 1.5rem);
         max-width: 600px;
         margin: 1.5rem auto 0;
         color: var(--text-light);
@@ -245,10 +234,10 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        margin-bottom: 20px; /* Spacing for single-line groups */
+        margin-bottom: 20px;
       }
       .contact-form .form-row .form-group {
-        margin-bottom: 0; /* Remove double margin */
+        margin-bottom: 0;
       }
 
       .contact-form label {
@@ -266,13 +255,11 @@
         color: white;
         font-size: 1rem;
         font-family: "Poppins", sans-serif;
-        transition: border-color 0.3s, box-shadow 0.3s;
       }
       .contact-form input:focus,
       .contact-form textarea:focus {
         outline: none;
         border-color: var(--primary-purple);
-        box-shadow: 0 0 0 3px rgba(139, 74, 132, 0.3);
       }
 
       .contact-form textarea {
@@ -291,12 +278,10 @@
         border: none;
         border-radius: 10px;
         cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
       }
 
       .submit-btn:hover {
         background-color: #a03e88;
-        transform: translateY(-2px);
       }
 
       .contact-info-social-wrapper {
@@ -343,12 +328,9 @@
 
       .social-icons a {
         margin-right: 15px;
-        transition: transform 0.3s ease;
         display: inline-block;
       }
-      .social-icons a:hover {
-        transform: scale(1.1);
-      }
+
       .social-icons a img {
         width: 40px;
       }
@@ -370,9 +352,9 @@
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
-        aspect-ratio: 16 / 9; /* Modern way to set aspect ratio */
+        aspect-ratio: 16 / 9;
         border-radius: 16px;
-        overflow: hidden; /* Important for border-radius on iframe */
+        overflow: hidden;
         box-shadow: 0 15px 40px rgba(45, 38, 64, 0.15);
       }
 
@@ -419,13 +401,10 @@
         font-size: 1.1rem;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s ease;
       }
 
       .cta-button:hover {
         background-color: white;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       }
 
       /* --- 7. Footer --- */
@@ -440,7 +419,7 @@
         flex-wrap: wrap;
         max-width: 1280px;
         margin: 0 auto;
-        gap: 2rem 1.5rem; /* row-gap column-gap */
+        gap: 2rem 1.5rem;
       }
 
       .footer-column {
@@ -458,17 +437,12 @@
         margin-bottom: 1rem;
       }
 
-      .footer-column a {
-        transition: color 0.3s, padding-left 0.3s;
-      }
-
       .footer-column a:hover {
         color: white;
-        padding-left: 5px;
       }
 
       .footer-column.footer-column-company-details {
-        flex: 1.5; /* Give it more space */
+        flex: 1.5;
         min-width: 280px;
       }
 
@@ -499,12 +473,10 @@
       .footer-social-icons .social-icon {
         color: var(--text-muted);
         font-size: 1.5rem;
-        transition: color 0.3s, transform 0.3s;
       }
 
       .footer-social-icons .social-icon:hover {
         color: var(--primary-purple);
-        transform: scale(1.1);
       }
       .footer-column.contact-info p {
         display: flex;
@@ -534,7 +506,6 @@
 
       .legal-links a {
         margin: 0 10px;
-        transition: color 0.3s;
       }
       .legal-links a:hover {
         color: white;
@@ -542,7 +513,6 @@
 
       /* --- 8. Responsive Media Queries --- */
 
-      /* Tablet and Smaller Desktops */
       @media (max-width: 1024px) {
         .nav-menu {
           gap: 1.5rem;
@@ -552,39 +522,33 @@
         }
       }
 
-      /* Tablet & Mobile */
       @media (max-width: 768px) {
         body {
-          padding-top: 70px; /* Adjust for smaller header */
+          padding-top: 70px;
         }
         .header {
           height: 70px;
         }
         .mobile-menu-btn {
-          display: block; /* Show hamburger menu */
+          display: block;
         }
 
         .nav-menu {
           position: absolute;
-          top: 70px; /* Position below header */
+          top: 70px;
           left: 0;
           right: 0;
           background: rgba(45, 38, 64, 0.95);
-          backdrop-filter: blur(10px);
           flex-direction: column;
           gap: 0;
           padding: 1rem 0;
-          transform: translateY(-20px);
           opacity: 0;
           visibility: hidden;
-          transition: transform 0.3s ease, opacity 0.3s ease,
-            visibility 0.3s ease;
           border-bottom-left-radius: 16px;
           border-bottom-right-radius: 16px;
         }
 
         .nav-menu.active {
-          transform: translateY(0);
           opacity: 1;
           visibility: visible;
         }
@@ -600,7 +564,7 @@
         }
         .nav-item.active,
         .nav-item:hover {
-          border-bottom-color: transparent; /* Remove underline on mobile */
+          border-bottom-color: transparent;
           background-color: rgba(255, 255, 255, 0.05);
         }
 
@@ -638,10 +602,9 @@
         }
       }
 
-      /* Small Mobile */
       @media (max-width: 480px) {
         body {
-          padding-top: 60px; /* Adjust for smallest header */
+          padding-top: 60px;
         }
         .header {
           height: 60px;
@@ -955,7 +918,7 @@
 
         // Toggle mobile menu
         mobileMenuBtn.addEventListener("click", (e) => {
-          e.stopPropagation(); // Prevent click from bubbling up to document
+          e.stopPropagation();
           navMenu.classList.toggle("active");
           mobileMenuBtn.textContent = navMenu.classList.contains("active")
             ? "✕"

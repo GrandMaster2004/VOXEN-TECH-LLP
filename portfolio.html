@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,13 +13,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="./assets/css/portfolio.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/theme.css" />
-    <link rel="stylesheet" href="./assets/css/tablet.css" />
     <link rel="icon" type="image/png" href="favicon.ico" />
     <meta
       name="description"
@@ -40,10 +35,18 @@
       body {
         max-width: 100vw;
         overflow-x: hidden;
-        font-family: "Poppins", sans-serif; /* Consistent font family */
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
       }
 
-      /* --- Header & Navigation (Copied from services.html) --- */
+      /* --- Header & Navigation --- */
       .header {
         background-color: var(--dark-purple);
         padding: 1rem 2rem;
@@ -80,6 +83,8 @@
         align-items: center;
         gap: 2.5rem;
         list-style: none;
+        margin: 0;
+        padding: 0;
       }
       .nav-item {
         color: #a9a4b3;
@@ -120,8 +125,410 @@
         z-index: 1001;
       }
 
-      /* --- Responsive Styles for Header --- */
+      /* --- Hero Banner Styles --- */
+      .hero-container {
+        background-size: cover;
+        background-repeat: no-repeat;
+        /* width: 100%; */ /* <--- REMOVE OR COMMENT OUT THIS LINE */
+        height: 832px;
+        position: relative;
+        overflow: hidden;
+        background-color: #333333;
+        margin-top: 80px; /* Adjust for fixed header */
+
+        /* ADD THESE THREE LINES 👇 */
+        width: 100vw;
+        left: 50%;
+        margin-left: -50vw;
+      }
+      .banner-slides {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .banner-slide {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url("./assets/images/portfolio.png");
+      }
+      .banner-slide.active {
+        opacity: 1;
+      }
+      .hero-content-inner-wrapper {
+        position: absolute;
+        bottom: 80px;
+        right: 80px;
+        max-width: 100%;
+        z-index: 50;
+        padding: 0 40px;
+        text-align: right;
+      }
+      .hero-title {
+        font-size: 80px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        color: white;
+      }
+      .hero-subtitle {
+        font-size: 30px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        color: white;
+      }
+      .about-us-heading-highlight {
+        color: #793271;
+      }
+
+      /* --- Portfolio Section --- */
+      .portfolio-section {
+        background-color: #f8f8f8;
+        padding: 80px 0;
+        color: #333;
+      }
+      .portfolio-section .section-heading {
+        font-size: 48px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 60px;
+        color: #333;
+      }
+      .portfolio-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .portfolio-item {
+        position: relative;
+        width: 100%;
+        max-width: 1160px;
+        aspect-ratio: 1160 / 552;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        cursor: pointer;
+        border-radius: 15px;
+      }
+      .portfolio-item a {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .portfolio-item img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+        border-radius: 15px;
+      }
+      .portfolio-info-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px 40px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 10;
+        color: #ffffff;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.7) 30%,
+          transparent
+        );
+        border-radius: 0 0 15px 15px;
+      }
+      .portfolio-text-content {
+        flex: 1;
+        padding-right: 10px;
+        transform: translateX(-50px);
+        transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+      }
+      .portfolio-title {
+        font-size: 40px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .portfolio-description {
+        font-size: 21px;
+        line-height: 1.4;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+      .portfolio-buttons {
+        display: flex;
+        gap: 16px;
+        flex-shrink: 0;
+        transform: translateX(50px);
+        transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+      }
+      .portfolio-btn {
+        background-color: #b4afc0;
+        color: #333;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 8px 16px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      .portfolio-btn:hover {
+        background-color: #85407d;
+        color: #ffffff;
+        transform: translateY(-2px);
+      }
+      .portfolio-item:hover img {
+        transform: scale(1.05);
+      }
+      .portfolio-item:hover .portfolio-info-container {
+        opacity: 1;
+      }
+      .portfolio-item:hover .portfolio-text-content,
+      .portfolio-item:hover .portfolio-buttons {
+        transform: translateX(0);
+      }
+
+      /* --- Client Spotlights Section --- */
+      .client-spotlights-section {
+        padding: 80px 0;
+        text-align: center;
+      }
+      .client-spotlights-section .section-heading {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 60px;
+        color: #333;
+      }
+      .client-spotlights-slider-wrapper {
+        position: relative;
+        width: calc(2 * 564px + 47px);
+        height: 535px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .spotlights-track {
+        display: flex;
+        height: 100%;
+        transition: transform 0.7s ease-in-out;
+        gap: 47px;
+      }
+      .spotlight-slide {
+        flex-shrink: 0;
+        width: 564px;
+        height: 535px;
+      }
+      .spotlight-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 10px;
+      }
+      .next-spotlight-button {
+        position: absolute;
+        right: -34.5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 69px;
+        height: 69px;
+        border-radius: 50%;
+        background-color: var(--dark-purple);
+        background-image: url("./assets/images/Group 591.png");
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: center;
+        color: transparent;
+        border: none;
+        font-size: 32px;
+        cursor: pointer;
+        z-index: 99;
+      }
+      .next-spotlight-button:hover {
+        background-color: #4a405f;
+      }
+
+      /* --- Vision Section --- */
+      .vision-section {
+        margin-top: 100px;
+        height: 501px;
+        background-color: var(--dark-purple);
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .vision-content-wrapper {
+        max-width: 900px;
+        width: 100%;
+      }
+      .vision-title {
+        font-size: 41px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .vision-description {
+        font-size: 28px;
+        font-weight: 400;
+        margin-bottom: 30px;
+        color: #d9d9d9;
+      }
+      .vision-buttons-row {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .vision-specific-button {
+        width: 231px;
+        height: 57px;
+        background-color: #baa9c1;
+        color: #333;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      .vision-specific-button:hover {
+        background-color: var(--primary-purple);
+        color: #ffffff;
+        transform: translateY(-2px);
+      }
+
+      /* --- Footer --- */
+      footer {
+        background-color: var(--dark-purple);
+        color: #a9a4b3;
+        padding: 60px 20px 20px;
+      }
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1280px;
+        margin: 0 auto;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .footer-column {
+        flex: 1;
+        min-width: 220px;
+      }
+      .footer-column-company-details {
+        flex-basis: 30%;
+      }
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .footer-logo-img {
+        width: 40px;
+      }
+      .footer-logo-text {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+      }
+      .footer-column h3 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+      }
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footer-column li {
+        margin-bottom: 10px;
+      }
+      .footer-column a {
+        color: #a9a4b3;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .footer-column a:hover {
+        color: white;
+      }
+      .social-icons {
+        margin-top: 20px;
+        display: flex;
+        gap: 15px;
+      }
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #5c4b69;
+        color: white;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+      .social-icon:hover {
+        background-color: var(--primary-purple);
+        transform: translateY(-3px);
+      }
+      .contact-info p {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .footer-separator {
+        border-top: 1px solid #5c4b69;
+        margin: 40px auto;
+        max-width: 1280px;
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .legal-links a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: #a9a4b3;
+      }
+
+      /*
+      ================================================================
+      --- RESPONSIVE STYLES (Mobile Phone View) ---
+      ================================================================
+      */
       @media (max-width: 768px) {
+        /* --- Header for Mobile --- */
         .header {
           padding: 1rem;
         }
@@ -141,32 +548,176 @@
         .nav-item {
           padding: 1rem 2rem;
           width: 100%;
+          text-align: center;
           border-bottom: none;
         }
         .nav-item.active {
           border-bottom: none;
+          background-color: var(--primary-purple);
+        }
+        .contact-btn {
+          width: calc(100% - 4rem);
+          margin: 1rem auto 0;
+          text-align: center;
         }
         .mobile-menu-btn {
           display: block;
         }
 
-        .services-section,
-        .why-choose-voxen-tech-section,
-        .portfolio-sectionhome,
-        .latest-insights-section,
-        .portfolio-section,
-        .client-spotlights-section,
-        .vision-section {
-          width: 100% !important;
-          left: 0 !important;
-          right: 0 !important;
-          margin-left: 0 !important;
-          margin-right: 0 !important;
+        /* --- Hero for Mobile --- */
+        .hero-container {
+          height: 60vh; /* Shorter height on mobile */
+          margin-top: 65px; /* Adjust for mobile header height */
         }
-      }
-      section {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
+        .hero-content-inner-wrapper {
+          bottom: 20px;
+          right: 0;
+          left: 0;
+          padding: 0 20px;
+          text-align: center;
+        }
+        .hero-title {
+          font-size: 36px; /* Smaller title */
+          margin-bottom: 15px;
+        }
+        .hero-subtitle {
+          font-size: 18px; /* Smaller subtitle */
+          line-height: 1.4;
+        }
+        .hero-subtitle br {
+          display: none; /* Remove forced line breaks */
+        }
+
+        /* --- Portfolio Section for Mobile --- */
+        .portfolio-section {
+          padding: 40px 0;
+        }
+        .portfolio-section .section-heading {
+          font-size: 32px;
+          margin-bottom: 40px;
+        }
+        .portfolio-grid {
+          gap: 30px;
+          padding: 0 15px;
+        }
+        /* Make hover content visible by default on mobile */
+        .portfolio-item:hover .portfolio-info-container,
+        .portfolio-info-container {
+          opacity: 1;
+          background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.85) 40%,
+            transparent
+          );
+          bottom: 0;
+          padding: 15px;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-end;
+          gap: 10px;
+        }
+        .portfolio-item:hover .portfolio-text-content,
+        .portfolio-text-content {
+          transform: none;
+          padding: 0;
+        }
+        .portfolio-item:hover .portfolio-buttons,
+        .portfolio-buttons {
+          transform: none;
+          margin-bottom: 0;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .portfolio-title {
+          font-size: 22px;
+        }
+        .portfolio-description {
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+        .portfolio-description br {
+          display: none;
+        }
+        .portfolio-btn {
+          font-size: 12px;
+          padding: 6px 12px;
+        }
+
+        /* --- Client Spotlights for Mobile --- */
+        .client-spotlights-section {
+          padding: 40px 0;
+        }
+        .client-spotlights-section .section-heading {
+          font-size: 32px;
+          margin-bottom: 30px;
+        }
+        .client-spotlights-slider-wrapper {
+          width: 90%; /* Show one image at a time */
+          height: auto;
+          aspect-ratio: 1/1; /* Make it square-ish */
+        }
+        .spotlight-slide {
+          width: 100%;
+          height: 100%;
+        }
+        .next-spotlight-button {
+          right: 10px; /* Move button inside the frame */
+          width: 45px;
+          height: 45px;
+          background-size: 15px;
+        }
+
+        /* --- Vision Section for Mobile --- */
+        .vision-section {
+          height: auto;
+          padding: 50px 20px;
+          margin-top: 50px;
+        }
+        .vision-title {
+          font-size: 28px;
+        }
+        .vision-description {
+          font-size: 16px;
+        }
+        .vision-buttons-row {
+          flex-direction: column; /* Stack buttons */
+          gap: 15px;
+          align-items: center;
+        }
+        .vision-specific-button {
+          width: 100%;
+          max-width: 250px; /* Limit button width */
+          height: 50px;
+        }
+
+        /* --- Footer for Mobile --- */
+        .footer-content {
+          flex-direction: column; /* Stack columns */
+          text-align: center;
+          gap: 30px;
+        }
+        .footer-column-company-details {
+          flex-basis: auto;
+        }
+        .footer-logo,
+        .social-icons {
+          justify-content: center;
+        }
+        .contact-info p {
+          justify-content: center;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 15px;
+        }
+        .legal-links {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+        }
+        .legal-links a {
+          margin-left: 0;
+        }
       }
     </style>
   </head>
@@ -209,6 +760,7 @@
         </div>
       </div>
     </div>
+
     <section class="portfolio-section">
       <div class="main-content-wrapper">
         <h2 class="section-heading">Portfolio</h2>
@@ -219,23 +771,23 @@
                 src="./assets/images/portfolio/portfolio1.png"
                 alt="Portfolio Image 1"
               />
+              <div class="portfolio-info-container">
+                <div class="portfolio-text-content">
+                  <h3 class="portfolio-title">Ecommerce Solution</h3>
+                  <p class="portfolio-description">
+                    A complete ecommerce platform with <br />
+                    product management, payment <br />
+                    gateway integration, and analytics <br />dashboard.
+                  </p>
+                </div>
+                <div class="portfolio-buttons">
+                  <button class="portfolio-btn">React</button>
+                  <button class="portfolio-btn">Node.js</button>
+                  <button class="portfolio-btn">MongoDB</button>
+                  <button class="portfolio-btn">Stripe</button>
+                </div>
+              </div>
             </a>
-            <div class="portfolio-info-container">
-              <div class="portfolio-text-content">
-                <h3 class="portfolio-title">Ecommerce Solution</h3>
-                <p class="portfolio-description">
-                  A complete ecommerce platform with <br />
-                  product management, payment <br />
-                  gateway integration, and analytics <br />dashboard.
-                </p>
-              </div>
-              <div class="portfolio-buttons">
-                <button class="portfolio-btn">React</button>
-                <button class="portfolio-btn">Node.js</button>
-                <button class="portfolio-btn">MongoDB</button>
-                <button class="portfolio-btn">Stripe</button>
-              </div>
-            </div>
           </div>
 
           <div class="portfolio-item">
@@ -244,46 +796,49 @@
                 src="./assets/images/portfolio/portfolio2.png"
                 alt="Portfolio Image 2"
               />
+              <div class="portfolio-info-container">
+                <div class="portfolio-text-content">
+                  <h3 class="portfolio-title">Classified Application</h3>
+                  <p class="portfolio-description">
+                    A modern classifieds platform <br />
+                    with advanced search, user <br />
+                    verification, and secure <br />messaging system.
+                  </p>
+                </div>
+                <div class="portfolio-buttons">
+                  <button class="portfolio-btn">Flutter</button>
+                  <button class="portfolio-btn">Firebase</button>
+                  <button class="portfolio-btn">Google Maps API</button>
+                  <button class="portfolio-btn">AI Moderation</button>
+                </div>
+              </div>
             </a>
-            <div class="portfolio-info-container">
-              <div class="portfolio-text-content">
-                <h3 class="portfolio-title">Classified Application</h3>
-                <p class="portfolio-description">
-                  A modern classifieds platform <br />
-                  with advanced search, user <br />
-                  verification, and secure <br />messaging system.
-                </p>
-              </div>
-              <div class="portfolio-buttons">
-                <button class="portfolio-btn">Flutter</button>
-                <button class="portfolio-btn">Firebase</button>
-                <button class="portfolio-btn">Google Maps API</button>
-                <button class="portfolio-btn">AI Moderation</button>
-              </div>
-            </div>
           </div>
+
           <div class="portfolio-item">
             <a href="services.html#web-development">
               <img
                 src="./assets/images/portfolio/portfolio3.png"
                 alt="Portfolio Image 3"
               />
+              <div class="portfolio-info-container">
+                <div class="portfolio-text-content">
+                  <h3 class="portfolio-title">
+                    Trolleylist - Shopping List App
+                  </h3>
+                  <p class="portfolio-description">
+                    A smart shopping list application with barcode scanning,
+                    price comparison, and store navigation features.
+                  </p>
+                </div>
+                <div class="portfolio-buttons">
+                  <button class="portfolio-btn">React Native</button>
+                  <button class="portfolio-btn">Redux</button>
+                  <button class="portfolio-btn">ML Recommendations</button>
+                  <button class="portfolio-btn">Barcode API</button>
+                </div>
+              </div>
             </a>
-            <div class="portfolio-info-container">
-              <div class="portfolio-text-content">
-                <h3 class="portfolio-title">Trolleylist - Shopping List App</h3>
-                <p class="portfolio-description">
-                  A smart shopping list application with barcode scanning, price
-                  comparison, and store navigation features.
-                </p>
-              </div>
-              <div class="portfolio-buttons">
-                <button class="portfolio-btn">React Native</button>
-                <button class="portfolio-btn">Redux</button>
-                <button class="portfolio-btn">ML Recommendations</button>
-                <button class="portfolio-btn">Barcode API</button>
-              </div>
-            </div>
           </div>
 
           <div class="portfolio-item">
@@ -292,49 +847,50 @@
                 src="./assets/images/portfolio/portfolio4.png"
                 alt="Portfolio Image 4"
               />
+              <div class="portfolio-info-container">
+                <div class="portfolio-text-content">
+                  <h3 class="portfolio-title">Enterprise Resource Planning</h3>
+                  <p class="portfolio-description">
+                    Custom ERP solution integrating <br />
+                    inventory, HR, accounting, and <br />CRM modules with
+                    AI-powered <br />
+                    analytics.
+                  </p>
+                </div>
+                <div class="portfolio-buttons">
+                  <button class="portfolio-btn">Java</button>
+                  <button class="portfolio-btn">Angular</button>
+                  <button class="portfolio-btn">PostgreSQL</button>
+                  <button class="portfolio-btn">AI Analytics</button>
+                </div>
+              </div>
             </a>
-            <div class="portfolio-info-container">
-              <div class="portfolio-text-content">
-                <h3 class="portfolio-title">Enterprise Resource Planning</h3>
-                <p class="portfolio-description">
-                  Custom ERP solution integrating <br />
-                  inventory, HR, accounting, and <br />CRM modules with
-                  AI-powered <br />
-                  analytics.
-                </p>
-              </div>
-              <div class="portfolio-buttons">
-                <button class="portfolio-btn">Java</button>
-                <button class="portfolio-btn">Angular</button>
-                <button class="portfolio-btn">PostgreSQL</button>
-                <button class="portfolio-btn">AI Analytics</button>
-              </div>
-            </div>
           </div>
+
           <div class="portfolio-item">
             <a href="services.html#web-development">
               <img
                 src="./assets/images/portfolio/portfolio6.png"
                 alt="Portfolio Image 5"
               />
+              <div class="portfolio-info-container">
+                <div class="portfolio-text-content">
+                  <h3 class="portfolio-title">Healthcare Management System</h3>
+                  <p class="portfolio-description">
+                    HIPAA-compliant platform for <br />
+                    patient records, appointment <br />
+                    scheduling, and telemedicine <br />
+                    capabilities.
+                  </p>
+                </div>
+                <div class="portfolio-buttons">
+                  <button class="portfolio-btn">Vue.Js</button>
+                  <button class="portfolio-btn">Python</button>
+                  <button class="portfolio-btn">Django</button>
+                  <button class="portfolio-btn">WebRTC</button>
+                </div>
+              </div>
             </a>
-            <div class="portfolio-info-container">
-              <div class="portfolio-text-content">
-                <h3 class="portfolio-title">Healthcare Management System</h3>
-                <p class="portfolio-description">
-                  HIPAA-compliant platform for <br />
-                  patient records, appointment <br />
-                  scheduling, and telemedicine <br />
-                  capabilities.
-                </p>
-              </div>
-              <div class="portfolio-buttons">
-                <button class="portfolio-btn">Vue.Js</button>
-                <button class="portfolio-btn">Python</button>
-                <button class="portfolio-btn">Django</button>
-                <button class="portfolio-btn">WebRTC</button>
-              </div>
-            </div>
           </div>
 
           <div class="portfolio-item">
@@ -343,23 +899,23 @@
                 src="./assets/images/portfolio/portfolio5.png"
                 alt="Portfolio Image 6"
               />
+              <div class="portfolio-info-container">
+                <div class="portfolio-text-content">
+                  <h3 class="portfolio-title">Logistics Tracking System</h3>
+                  <p class="portfolio-description">
+                    Real-time shipment tracking with <br />route optimization,
+                    driver <br />management, and IoT <br />
+                    integration.
+                  </p>
+                </div>
+                <div class="portfolio-buttons">
+                  <button class="portfolio-btn">React</button>
+                  <button class="portfolio-btn">Node js</button>
+                  <button class="portfolio-btn">Google Maps API</button>
+                  <button class="portfolio-btn">MongoDB</button>
+                </div>
+              </div>
             </a>
-            <div class="portfolio-info-container">
-              <div class="portfolio-text-content">
-                <h3 class="portfolio-title">Logistics Tracking System</h3>
-                <p class="portfolio-description">
-                  Real-time shipment tracking with <br />route optimization,
-                  driver <br />management, and IoT <br />
-                  integration.
-                </p>
-              </div>
-              <div class="portfolio-buttons">
-                <button class="portfolio-btn">React</button>
-                <button class="portfolio-btn">Node js</button>
-                <button class="portfolio-btn">Google Maps API</button>
-                <button class="portfolio-btn">MongoDB</button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -451,7 +1007,7 @@
         </div>
       </div>
     </section>
-    <link rel="stylesheet" href="./Components/footer.css" />
+
     <footer>
       <div class="footer-content">
         <div class="footer-column footer-column-company-details">
@@ -557,10 +1113,9 @@
         </div>
       </div>
     </footer>
-    <script src="./assets/script/main.js"></script>
-    <script src="./assets/script/portfolio.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        // --- Mobile Menu Toggle ---
         const mobileMenuBtn = document.getElementById("mobileMenuBtn");
         const navMenu = document.getElementById("navMenu");
 
@@ -570,12 +1125,41 @@
             ? "✕"
             : "☰";
         });
-      });
-      document.addEventListener("DOMContentLoaded", function () {
-        if (window.innerWidth <= 768) {
-          document.querySelectorAll(".portfolio-item").forEach(function (card) {
-            card.classList.add("show-hover");
+
+        // --- Client Spotlight Slider ---
+        const track = document.querySelector(".spotlights-track");
+        if (track) {
+          const slides = Array.from(track.children);
+          const nextButton = document.querySelector(".next-spotlight-button");
+          let currentIndex = 0;
+
+          function updateSlidePosition() {
+            if (slides.length === 0) return;
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            // Use the gap from the CSS variable if possible, otherwise fallback
+            const gapStyle = window.getComputedStyle(track).gap;
+            const gap = gapStyle ? parseInt(gapStyle) : 47;
+
+            const moveAmount = (slideWidth + gap) * currentIndex;
+            track.style.transform = `translateX(-${moveAmount}px)`;
+          }
+
+          nextButton.addEventListener("click", () => {
+            let maxIndex = slides.length - 2; // Default for desktop (shows 2)
+            if (window.innerWidth <= 768) {
+              maxIndex = slides.length - 1; // For mobile view (shows 1)
+            }
+
+            currentIndex++;
+            if (currentIndex > maxIndex) {
+              currentIndex = 0; // Loop back to the start
+            }
+            updateSlidePosition();
           });
+
+          // Recalculate on window resize
+          window.addEventListener("resize", updateSlidePosition);
+          updateSlidePosition(); // Initial position
         }
       });
     </script>

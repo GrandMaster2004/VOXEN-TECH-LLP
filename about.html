@@ -454,28 +454,88 @@
       }
 
       /* --- 8. Why Choose Us Section --- */
-      .why-choose-voxen-tech-section {
-        padding: 80px 20px;
+      /* --- 6. Why Choose Us (Accordion) Section --- */
+      .why-choose-us {
+        background-color: #f9f9f9;
       }
-      .why-choose-horizontal-selection {
+      .why-choose-us .accordion {
+        max-width: 1200px;
+        margin: 0 auto;
         display: flex;
-        gap: 15px;
-        height: 480px;
+        gap: 20px;
+        min-height: 450px;
       }
-      .why-choose-image-item {
-        flex: 0 0 15%;
-        border-radius: 28px;
+      .accordion-item {
+        flex: 1;
+        border-radius: 20px;
         overflow: hidden;
+        position: relative;
         cursor: pointer;
-        transition: flex 0.6s ease;
+        transition: flex 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+        background-size: cover;
+        background-position: center;
       }
-      .why-choose-image-item.active {
-        flex: 1 1 55%;
+      .accordion-item:hover,
+      .accordion-item.active {
+        flex: 5;
       }
-      .why-choose-image-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      .accordion-item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.1)
+        );
+        z-index: 1;
+        transition: background 0.5s ease;
+      }
+      .accordion-item:hover::before {
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.9),
+          rgba(0, 0, 0, 0.2)
+        );
+      }
+      .accordion-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        color: white;
+        padding: 30px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+      }
+      .accordion-item:hover .accordion-content,
+      .accordion-item.active .accordion-content {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .accordion-title-vertical {
+        position: absolute;
+        z-index: 2;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        writing-mode: vertical-rl;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%) rotate(180deg);
+        white-space: nowrap;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+      .accordion-item:hover .accordion-title-vertical,
+      .accordion-item.active .accordion-title-vertical {
+        opacity: 0;
+      }
+      .accordion-content h3 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
       }
 
       /* --- 9. Technology Stack Section --- */
@@ -729,6 +789,129 @@
         }
       }
     </style>
+
+    <style>
+      /* Base Styles */
+      .team_center {
+        background-color: #1e172f;
+      }
+      .team-carousel-section {
+        margin: 0 auto;
+        max-width: 1000px;
+        background-color: #1e172f;
+        color: white;
+        padding: 60px 20px;
+        text-align: center;
+        font-family: "Arial", sans-serif;
+      }
+
+      .team-carousel-title {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+      }
+
+      /* Carousel Wrapper */
+      .team-carousel-wrapper {
+        position: relative;
+        overflow: hidden;
+        max-width: 100%;
+        padding: 0 40px;
+      }
+
+      /* Scrollable Container */
+      .team-carousel-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 20px;
+        padding-bottom: 10px;
+      }
+
+      .team-carousel-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Individual Team Cards */
+      .team-carousel-member {
+        flex: 0 0 auto;
+        width: 200px;
+        background-color: #2a203f;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .team-carousel-member:hover {
+        transform: translateY(-5px);
+      }
+
+      .team-carousel-avatar {
+        width: 100px;
+        height: 100px;
+        background-color: #ccc;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+      }
+
+      .team-carousel-member h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .team-carousel-member p {
+        margin-top: 5px;
+        font-size: 0.9rem;
+        color: #bbb;
+      }
+
+      /* Arrows */
+      .team-carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #ffffff22;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 10;
+        transition: background 0.3s;
+      }
+
+      .team-carousel-btn:hover {
+        background: #ffffff55;
+      }
+
+      .team-carousel-left {
+        left: 0;
+      }
+
+      .team-carousel-right {
+        right: 0;
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 600px) {
+        .team-carousel-member {
+          width: 160px;
+          padding: 15px;
+        }
+
+        .team-carousel-avatar {
+          width: 80px;
+          height: 80px;
+        }
+
+        .team-carousel-btn {
+          font-size: 1.5rem;
+          padding: 8px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="header" id="mainHeader">
@@ -755,16 +938,16 @@
       <div class="banner-slides">
         <div
           class="banner-slide active"
-          style="background-image: url('./assets/images/about3.png')"
+          style="background-image: url('./assets/images/Landing\ About.png')"
         ></div>
-        <div
+        <!-- <div
           class="banner-slide"
           style="background-image: url('./assets/images/about2.png')"
         ></div>
         <div
           class="banner-slide"
           style="background-image: url('./assets/images/about1.png')"
-        ></div>
+        ></div> -->
       </div>
       <div class="heroabout-content">
         <h1 class="heroabout-title">
@@ -933,22 +1116,67 @@
         </div>
       </div>
     </section>
-
-    <section class="why-choose-voxen-tech-section">
-      <div class="content-wrapper">
-        <h2 class="section-title">Why Choose Voxen Tech</h2>
-        <div class="why-choose-horizontal-selection">
-          <div class="why-choose-image-item">
-            <img src="./assets/images/flip/thumb1.png" alt="Reason 1" />
+    <section class="why-choose-us section-padding">
+      <h2 class="section-title">Why Choose VOXEN TECH</h2>
+      <div class="accordion">
+        <div
+          class="accordion-item active"
+          style="
+            background-image: url('https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          "
+        >
+          <div class="accordion-title-vertical">Skilled Team</div>
+          <div class="accordion-content">
+            <h3>Skilled Team</h3>
+            <p>
+              Our team comprises experienced and highly skilled professionals
+              dedicated to your success.
+            </p>
           </div>
-          <div class="why-choose-image-item">
-            <img src="./assets/images/flip/thumb2.png" alt="Reason 2" />
+        </div>
+        <div
+          class="accordion-item"
+          style="
+            background-image: url('https://images.pexels.com/photos/7841793/pexels-photo-7841793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          "
+        >
+          <div class="accordion-title-vertical">Affordable Pricing</div>
+          <div class="accordion-content">
+            <h3>Affordable Pricing</h3>
+            <p>
+              We offer competitive and transparent pricing to provide the best
+              value.
+            </p>
           </div>
-          <div class="why-choose-image-item">
-            <img src="./assets/images/flip/thumb3.png" alt="Reason 3" />
+        </div>
+        <div
+          class="accordion-item"
+          style="
+            background-image: url('https://images.pexels.com/photos/163822/speed-background-light-effect-163822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          "
+        >
+          <div class="accordion-title-vertical">Fast Delivery</div>
+          <div class="accordion-content">
+            <h3>Fast Delivery</h3>
+            <p>
+              We ensure quick and efficient delivery of our services without
+              compromising on quality.
+            </p>
           </div>
-          <div class="why-choose-image-item active">
-            <img src="./assets/images/flip/thumb4.png" alt="Reason 4" />
+        </div>
+        <div
+          class="accordion-item"
+          style="
+            background-image: url('https://images.pexels.com/photos/4021779/pexels-photo-4021779.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          "
+        >
+          <div class="accordion-title-vertical">Ongoing Support</div>
+          <div class="accordion-content">
+            <h3>Ongoing Support</h3>
+            <p>
+              We provide continuous support and maintenance to keep your systems
+              running smoothly.
+            </p>
           </div>
         </div>
       </div>
@@ -963,6 +1191,47 @@
       </div>
     </section>
 
+    <div class="team_center">
+      <section class="team-carousel-section">
+        <h2 class="team-carousel-title">Meet the Team</h2>
+        <div class="team-carousel-wrapper">
+          <button
+            class="team-carousel-btn team-carousel-left"
+            onclick="scrollTeamCarousel(-1)"
+          >
+            ❮
+          </button>
+          <div class="team-carousel-container" id="teamCarouselContainer">
+            <div class="team-carousel-member">
+              <div class="team-carousel-avatar"></div>
+              <h3>Arjun Menon</h3>
+              <p>Co-Founder</p>
+            </div>
+            <div class="team-carousel-member">
+              <div class="team-carousel-avatar"></div>
+              <h3>Nikita Rao</h3>
+              <p>Co-Founder</p>
+            </div>
+            <div class="team-carousel-member">
+              <div class="team-carousel-avatar"></div>
+              <h3>Meera Suresh</h3>
+              <p>Head of Design</p>
+            </div>
+            <div class="team-carousel-member">
+              <div class="team-carousel-avatar"></div>
+              <h3>Rahul Dev</h3>
+              <p>Head of Development</p>
+            </div>
+          </div>
+          <button
+            class="team-carousel-btn team-carousel-right"
+            onclick="scrollTeamCarousel(1)"
+          >
+            ❯
+          </button>
+        </div>
+      </section>
+    </div>
     <section class="build-amazing-section">
       <div class="content-wrapper">
         <h2 class="cta-title">Let's Turn Your Vision Into Reality</h2>
