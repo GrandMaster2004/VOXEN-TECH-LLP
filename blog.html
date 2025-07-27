@@ -69,86 +69,74 @@
         padding: clamp(2.5rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
       }
 
-      /* --- 2. Header & Navigation --- */
+      /* --- 2. Header & Navigation (Synced with Home Page) --- */
       .header {
         background-color: var(--dark-purple);
-        padding: 0 clamp(1rem, 5vw, 3rem);
+        padding: 1rem 2rem;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         z-index: 1000;
-        height: 80px;
-        display: flex;
-        align-items: center;
-        transition: background-color 0.3s ease;
+        /* Removed fixed height to be flexible */
       }
-
       .nav-container {
-        width: 100%;
         max-width: 1280px;
         margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
-
       .logo-section {
         display: flex;
         align-items: center;
         gap: 0.75rem;
+        text-decoration: none;
       }
-
       .logo-icon img {
         width: 48px;
         height: 48px;
       }
-
       .logo-text {
         color: white;
         font-size: 1.3rem;
         font-weight: 700;
       }
-
       .nav-menu {
         display: flex;
         align-items: center;
         gap: 2.5rem;
+        list-style: none;
       }
-
       .nav-item {
-        color: var(--text-muted);
+        color: #a9a4b3;
         font-size: 1.1rem;
+        text-decoration: none;
         padding-bottom: 5px;
         border-bottom: 3px solid transparent;
-        transition: color 0.3s ease, border-bottom-color 0.3s ease;
+        transition: color 0.3s ease, border-color 0.3s ease;
       }
-
-      .nav-item:hover {
-        color: white;
-      }
-
+      .nav-item:hover,
       .nav-item.active {
         color: white;
+      }
+      .nav-item.active {
         font-weight: 600;
         border-bottom-color: var(--primary-purple);
       }
-
       .contact-btn {
         background: #5c4b69;
         color: white;
         padding: 0.75rem 1.75rem;
         border-radius: 12px;
+        text-decoration: none;
         font-size: 1.1rem;
-        border: none;
         transition: all 0.3s ease;
       }
-
       .contact-btn:hover {
         background: var(--primary-purple);
         transform: translateY(-2px);
       }
-
       .mobile-menu-btn {
         display: none;
         background: none;
@@ -169,35 +157,30 @@
         justify-content: center;
         text-align: center;
         color: white;
-        overflow: hidden; /* Ensures child elements don't overflow */
+        overflow: hidden;
       }
 
-      /* FIX: Dedicated container for the background image */
       .hero-background {
-  position: absolute;
-  top: 0;
-  left: 50%; /* Center the element's start point */
-  transform: translateX(-50%); /* Shift it back by half its own width */
-  width: 100vw; /* Make it the full width of the viewport */
-  height: 100%;
-  z-index: 1;
-}
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 100%;
+        z-index: 1;
+      }
 
       .hero-background img {
         width: 100%;
         height: 100%;
-        /* This ensures the image covers the container without distortion or blur from stretching */
         object-fit: cover;
         object-position: center;
       }
 
-      /* FIX: Removed the hero-overlay */
       .hero-content {
         max-width: 800px;
-        position: relative; /* Changed to relative */
-        z-index: 3; /* Sits on top of the overlay */
-        padding: 1rem;
-  
+        position: relative;
+        z-index: 3;
         padding: 2rem;
         border-radius: 10px;
       }
@@ -366,8 +349,8 @@
       }
 
       /* --- 6. Footer --- */
-      footer {
-        background-color: #1e172f;
+      .footer {
+        background-color: var(--dark-purple);
         color: var(--text-muted);
         padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
       }
@@ -376,113 +359,156 @@
         flex-wrap: wrap;
         max-width: 1280px;
         margin: 0 auto;
-        gap: 2.5rem;
+        gap: 2rem 1.5rem;
       }
       .footer-column {
         flex: 1;
         min-width: 220px;
       }
+      .footer-column.footer-about {
+        flex: 1.5;
+        min-width: 280px;
+      }
       .footer-column h3 {
         color: white;
         margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
       }
       .footer-column ul li {
         margin-bottom: 1rem;
       }
+      .footer-column a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
       .footer-column a:hover {
         color: white;
       }
-      .footer-column-company-details {
-        flex-basis: 350px;
+      .footer-column > p {
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
       }
-      .social-icons {
+      .footer-social-icons {
         display: flex;
         gap: 1rem;
         margin-top: 1rem;
       }
-      .social-icons a {
-        font-size: 1.5rem;
+      .footer-social-icons .social-icon {
+        line-height: 0;
+        transition: transform 0.2s ease;
+      }
+      .footer-social-icons .social-icon:hover {
+        transform: scale(1.1);
+      }
+      .footer-social-icons .social-icon img {
+        width: 42px;
+        height: 42px;
+      }
+      .footer-column.contact-info p {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .footer-column.contact-info i {
+        color: var(--primary-purple);
+        margin-top: 5px;
+        width: 20px;
+        text-align: center;
       }
       .footer-separator {
-        border-top: 1px solid #333;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         margin: 3rem auto 2rem;
         max-width: 1280px;
       }
       .footer-bottom {
-        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        max-width: 1280px;
+        margin: 0 auto;
+        color: var(--text-muted);
+      }
+      .footer-bottom p {
+        margin: 0;
+      }
+      .legal-links {
+        display: flex;
+        gap: 1.5rem;
       }
       .legal-links a {
-        margin: 0 0.5rem;
+        text-decoration: none;
+        color: #999999;
       }
 
       /* --- 7. Media Queries for Responsiveness --- */
       @media (max-width: 768px) {
-        body {
-          padding-top: 70px;
-        }
-
         .header {
-          height: 70px;
+          padding: 1rem;
         }
-
-        .hero-container {
-          height: calc(
-            100vh - 70px
-          ); /* Adjust hero height for smaller header */
-          min-height: 500px;
+        .logo-text {
+          font-size: 1.1rem;
         }
-
+        .nav-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--dark-purple);
+          flex-direction: column;
+          align-items: center;
+          padding: 1rem 0;
+          gap: 0;
+          border-top: 1px solid #444;
+        }
+        .nav-menu.active {
+          display: flex;
+        }
+        .nav-item {
+          padding: 1rem 2rem;
+          width: 100%;
+          text-align: center;
+          border-bottom: none;
+        }
+        .nav-item.active {
+          background-color: rgba(139, 74, 132, 0.2);
+        }
+        .contact-btn {
+          margin: 1rem 2rem;
+        }
         .mobile-menu-btn {
           display: block;
         }
 
-        .nav-menu {
-          position: absolute;
-          top: 70px;
-          left: 0;
-          right: 0;
-          background: rgba(45, 38, 64, 0.98);
-          flex-direction: column;
-          gap: 0;
-          padding: 1rem 0;
-          transform: translateY(-100%);
-          visibility: hidden;
-          transition: transform 0.4s ease, visibility 0.4s ease;
+        .hero-container {
+          min-height: 500px;
         }
-
-        .nav-menu.active {
-          transform: translateY(0);
-          visibility: visible;
-        }
-
-        .nav-item {
-          padding: 1rem 2rem;
-          width: 100%;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .nav-item.active {
-          border-bottom-color: rgba(255, 255, 255, 0.05);
-          background-color: var(--primary-purple);
-        }
-        .nav-menu .contact-btn {
-          margin: 1rem 2rem 0.5rem;
-          display: block;
-          text-align: center;
-          width: calc(100% - 4rem);
-        }
-
         .newsletter-input-button {
           flex-direction: column;
         }
-
-        .footer-content {
-          flex-direction: column;
+        .footer-content,
+        .footer-column,
+        .footer-column.footer-about {
           text-align: center;
         }
-        .social-icons {
+        .footer-about .logo-section,
+        .footer-social-icons {
           justify-content: center;
         }
-        .footer-logo {
+        .footer-column.contact-info p {
+          justify-content: center;
+        }
+        .footer-bottom {
+          flex-direction: column;
           justify-content: center;
         }
       }
@@ -624,44 +650,58 @@
       </section>
     </main>
 
-    <footer>
+    <footer class="footer">
       <div class="footer-content">
-        <div class="footer-column footer-column-company-details">
-          <div class="footer-logo">
-            <img
-              src="./assets/images/logos/logo.svg"
-              alt="VOXEN TECH LLP Logo"
-              class="footer-logo-img"
-            />
-            <span class="footer-logo-text">VOXEN TECH LLP</span>
-          </div>
+        <div class="footer-column footer-about">
+          <a
+            href="./index.html"
+            class="logo-section"
+            style="margin-bottom: 1rem; text-decoration: none"
+          >
+            <div class="logo-icon">
+              <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
+            </div>
+            <div class="logo-text">VOXEN TECH LLP</div>
+          </a>
           <p>
             VOXEN TECH LLP is a leading software development company in Kochi,
             India, providing full-stack development, ecommerce solutions, mobile
             app development, and BPO services.
           </p>
-          <div class="social-icons">
+          <div class="footer-social-icons">
             <a
               href="https://www.facebook.com/voxentech"
               target="_blank"
               aria-label="Facebook"
-              class="social-icon facebook"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/facebook-new.png"
+                alt="Facebook"
+              />
+            </a>
             <a
               href="https://www.instagram.com/voxentech"
               target="_blank"
               aria-label="Instagram"
-              class="social-icon instagram"
-              ><i class="fab fa-instagram"></i
-            ></a>
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/instagram-new.png"
+                alt="Instagram"
+              />
+            </a>
             <a
               href="https://www.linkedin.com/company/voxentech"
               target="_blank"
               aria-label="LinkedIn"
-              class="social-icon linkedin"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/linkedin.png"
+                alt="LinkedIn"
+              />
+            </a>
           </div>
         </div>
 
@@ -690,33 +730,28 @@
             <li>
               <a href="./services.html#custom-software">Custom Software</a>
             </li>
+            <li>
+              <a href="./services.html#api-development">API Development</a>
+            </li>
+            <li><a href="./services.html#bpo-services">BPO Services</a></li>
           </ul>
         </div>
 
         <div class="footer-column contact-info">
           <h3>Contact Us</h3>
-          <ul>
-            <li>
-              <p>
-                <i class="fas fa-map-marker-alt"></i>
-                <a href="#" target="_blank"
-                  >VOXEN TECH LLP, Kochi, Kerala, India</a
-                >
-              </p>
-            </li>
-            <li>
-              <p>
-                <i class="fas fa-phone-alt"></i>
-                <a href="tel:+917736126160">+91 7736126160</a>
-              </p>
-            </li>
-            <li>
-              <p>
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
-              </p>
-            </li>
-          </ul>
+          <p>
+            <i class="fas fa-map-marker-alt"></i
+            ><span>VOXEN TECH LLP, Kochi, Kerala, India</span>
+          </p>
+          <p>
+            <i class="fas fa-phone-alt"></i
+            ><a href="tel:+917736126160">+91 7736126160</a>
+          </p>
+          <p>
+            <i class="fas fa-envelope"></i
+            ><a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
+          </p>
+          <p><i class="fas fa-clock"></i><span>Mon-Fri: 9AM – 6PM</span></p>
         </div>
       </div>
 
@@ -736,24 +771,10 @@
         const mobileMenuBtn = document.getElementById("mobileMenuBtn");
         const navMenu = document.getElementById("navMenu");
 
-        if (mobileMenuBtn && navMenu) {
-          mobileMenuBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            navMenu.classList.toggle("active");
-            mobileMenuBtn.textContent = navMenu.classList.contains("active")
-              ? "✕"
-              : "☰";
-          });
-        }
-
-        document.addEventListener("click", function (e) {
-          if (
-            navMenu.classList.contains("active") &&
-            !navMenu.contains(e.target)
-          ) {
-            navMenu.classList.remove("active");
-            mobileMenuBtn.textContent = "☰";
-          }
+        mobileMenuBtn.addEventListener("click", () => {
+          const isActive = navMenu.classList.toggle("active");
+          mobileMenuBtn.textContent = isActive ? "✕" : "☰";
+          mobileMenuBtn.setAttribute("aria-expanded", isActive);
         });
       });
     </script>

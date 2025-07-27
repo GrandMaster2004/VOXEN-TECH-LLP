@@ -32,6 +32,7 @@
         --dark-purple: #2d2640;
         --card-bg: #877c8b;
         --light-accent: #e5c4c4;
+        --text-muted: #a9a4b3; /* Added for footer consistency */
       }
       * {
         margin: 0;
@@ -396,7 +397,7 @@
         border-radius: 20px;
         overflow: hidden;
         position: relative;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
       }
       .about-us-slide {
         position: absolute;
@@ -420,7 +421,7 @@
         background-color: #0d244f;
         color: white;
         padding: 60px 20px;
-        margin: 3rem 0rem 0rem 0rem;
+        margin: 1rem 0rem 0rem;
       }
       .stats-grid {
         display: flex;
@@ -629,7 +630,7 @@
         opacity: 0.7;
       }
 
-      /* --- 8. CTA & Footer --- */
+      /* --- 8. CTA Section --- */
       .project-cta-block {
         background-color: var(--dark-purple);
         color: white;
@@ -687,50 +688,120 @@
         color: #711666;
       }
 
+      /* --- 9. Footer --- */
       .footer {
-        background-color: #1e172f;
-        color: #bbb;
-        padding: 60px 20px;
+        background-color: var(--dark-purple);
+        color: var(--text-muted);
+        padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
       }
       .footer-content {
         display: flex;
         flex-wrap: wrap;
         max-width: 1280px;
         margin: 0 auto;
-        gap: 40px;
-        justify-content: space-between;
+        gap: 2rem 1.5rem;
       }
       .footer-column {
         flex: 1;
         min-width: 220px;
       }
+      .footer-column.footer-about {
+        flex: 1.5;
+        min-width: 280px;
+        text-align: center; /* ADDED: Center align content in this column */
+      }
+      /* ADDED: Style for the logo link to behave like an inline-block */
+      .footer-about .logo-section {
+        display: inline-flex;
+        text-decoration: none;
+        margin-bottom: 1rem;
+      }
       .footer-column h3 {
         color: white;
-        margin-bottom: 20px;
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 600;
       }
       .footer-column ul {
         list-style: none;
+        padding: 0;
+      }
+      .footer-column ul li {
+        margin-bottom: 1rem;
       }
       .footer-column a {
-        color: #bbb;
+        color: var(--text-muted);
         text-decoration: none;
-        line-height: 2;
         transition: color 0.3s;
       }
       .footer-column a:hover {
         color: white;
       }
-      .footer-bottom {
+      .footer-column > p {
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+      /* ADDED: Override for paragraph to be left-aligned on desktop */
+      .footer-column.footer-about > p {
+        text-align: left;
+      }
+      .footer-social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        justify-content: center; /* ADDED: Ensure icons are centered */
+      }
+      .footer-social-icons .social-icon {
+        line-height: 0;
+        transition: transform 0.2s ease;
+      }
+      .footer-social-icons .social-icon:hover {
+        transform: scale(1.1);
+      }
+      .footer-social-icons .social-icon img {
+        width: 42px;
+        height: 42px;
+      }
+      .footer-column.contact-info p {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .footer-column.contact-info i {
+        color: var(--primary-purple);
+        margin-top: 5px;
+        width: 20px;
         text-align: center;
-        border-top: 1px solid #333;
-        padding-top: 30px;
-        margin-top: 40px;
+      }
+      .footer-separator {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 3rem auto 2rem;
         max-width: 1280px;
-        margin-left: auto;
-        margin-right: auto;
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        max-width: 1280px;
+        margin: 0 auto;
+        color: var(--text-muted);
+      }
+      .footer-bottom p {
+        margin: 0;
+      }
+      .legal-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .legal-links a {
+        text-decoration: none;
+        color: #999999;
       }
 
-      /* --- 9. Keyframe Animations --- */
+      /* --- 10. Keyframe Animations --- */
       @keyframes scroll {
         0% {
           transform: translateX(0);
@@ -754,7 +825,7 @@
         }
       }
 
-      /* --- 10. Responsive Styles --- */
+      /* --- 11. Responsive Styles --- */
 
       /* Tablet and Smaller Desktops (max-width: 1024px) */
       @media (max-width: 1024px) {
@@ -897,11 +968,20 @@
           flex-basis: 85vw; /* Make cards wider on mobile */
           max-width: 85vw;
         }
-        .footer-content {
+
+        /* Responsive Footer */
+        .footer-column {
           text-align: center;
         }
-        .footer-column {
-          min-width: 100%;
+        .footer-column.footer-about > p {
+          text-align: center; /* Center paragraph on mobile */
+        }
+        .footer-column.contact-info p {
+          justify-content: center;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          justify-content: center;
         }
       }
 
@@ -980,18 +1060,6 @@
             class="banner-slide active"
             style="background-image: url('./assets/images/Landing\ Home.png')"
           ></div>
-          <!-- <div
-            class="banner-slide"
-            style="
-              background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80');
-            "
-          ></div> -->
-          <!-- <div
-            class="banner-slide"
-            style="
-              background-image: url('https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
-            "
-          ></div> -->
         </div>
         <div class="herohome-content-inner-wrapper">
           <div class="herohome-content">
@@ -1263,12 +1331,12 @@
             <div class="testimonial-card">
               <img
                 class="testimonial-avatar"
-                src="./assets/images/icons/cutemer review/Group 206.png"
+                src="./assets/images/icons/cutemer%20review/Group%20206.png"
                 alt="Rajesh Kumar"
               />
               <img
                 class="testimonial-stars"
-                src="./assets/images/icons/cutemer review/Group 203.png"
+                src="./assets/images/icons/cutemer%20review/Group%20203.png"
                 alt="5 stars"
               />
               <div class="testimonial-name">Rajesh Kumar</div>
@@ -1280,12 +1348,12 @@
             <div class="testimonial-card">
               <img
                 class="testimonial-avatar"
-                src="./assets/images/icons/cutemer review/Group 206.png"
+                src="./assets/images/icons/cutemer%20review/Group%20206.png"
                 alt="Priya Nair"
               />
               <img
                 class="testimonial-stars"
-                src="./assets/images/icons/cutemer review/Group 203.png"
+                src="./assets/images/icons/cutemer%20review/Group%20203.png"
                 alt="5 stars"
               />
               <div class="testimonial-name">Priya Nair</div>
@@ -1297,12 +1365,12 @@
             <div class="testimonial-card">
               <img
                 class="testimonial-avatar"
-                src="./assets/images/icons/cutemer review/Group 206.png"
+                src="./assets/images/icons/cutemer%20review/Group%20206.png"
                 alt="Arun Mathew"
               />
               <img
                 class="testimonial-stars"
-                src="./assets/images/icons/cutemer review/Group 203.png"
+                src="./assets/images/icons/cutemer%20review/Group%20203.png"
                 alt="5 stars"
               />
               <div class="testimonial-name">Arun Mathew</div>
@@ -1314,12 +1382,12 @@
             <div class="testimonial-card">
               <img
                 class="testimonial-avatar"
-                src="./assets/images/icons/cutemer review/Group 206.png"
+                src="./assets/images/icons/cutemer%20review/Group%20206.png"
                 alt="Rajesh Kumar"
               />
               <img
                 class="testimonial-stars"
-                src="./assets/images/icons/cutemer review/Group 203.png"
+                src="./assets/images/icons/cutemer%20review/Group%20203.png"
                 alt="5 stars"
               />
               <div class="testimonial-name">Rajesh Kumar</div>
@@ -1331,12 +1399,12 @@
             <div class="testimonial-card">
               <img
                 class="testimonial-avatar"
-                src="./assets/images/icons/cutemer review/Group 206.png"
+                src="./assets/images/icons/cutemer%20review/Group%20206.png"
                 alt="Priya Nair"
               />
               <img
                 class="testimonial-stars"
-                src="./assets/images/icons/cutemer review/Group 203.png"
+                src="./assets/images/icons/cutemer%20review/Group%20203.png"
                 alt="5 stars"
               />
               <div class="testimonial-name">Priya Nair</div>
@@ -1348,12 +1416,12 @@
             <div class="testimonial-card">
               <img
                 class="testimonial-avatar"
-                src="./assets/images/icons/cutemer review/Group 206.png"
+                src="./assets/images/icons/cutemer%20review/Group%20206.png"
                 alt="Arun Mathew"
               />
               <img
                 class="testimonial-stars"
-                src="./assets/images/icons/cutemer review/Group 203.png"
+                src="./assets/images/icons/cutemer%20review/Group%20203.png"
                 alt="5 stars"
               />
               <div class="testimonial-name">Arun Mathew</div>
@@ -1415,53 +1483,113 @@
 
     <footer class="footer">
       <div class="footer-content">
-        <div class="footer-column">
-          <a href="#" class="logo-section" style="margin-bottom: 1rem">
+        <div class="footer-column footer-about">
+          <a href="./index.html" class="logo-section">
             <div class="logo-icon">
               <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
             </div>
             <div class="logo-text">VOXEN TECH LLP</div>
           </a>
-          <p style="line-height: 1.6">
-            A leading software development company in India, providing
-            full-stack development, ecommerce solutions, and BPO services.
+          <p>
+            VOXEN TECH LLP is a leading software development company in Kochi,
+            India, providing full-stack development, ecommerce solutions, mobile
+            app development, and BPO services.
           </p>
+          <div class="footer-social-icons">
+            <a
+              href="https://www.facebook.com/voxentech"
+              target="_blank"
+              aria-label="Facebook"
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/facebook-new.png"
+                alt="Facebook"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/voxentech"
+              target="_blank"
+              aria-label="Instagram"
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/instagram-new.png"
+                alt="Instagram"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/voxentech"
+              target="_blank"
+              aria-label="LinkedIn"
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/linkedin.png"
+                alt="LinkedIn"
+              />
+            </a>
+          </div>
         </div>
+
         <div class="footer-column">
           <h3>Quick Links</h3>
           <ul>
             <li><a href="./index.html">Home</a></li>
             <li><a href="./about.html">About Us</a></li>
             <li><a href="./services.html">Services</a></li>
+            <li><a href="./portfolio.html">Portfolio</a></li>
+            <li><a href="./blog.html">Blog</a></li>
             <li><a href="./contactus.html">Contact</a></li>
           </ul>
         </div>
+
         <div class="footer-column">
           <h3>Our Services</h3>
           <ul>
-            <li><a href="./services.html">Website Development</a></li>
-            <li><a href="./services.html">Mobile App Development</a></li>
-            <li><a href="./services.html">Custom Software</a></li>
-            <li><a href="./services.html">BPO Services</a></li>
+            <li>
+              <a href="./services.html#web-development">Website Development</a>
+            </li>
+            <li>
+              <a href="./services.html#mobile-app">Mobile App Development</a>
+            </li>
+            <li><a href="./services.html#ecommerce">Ecommerce Solutions</a></li>
+            <li>
+              <a href="./services.html#custom-software">Custom Software</a>
+            </li>
+            <li>
+              <a href="./services.html#api-development">API Development</a>
+            </li>
+            <li><a href="./services.html#bpo-services">BPO Services</a></li>
           </ul>
         </div>
-        <div class="footer-column">
+
+        <div class="footer-column contact-info">
           <h3>Contact Us</h3>
-          <p style="line-height: 2">
-            <i class="fas fa-map-marker-alt"></i>&nbsp; Kochi, Kerala, India
+          <p>
+            <i class="fas fa-map-marker-alt"></i
+            ><span>VOXEN TECH LLP, Kochi, Kerala, India</span>
           </p>
-          <p style="line-height: 2">
-            <i class="fas fa-phone-alt"></i>&nbsp;
-            <a href="tel:+917736126160">+91 7736126160</a>
+          <p>
+            <i class="fas fa-phone-alt"></i
+            ><a href="tel:+917736126160">+91 7736126160</a>
           </p>
-          <p style="line-height: 2">
-            <i class="fas fa-envelope"></i>&nbsp;
-            <a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
+          <p>
+            <i class="fas fa-envelope"></i
+            ><a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
           </p>
+          <p><i class="fas fa-clock"></i><span>Mon-Fri: 9AM – 6PM</span></p>
         </div>
       </div>
+
+      <div class="footer-separator"></div>
+
       <div class="footer-bottom">
-        <p>&copy; 2025 VOXEN TECH LLP. All Rights Reserved.</p>
+        <p>© 2025 VOXEN TECH LLP. All Rights Reserved.</p>
+        <div class="legal-links">
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
       </div>
     </footer>
 

@@ -34,15 +34,13 @@
     <style>
       /* --- 1. Global Styles & Variables --- */
       :root {
-        /* Original About Page variables */
         --primary-color: #711666;
         --text-color: #ffffff;
         --dark-bg: #2d2640;
-        --footer-bg: #1e172f;
-
-        /* Added from Services Page for Navbar */
+        --footer-bg: #2d2640;
         --primary-purple: #8b4a84;
         --dark-purple: #2d2640;
+        --text-muted: #a9a4b3;
       }
 
       * {
@@ -71,7 +69,7 @@
         padding: 0 20px;
       }
 
-      /* --- 2. Header & Navigation (FIXED) --- */
+      /* --- 2. Header & Navigation --- */
       .header {
         background-color: var(--dark-purple);
         padding: 1rem 2rem;
@@ -110,18 +108,18 @@
         list-style: none;
       }
       .nav-item {
-        color: #a9a4b3; /* Muted color for inactive links */
+        color: #a9a4b3;
         font-size: 1.1rem;
         text-decoration: none;
         padding-bottom: 5px;
         border-bottom: 3px solid transparent;
-        transition: color 0.3s ease;
+        transition: color 0.3s ease, border-color 0.3s ease;
       }
-      .nav-item:hover {
+      .nav-item:hover,
+      .nav-item.active {
         color: white;
       }
       .nav-item.active {
-        color: white;
         font-weight: 600;
         border-bottom-color: var(--primary-purple);
       }
@@ -150,7 +148,7 @@
 
       /* --- 3. Hero Section --- */
       .heroabout-container {
-        padding-top: 80px; /* Offset for fixed header */
+        padding-top: 80px;
         width: 100%;
         height: 832px;
         position: relative;
@@ -454,16 +452,23 @@
       }
 
       /* --- 8. Why Choose Us Section --- */
-      /* --- 6. Why Choose Us (Accordion) Section --- */
       .why-choose-us {
-        background-color: #f9f9f9;
+        padding: 80px 20px;
+        background-color: #f8f9fa;
+      }
+      .why-choose-us .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 50px;
+        color: #212529;
       }
       .why-choose-us .accordion {
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
-        gap: 20px;
-        min-height: 450px;
+        gap: 15px;
+        min-height: 480px;
       }
       .accordion-item {
         flex: 1;
@@ -472,31 +477,60 @@
         position: relative;
         cursor: pointer;
         transition: flex 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
-        background-size: cover;
-        background-position: center;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
       .accordion-item:hover,
       .accordion-item.active {
-        flex: 5;
+        flex: 4;
       }
-      .accordion-item::before {
-        content: "";
+      .accordion:has(.accordion-item:hover) .accordion-item.active:not(:hover) {
+        flex: 1;
+      }
+      .item-background {
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.8),
-          rgba(0, 0, 0, 0.1)
-        );
-        z-index: 1;
-        transition: background 0.5s ease;
+        background-size: cover;
+        background-position: center;
+        filter: blur(2px) brightness(0.9);
+        transform: scale(1.1);
+        transition: filter 0.5s ease;
+        z-index: 0;
       }
-      .accordion-item:hover::before {
-        background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.9),
-          rgba(0, 0, 0, 0.2)
-        );
+      .accordion-item:hover .item-background,
+      .accordion-item.active .item-background {
+        filter: blur(4px) brightness(0.7);
+      }
+      .accordion-title-vertical {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        gap: 20px;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        pointer-events: none;
+        opacity: 1;
+        visibility: visible;
+      }
+      .accordion-title-vertical span {
+        font-size: 1.5rem;
+        font-weight: 600;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        white-space: nowrap;
+      }
+      .accordion-title-vertical i {
+        font-size: 2.2rem;
+      }
+      .accordion-item:hover .accordion-title-vertical,
+      .accordion-item.active .accordion-title-vertical {
+        opacity: 0;
+        visibility: hidden;
       }
       .accordion-content {
         position: absolute;
@@ -504,38 +538,51 @@
         left: 0;
         right: 0;
         z-index: 2;
-        color: white;
         padding: 30px;
         opacity: 0;
         transform: translateY(30px);
-        transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+        transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s,
+          visibility 0.4s ease 0.2s;
+        visibility: hidden;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
       }
       .accordion-item:hover .accordion-content,
       .accordion-item.active .accordion-content {
         opacity: 1;
         transform: translateY(0);
+        visibility: visible;
       }
-      .accordion-title-vertical {
-        position: absolute;
-        z-index: 2;
-        color: white;
-        font-size: 1.5rem;
-        font-weight: 600;
-        writing-mode: vertical-rl;
-        left: 50%;
-        top: 50%;
-        transform: translateX(-50%) translateY(-50%) rotate(180deg);
-        white-space: nowrap;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-      }
-      .accordion-item:hover .accordion-title-vertical,
-      .accordion-item.active .accordion-title-vertical {
-        opacity: 0;
+      .accordion-content i {
+        font-size: 2.5rem;
+        margin-top: 5px;
+        flex-shrink: 0;
       }
       .accordion-content h3 {
         font-size: 1.8rem;
-        margin-bottom: 10px;
+        margin: 0 0 10px 0;
+      }
+      .accordion-content p {
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      /* NEW RULES: Fixes content transition when an active panel is forced closed */
+      .accordion:has(.accordion-item:hover)
+        .accordion-item.active:not(:hover)
+        .accordion-content {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(30px);
+        transition: none;
+      }
+      .accordion:has(.accordion-item:hover)
+        .accordion-item.active:not(:hover)
+        .accordion-title-vertical {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.4s ease 0.2s;
       }
 
       /* --- 9. Technology Stack Section --- */
@@ -546,7 +593,7 @@
       }
       .infinite-slider {
         display: flex;
-        width: calc(1280px * 3); /* Width of image x3 */
+        width: calc(1280px * 3);
         animation: slide-horizontal 30s linear infinite;
       }
       .infinite-slider img {
@@ -600,88 +647,116 @@
 
       /* --- 11. Footer --- */
       .footer {
-        background-color: var(--footer-bg);
-        color: #bbb;
-        padding: 70px 0 0;
+        background-color: var(--dark-purple);
+        color: var(--text-muted);
+        padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
       }
-      .footer-container {
+      .footer-content {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 30px;
+        max-width: 1280px;
+        margin: 0 auto;
+        gap: 2rem 1.5rem;
       }
-      .footer-col {
-        width: 100%;
-        padding: 0 15px;
+      .footer-column {
+        flex: 1;
+        min-width: 220px;
       }
-      .footer-col.about {
-        flex-basis: 35%;
-      }
-      .footer-col.links {
-        flex-basis: 20%;
-      }
-      .footer-col.contact {
-        flex-basis: 35%;
-      }
-      .footer-col h4 {
-        font-size: 18px;
-        color: #fff;
-        margin-bottom: 30px;
-        position: relative;
-      }
-      .footer-col h4::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -10px;
-        background-color: var(--primary-color);
-        height: 2px;
-        width: 50px;
-      }
-      .footer-col ul {
-        list-style: none;
-      }
-      .footer-col ul li:not(:last-child) {
-        margin-bottom: 10px;
-      }
-      .footer-col ul li a {
-        font-size: 16px;
-        text-decoration: none;
-        color: #bbb;
-        transition: color 0.3s ease;
-      }
-      .footer-col ul li a:hover {
-        color: #fff;
-        padding-left: 5px;
-      }
-      .footer-about-text {
-        margin-top: 20px;
-        line-height: 1.8;
-      }
-      .social-links a {
-        display: inline-block;
-        height: 40px;
-        width: 40px;
-        background-color: rgba(255, 255, 255, 0.2);
-        margin: 0 10px 10px 0;
+      .footer-column.footer-about {
+        flex: 1.5;
+        min-width: 280px;
         text-align: center;
-        line-height: 40px;
-        border-radius: 50%;
-        color: #fff;
-        transition: all 0.5s ease;
       }
-      .social-links a:hover {
-        color: #24262b;
-        background-color: #fff;
+      .footer-about .logo-section {
+        display: inline-flex;
+        text-decoration: none;
+        margin-bottom: 1rem;
+      }
+      .footer-column h3 {
+        color: white;
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-column ul li {
+        margin-bottom: 1rem;
+      }
+      .footer-column a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .footer-column a:hover {
+        color: white;
+      }
+      .footer-column > p {
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+      .footer-column.footer-about > p {
+        text-align: left;
+      }
+      .footer-social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        justify-content: center;
+      }
+      .footer-social-icons .social-icon {
+        line-height: 0;
+        transition: transform 0.2s ease;
+      }
+      .footer-social-icons .social-icon:hover {
+        transform: scale(1.1);
+      }
+      .footer-social-icons .social-icon img {
+        width: 42px;
+        height: 42px;
+      }
+      .footer-column.contact-info p {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .footer-column.contact-info i {
+        color: var(--primary-purple);
+        margin-top: 5px;
+        width: 20px;
+        text-align: center;
+      }
+      .footer-separator {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 3rem auto 2rem;
+        max-width: 1280px;
       }
       .footer-bottom {
-        text-align: center;
-        padding: 20px 0;
-        margin-top: 50px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        max-width: 1280px;
+        margin: 0 auto;
+        color: var(--text-muted);
+      }
+      .footer-bottom p {
+        margin: 0;
+      }
+      .legal-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .legal-links a {
+        text-decoration: none;
+        color: #999999;
       }
 
-      /* --- Responsive --- */
+      /* --- 12. Responsive --- */
       @media (max-width: 992px) {
         .about-us-inner-wrapper,
         .mission-content-wrapper {
@@ -694,74 +769,94 @@
         .mobile-timeline-section {
           display: block;
         }
+        .why-choose-us .accordion {
+          flex-direction: column;
+          min-height: auto;
+          gap: 10px;
+        }
+        .accordion-item {
+          transition: min-height 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+          min-height: 100px;
+        }
+        .accordion-item,
+        .accordion-item:hover,
+        .accordion:has(.accordion-item:hover)
+          .accordion-item.active:not(:hover) {
+          flex: auto;
+        }
+        .accordion-item.active {
+          min-height: 280px;
+        }
+        .accordion-item:hover:not(.active) {
+          min-height: 100px;
+        }
+        .accordion-content {
+          padding: 20px;
+        }
+        .accordion-content h3 {
+          font-size: 1.5rem;
+        }
+        .accordion-content p {
+          font-size: 0.9rem;
+        }
+        .accordion-title-vertical span {
+          font-size: 1.2rem;
+        }
+        .accordion-title-vertical i {
+          font-size: 1.8rem;
+        }
       }
 
       @media (max-width: 768px) {
         .header {
           padding: 1rem;
         }
-        /* Mobile Header */
-        .mobile-menu-btn {
-          display: block;
+        .logo-text {
+          font-size: 1.1rem;
         }
         .nav-menu {
-          display: none; /* Initially hidden */
+          display: none;
           position: absolute;
-          top: 100%; /* Position below the header */
+          top: 100%;
           left: 0;
           right: 0;
           background: var(--dark-purple);
           flex-direction: column;
+          align-items: center;
           padding: 1rem 0;
           gap: 0;
+          border-top: 1px solid #444;
         }
         .nav-menu.active {
-          display: flex; /* Show when active */
+          display: flex;
         }
         .nav-item {
           padding: 1rem 2rem;
           width: 100%;
+          text-align: center;
           border-bottom: none;
         }
         .nav-item.active {
-          border-bottom: none;
+          background-color: rgba(139, 74, 132, 0.2);
         }
         .contact-btn {
-          display: block;
           margin: 1rem 2rem;
-          text-align: center;
         }
-
+        .mobile-menu-btn {
+          display: block;
+        }
         .heroabout-title {
           font-size: 2.5rem;
         }
         .about-us-slider-container {
           height: 250px;
         }
-
         .mission-content-wrapper {
           gap: 40px;
         }
         .mission-stats {
           flex-direction: column;
         }
-
-        /* Mobile Why Choose Us (Horizontal Scroll) */
-        .why-choose-horizontal-selection {
-          flex-direction: row;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          height: 300px;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
-        }
-        .why-choose-horizontal-selection::-webkit-scrollbar {
-          display: none;
-        }
-        .why-choose-image-item {
-          flex: 0 0 200px;
-        }
-
         .infinite-slider {
           width: calc(100vw * 3);
           animation-name: slide-horizontal-mobile;
@@ -774,24 +869,22 @@
             transform: translateX(-100vw);
           }
         }
-
-        /* Mobile Footer */
-        .footer-col {
-          flex-basis: 100%;
+        .footer-column {
           text-align: center;
         }
-        .footer-col h4::before {
-          left: 50%;
-          transform: translateX(-50%);
-        }
-        .social-links {
+        .footer-column.footer-about > p {
           text-align: center;
+        }
+        .footer-column.contact-info p {
+          justify-content: center;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          justify-content: center;
         }
       }
-    </style>
 
-    <style>
-      /* Base Styles */
+      /* --- 13. Team Carousel Styles --- */
       .team_center {
         background-color: #1e172f;
       }
@@ -804,21 +897,16 @@
         text-align: center;
         font-family: "Arial", sans-serif;
       }
-
       .team-carousel-title {
         font-size: 2.5rem;
         margin-bottom: 30px;
       }
-
-      /* Carousel Wrapper */
       .team-carousel-wrapper {
         position: relative;
         overflow: hidden;
         max-width: 100%;
         padding: 0 40px;
       }
-
-      /* Scrollable Container */
       .team-carousel-container {
         display: flex;
         overflow-x: auto;
@@ -826,12 +914,9 @@
         gap: 20px;
         padding-bottom: 10px;
       }
-
       .team-carousel-container::-webkit-scrollbar {
         display: none;
       }
-
-      /* Individual Team Cards */
       .team-carousel-member {
         flex: 0 0 auto;
         width: 200px;
@@ -841,11 +926,9 @@
         text-align: center;
         transition: transform 0.3s;
       }
-
       .team-carousel-member:hover {
         transform: translateY(-5px);
       }
-
       .team-carousel-avatar {
         width: 100px;
         height: 100px;
@@ -853,21 +936,17 @@
         border-radius: 50%;
         margin: 0 auto 15px;
       }
-
       .team-carousel-member h3 {
         margin: 0;
         font-size: 1.1rem;
         font-weight: bold;
         color: #fff;
       }
-
       .team-carousel-member p {
         margin-top: 5px;
         font-size: 0.9rem;
         color: #bbb;
       }
-
-      /* Arrows */
       .team-carousel-btn {
         position: absolute;
         top: 50%;
@@ -881,34 +960,87 @@
         z-index: 10;
         transition: background 0.3s;
       }
-
       .team-carousel-btn:hover {
         background: #ffffff55;
       }
-
       .team-carousel-left {
         left: 0;
       }
-
       .team-carousel-right {
         right: 0;
       }
-
-      /* Responsive Adjustments */
       @media (max-width: 600px) {
         .team-carousel-member {
           width: 160px;
           padding: 15px;
         }
-
         .team-carousel-avatar {
           width: 80px;
           height: 80px;
         }
-
         .team-carousel-btn {
           font-size: 1.5rem;
           padding: 8px;
+        }
+      }
+
+      /* --- 14. Additional Responsive Styles --- */
+      @media (max-width: 1159px) {
+        .about-us-inner-wrapper {
+          gap: 30px;
+        }
+      }
+      @media (max-width: 992px) {
+        .about-us-inner-wrapper {
+          flex-direction: column;
+          gap: 40px;
+          text-align: center;
+        }
+        .about-us-content-area,
+        .about-us-slider-container {
+          max-width: 100%;
+        }
+      }
+      @media (max-width: 768px) {
+        .heroabout-title {
+          font-size: 32px !important;
+          color: #fff !important;
+          text-align: center !important;
+          margin-bottom: 18px !important;
+          white-space: normal !important;
+          display: block !important;
+        }
+        .heroabout-title .hero-highlight {
+          color: #711666 !important;
+        }
+        .about-us-heading {
+          font-size: 32px;
+        }
+        .about-us-description {
+          font-size: 15px;
+        }
+        .about-us-sectionhome {
+          padding: 40px 0;
+        }
+        .about-us-slider-container {
+          height: 250px;
+        }
+        .carousel-container {
+          margin-bottom: 40px;
+        }
+      }
+      @media (max-width: 480px) {
+        .heroabout-title {
+          font-size: 32px;
+        }
+        .about-us-heading {
+          font-size: 20px;
+        }
+        .about-us-sectionhome {
+          padding: 24px 0;
+        }
+        .about-us-slider-container {
+          height: 120px;
         }
       }
     </style>
@@ -916,19 +1048,19 @@
   <body>
     <header class="header" id="mainHeader">
       <div class="nav-container">
-        <a href="index.html" class="logo-section">
+        <a href="./index.html" class="logo-section">
           <div class="logo-icon">
             <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
           </div>
           <div class="logo-text">VOXEN TECH LLP</div>
         </a>
         <nav class="nav-menu" id="navMenu">
-          <a href="index.html" class="nav-item">Home</a>
-          <a href="about.html" class="nav-item active">About</a>
-          <a href="services.html" class="nav-item">Services</a>
-          <a href="portfolio.html" class="nav-item">Portfolio</a>
-          <a href="blog.html" class="nav-item">Blog</a>
-          <a href="contactus.html" class="contact-btn">Contact Us</a>
+          <a href="./index.html" class="nav-item">Home</a>
+          <a href="./about.html" class="nav-item active">About</a>
+          <a href="./services.html" class="nav-item">Services</a>
+          <a href="./portfolio.html" class="nav-item">Portfolio</a>
+          <a href="./blog.html" class="nav-item">Blog</a>
+          <a href="./contactus.html" class="contact-btn">Contact Us</a>
         </nav>
         <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
       </div>
@@ -940,14 +1072,6 @@
           class="banner-slide active"
           style="background-image: url('./assets/images/Landing\ About.png')"
         ></div>
-        <!-- <div
-          class="banner-slide"
-          style="background-image: url('./assets/images/about2.png')"
-        ></div>
-        <div
-          class="banner-slide"
-          style="background-image: url('./assets/images/about1.png')"
-        ></div> -->
       </div>
       <div class="heroabout-content">
         <h1 class="heroabout-title">
@@ -1116,72 +1240,95 @@
         </div>
       </div>
     </section>
-    <section class="why-choose-us section-padding">
-      <h2 class="section-title">Why Choose VOXEN TECH</h2>
+
+    <section class="why-choose-us">
+      <h2 class="section-title">Why Choose Us</h2>
       <div class="accordion">
-        <div
-          class="accordion-item active"
-          style="
-            background-image: url('https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-          "
-        >
-          <div class="accordion-title-vertical">Skilled Team</div>
+        <div class="accordion-item active">
+          <div
+            class="item-background"
+            style="background-image: url('./assets/images/why\ 1.png')"
+          ></div>
+          <div class="accordion-title-vertical">
+            <span>Fast Delivery</span>
+            <i class="fas fa-truck"></i>
+          </div>
           <div class="accordion-content">
-            <h3>Skilled Team</h3>
-            <p>
-              Our team comprises experienced and highly skilled professionals
-              dedicated to your success.
-            </p>
+            <i class="fas fa-truck"></i>
+            <div>
+              <h3>Fast Delivery</h3>
+              <p>
+                We ensure quick and efficient delivery of our services without
+                compromising on quality.
+              </p>
+            </div>
           </div>
         </div>
-        <div
-          class="accordion-item"
-          style="
-            background-image: url('https://images.pexels.com/photos/7841793/pexels-photo-7841793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-          "
-        >
-          <div class="accordion-title-vertical">Affordable Pricing</div>
+
+        <div class="accordion-item">
+          <div
+            class="item-background"
+            style="background-image: url('./assets/images/why\ 2.png')"
+          ></div>
+          <div class="accordion-title-vertical">
+            <span>Skilled Team</span>
+            <i class="fas fa-users"></i>
+          </div>
           <div class="accordion-content">
-            <h3>Affordable Pricing</h3>
-            <p>
-              We offer competitive and transparent pricing to provide the best
-              value.
-            </p>
+            <i class="fas fa-users"></i>
+            <div>
+              <h3>Skilled Team</h3>
+              <p>
+                Our team comprises experienced and highly skilled professionals
+                dedicated to your success.
+              </p>
+            </div>
           </div>
         </div>
-        <div
-          class="accordion-item"
-          style="
-            background-image: url('https://images.pexels.com/photos/163822/speed-background-light-effect-163822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-          "
-        >
-          <div class="accordion-title-vertical">Fast Delivery</div>
+
+        <div class="accordion-item">
+          <div
+            class="item-background"
+            style="background-image: url('./assets/images/why\ 3.png')"
+          ></div>
+          <div class="accordion-title-vertical">
+            <span>Affordable Pricing</span>
+            <i class="fas fa-tag"></i>
+          </div>
           <div class="accordion-content">
-            <h3>Fast Delivery</h3>
-            <p>
-              We ensure quick and efficient delivery of our services without
-              compromising on quality.
-            </p>
+            <i class="fas fa-tag"></i>
+            <div>
+              <h3>Affordable Pricing</h3>
+              <p>
+                We offer competitive and transparent pricing to provide the best
+                value.
+              </p>
+            </div>
           </div>
         </div>
-        <div
-          class="accordion-item"
-          style="
-            background-image: url('https://images.pexels.com/photos/4021779/pexels-photo-4021779.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-          "
-        >
-          <div class="accordion-title-vertical">Ongoing Support</div>
+
+        <div class="accordion-item">
+          <div
+            class="item-background"
+            style="background-image: url('./assets/images/why\ 4.png')"
+          ></div>
+          <div class="accordion-title-vertical">
+            <span>Ongoing Support</span>
+            <i class="fas fa-headset"></i>
+          </div>
           <div class="accordion-content">
-            <h3>Ongoing Support</h3>
-            <p>
-              We provide continuous support and maintenance to keep your systems
-              running smoothly.
-            </p>
+            <i class="fas fa-headset"></i>
+            <div>
+              <h3>Ongoing Support</h3>
+              <p>
+                We provide continuous support and maintenance to keep your
+                systems running smoothly.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
     <section class="image-slider-section">
       <h2 class="section-title">Our Technology Stack</h2>
       <div class="infinite-slider">
@@ -1247,62 +1394,127 @@
     </section>
 
     <footer class="footer">
-      <div class="content-wrapper footer-container">
-        <div class="footer-col about">
-          <div class="logo-section">
+      <div class="footer-content">
+        <div class="footer-column footer-about">
+          <a href="./index.html" class="logo-section">
             <div class="logo-icon">
               <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
             </div>
             <div class="logo-text">VOXEN TECH LLP</div>
-          </div>
-          <p class="footer-about-text">
-            A leading software development company delivering high-quality web,
-            mobile, and custom software solutions to fuel business growth.
+          </a>
+          <p>
+            VOXEN TECH LLP is a leading software development company in Kochi,
+            India, providing full-stack development, ecommerce solutions, mobile
+            app development, and BPO services.
           </p>
+          <div class="footer-social-icons">
+            <a
+              href="https://www.facebook.com/voxentech"
+              target="_blank"
+              aria-label="Facebook"
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/facebook-new.png"
+                alt="Facebook"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/voxentech"
+              target="_blank"
+              aria-label="Instagram"
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/instagram-new.png"
+                alt="Instagram"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/voxentech"
+              target="_blank"
+              aria-label="LinkedIn"
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/linkedin.png"
+                alt="LinkedIn"
+              />
+            </a>
+          </div>
         </div>
-        <div class="footer-col links">
-          <h4>Quick Links</h4>
+
+        <div class="footer-column">
+          <h3>Quick Links</h3>
           <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contactus.html">Contact</a></li>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./services.html">Services</a></li>
+            <li><a href="./portfolio.html">Portfolio</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./contactus.html">Contact</a></li>
           </ul>
         </div>
-        <div class="footer-col contact">
-          <h4>Contact Us</h4>
+
+        <div class="footer-column">
+          <h3>Our Services</h3>
           <ul>
             <li>
-              <i class="fas fa-map-marker-alt"></i> Varanasi, Uttar Pradesh,
-              India
+              <a href="./services.html#web-development">Website Development</a>
             </li>
-            <li><i class="fas fa-phone"></i> +91 12345 67890</li>
-            <li><i class="fas fa-envelope"></i> contact@voxentech.com</li>
+            <li>
+              <a href="./services.html#mobile-app">Mobile App Development</a>
+            </li>
+            <li><a href="./services.html#ecommerce">Ecommerce Solutions</a></li>
+            <li>
+              <a href="./services.html#custom-software">Custom Software</a>
+            </li>
+            <li>
+              <a href="./services.html#api-development">API Development</a>
+            </li>
+            <li><a href="./services.html#bpo-services">BPO Services</a></li>
           </ul>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
+        </div>
+
+        <div class="footer-column contact-info">
+          <h3>Contact Us</h3>
+          <p>
+            <i class="fas fa-map-marker-alt"></i
+            ><span>VOXEN TECH LLP, Kochi, Kerala, India</span>
+          </p>
+          <p>
+            <i class="fas fa-phone-alt"></i
+            ><a href="tel:+917736126160">+91 7736126160</a>
+          </p>
+          <p>
+            <i class="fas fa-envelope"></i
+            ><a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
+          </p>
+          <p><i class="fas fa-clock"></i><span>Mon-Fri: 9AM – 6PM</span></p>
         </div>
       </div>
+
+      <div class="footer-separator"></div>
+
       <div class="footer-bottom">
-        <p>© 2025 Voxen Tech LLP. All Rights Reserved.</p>
+        <p>© 2025 VOXEN TECH LLP. All Rights Reserved.</p>
+        <div class="legal-links">
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
       </div>
     </footer>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // --- Mobile Menu ---
+        // --- Mobile Menu Toggle ---
         const mobileMenuBtn = document.getElementById("mobileMenuBtn");
         const navMenu = document.getElementById("navMenu");
+
         mobileMenuBtn.addEventListener("click", () => {
-          navMenu.classList.toggle("active");
-          mobileMenuBtn.textContent = navMenu.classList.contains("active")
-            ? "✕"
-            : "☰";
+          const isActive = navMenu.classList.toggle("active");
+          mobileMenuBtn.textContent = isActive ? "✕" : "☰";
+          mobileMenuBtn.setAttribute("aria-expanded", isActive);
         });
 
         // --- Hero Slideshow ---
@@ -1356,19 +1568,28 @@
           }, 5000);
         }
 
-        // --- Why Choose Us Click Handler ---
-        const whyChooseItems = document.querySelectorAll(
-          ".why-choose-image-item"
-        );
-        whyChooseItems.forEach((item) => {
+        // --- Why Choose Us Click Handler (Accordion) ---
+        const accordionItems = document.querySelectorAll(".accordion-item");
+        accordionItems.forEach((item) => {
           item.addEventListener("click", () => {
-            if (window.innerWidth > 768 || !item.classList.contains("active")) {
-              whyChooseItems.forEach((i) => i.classList.remove("active"));
-              item.classList.add("active");
+            if (item.classList.contains("active")) {
+              return;
             }
+            accordionItems.forEach((el) => el.classList.remove("active"));
+            item.classList.add("active");
           });
         });
       });
+      // --- Team Carousel ---
+      function scrollTeamCarousel(direction) {
+        const container = document.getElementById("teamCarouselContainer");
+        const scrollAmount =
+          container.querySelector(".team-carousel-member").offsetWidth + 20; // card width + gap
+        container.scrollBy({
+          left: direction * scrollAmount,
+          behavior: "smooth",
+        });
+      }
     </script>
   </body>
 </html>

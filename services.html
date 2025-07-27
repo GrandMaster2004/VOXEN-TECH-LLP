@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Top Software, Website & Mobile App Development Company | Voxen Tech LLP
-    </title>
     <meta
       name="description"
-      content="Voxen Tech LLP is a leading software development company in India, offering custom web, mobile, and software solutions."
+      content="Voxen Tech LLP is a leading software, website, and mobile app development company in India. We offer end-to-end branding, digital marketing, social media management, and BPO solutions to grow your business online."
     />
+    <title>
+      Top Software, Website & Mobile App Development Company | Branding &
+      Digital Marketing Experts – Voxen Tech LLP
+    </title>
+
     <link rel="icon" type="image/png" href="favicon.ico" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,6 +32,7 @@
         --dark-purple: #2d2640;
         --card-bg: #877c8b;
         --light-accent: #e5c4c4;
+        --text-muted: #a9a4b3; /* Added for footer consistency */
       }
       * {
         margin: 0;
@@ -42,10 +45,10 @@
       body {
         font-family: "Poppins", sans-serif;
         background-color: #fff;
-        overflow-x: hidden;
+        overflow-x: hidden; /* Prevents horizontal scroll */
       }
 
-      /* --- 2. Header & Navigation (FIXED) --- */
+      /* --- 2. Header & Navigation (Synced with Home Page) --- */
       .header {
         background-color: var(--dark-purple);
         padding: 1rem 2rem;
@@ -84,18 +87,18 @@
         list-style: none;
       }
       .nav-item {
-        color: #a9a4b3; /* Muted color for inactive links */
+        color: #a9a4b3;
         font-size: 1.1rem;
         text-decoration: none;
         padding-bottom: 5px;
         border-bottom: 3px solid transparent;
-        transition: color 0.3s ease;
+        transition: color 0.3s ease, border-color 0.3s ease;
       }
-      .nav-item:hover {
+      .nav-item:hover,
+      .nav-item.active {
         color: white;
       }
       .nav-item.active {
-        color: white;
         font-weight: 600;
         border-bottom-color: var(--primary-purple);
       }
@@ -324,48 +327,113 @@
 
       /* --- 7. Footer --- */
       .footer {
-        background-color: #1e172f;
-        color: #bbb;
-        padding: 60px 20px;
+        background-color: var(--dark-purple);
+        color: var(--text-muted);
+        padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
       }
       .footer-content {
         display: flex;
         flex-wrap: wrap;
         max-width: 1280px;
         margin: 0 auto;
-        gap: 40px;
+        gap: 2rem 1.5rem;
       }
       .footer-column {
         flex: 1;
         min-width: 220px;
       }
+      .footer-column.footer-about {
+        flex: 1.5;
+        min-width: 280px;
+      }
       .footer-column h3 {
         color: white;
-        margin-bottom: 20px;
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 600;
       }
       .footer-column ul {
         list-style: none;
+        padding: 0;
+      }
+      .footer-column ul li {
+        margin-bottom: 1rem;
       }
       .footer-column a {
-        color: #bbb;
+        color: var(--text-muted);
         text-decoration: none;
-        line-height: 2;
         transition: color 0.3s;
       }
       .footer-column a:hover {
         color: white;
       }
-      .footer-bottom {
+      .footer-column > p {
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+      .footer-social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .footer-social-icons .social-icon {
+        line-height: 0;
+        transition: transform 0.2s ease;
+      }
+      .footer-social-icons .social-icon:hover {
+        transform: scale(1.1);
+      }
+      .footer-social-icons .social-icon img {
+        width: 42px;
+        height: 42px;
+      }
+      .footer-column.contact-info p {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .footer-column.contact-info i {
+        color: var(--primary-purple);
+        margin-top: 5px;
+        width: 20px;
         text-align: center;
-        border-top: 1px solid #333;
-        padding-top: 20px;
-        margin-top: 40px;
+      }
+      .footer-separator {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 3rem auto 2rem;
+        max-width: 1280px;
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        max-width: 1280px;
+        margin: 0 auto;
+        color: var(--text-muted);
+      }
+      .footer-bottom p {
+        margin: 0;
+      }
+      .legal-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .legal-links a {
+        text-decoration: none;
+        color: #999999;
       }
 
       /* --- 8. Responsive Styles --- */
       @media (max-width: 768px) {
+        /* --- Responsive Header (Synced with Home Page) --- */
         .header {
           padding: 1rem;
+        }
+        .logo-text {
+          font-size: 1.1rem;
         }
         .nav-menu {
           display: none;
@@ -375,7 +443,10 @@
           right: 0;
           background: var(--dark-purple);
           flex-direction: column;
+          align-items: center;
           padding: 1rem 0;
+          gap: 0;
+          border-top: 1px solid #444;
         }
         .nav-menu.active {
           display: flex;
@@ -383,14 +454,21 @@
         .nav-item {
           padding: 1rem 2rem;
           width: 100%;
+          text-align: center;
           border-bottom: none;
         }
         .nav-item.active {
+          background-color: rgba(139, 74, 132, 0.2);
           border-bottom: none;
+        }
+        .contact-btn {
+          margin: 1rem 2rem;
         }
         .mobile-menu-btn {
           display: block;
         }
+
+        /* --- Other Responsive Styles --- */
         .hero-section::before {
           background-attachment: scroll;
         }
@@ -416,6 +494,24 @@
         .vision-description {
           font-size: 1rem;
         }
+
+        /* Responsive Footer */
+        .footer-content,
+        .footer-column,
+        .footer-column.footer-about {
+          text-align: center;
+        }
+        .footer-about .logo-section,
+        .footer-social-icons {
+          justify-content: center;
+        }
+        .footer-column.contact-info p {
+          justify-content: center;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          justify-content: center;
+        }
       }
 
       @media (max-width: 480px) {
@@ -429,7 +525,7 @@
   <body>
     <header class="header" id="mainHeader">
       <div class="nav-container">
-        <a href="#" class="logo-section">
+        <a href="./index.html" class="logo-section">
           <div class="logo-icon">
             <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
           </div>
@@ -608,51 +704,117 @@
 
     <footer class="footer">
       <div class="footer-content">
-        <div class="footer-column">
-          <div class="logo-section">
+        <div class="footer-column footer-about">
+          <a
+            href="./index.html"
+            class="logo-section"
+            style="margin-bottom: 1rem; text-decoration: none"
+          >
             <div class="logo-icon">
               <img src="./assets/images/logos/logo.svg" alt="Voxen Tech Logo" />
             </div>
             <div class="logo-text">VOXEN TECH LLP</div>
-          </div>
-          <p style="margin-top: 1rem; line-height: 1.6">
-            A leading software development company in India, providing
-            full-stack development, ecommerce solutions, and BPO services.
+          </a>
+          <p>
+            VOXEN TECH LLP is a leading software development company in Kochi,
+            India, providing full-stack development, ecommerce solutions, mobile
+            app development, and BPO services.
           </p>
+          <div class="footer-social-icons">
+            <a
+              href="https://www.facebook.com/voxentech"
+              target="_blank"
+              aria-label="Facebook"
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/facebook-new.png"
+                alt="Facebook"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/voxentech"
+              target="_blank"
+              aria-label="Instagram"
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/instagram-new.png"
+                alt="Instagram"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/voxentech"
+              target="_blank"
+              aria-label="LinkedIn"
+              class="social-icon"
+            >
+              <img
+                src="https://img.icons8.com/color/48/linkedin.png"
+                alt="LinkedIn"
+              />
+            </a>
+          </div>
         </div>
+
         <div class="footer-column">
           <h3>Quick Links</h3>
           <ul>
             <li><a href="./index.html">Home</a></li>
             <li><a href="./about.html">About Us</a></li>
             <li><a href="./services.html">Services</a></li>
+            <li><a href="./portfolio.html">Portfolio</a></li>
+            <li><a href="./blog.html">Blog</a></li>
             <li><a href="./contactus.html">Contact</a></li>
           </ul>
         </div>
+
         <div class="footer-column">
           <h3>Our Services</h3>
           <ul>
-            <li><a href="#">Website Development</a></li>
-            <li><a href="#">Mobile App Development</a></li>
-            <li><a href="#">Custom Software</a></li>
-            <li><a href="#">BPO Services</a></li>
+            <li>
+              <a href="./services.html#web-development">Website Development</a>
+            </li>
+            <li>
+              <a href="./services.html#mobile-app">Mobile App Development</a>
+            </li>
+            <li><a href="./services.html#ecommerce">Ecommerce Solutions</a></li>
+            <li>
+              <a href="./services.html#custom-software">Custom Software</a>
+            </li>
+            <li>
+              <a href="./services.html#api-development">API Development</a>
+            </li>
+            <li><a href="./services.html#bpo-services">BPO Services</a></li>
           </ul>
         </div>
-        <div class="footer-column">
+
+        <div class="footer-column contact-info">
           <h3>Contact Us</h3>
-          <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala, India</p>
           <p>
-            <i class="fas fa-phone-alt"></i>
-            <a href="tel:+917736126160">+91 7736126160</a>
+            <i class="fas fa-map-marker-alt"></i
+            ><span>VOXEN TECH LLP, Kochi, Kerala, India</span>
           </p>
           <p>
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
+            <i class="fas fa-phone-alt"></i
+            ><a href="tel:+917736126160">+91 7736126160</a>
           </p>
+          <p>
+            <i class="fas fa-envelope"></i
+            ><a href="mailto:info@voxen.co.in">info@voxen.co.in</a>
+          </p>
+          <p><i class="fas fa-clock"></i><span>Mon-Fri: 9AM – 6PM</span></p>
         </div>
       </div>
+
+      <div class="footer-separator"></div>
+
       <div class="footer-bottom">
         <p>© 2025 VOXEN TECH LLP. All Rights Reserved.</p>
+        <div class="legal-links">
+          <a href="./privacy-policy.html">Privacy Policy</a>
+          <a href="./terms-of-service.html">Terms of Service</a>
+        </div>
       </div>
     </footer>
 
@@ -662,10 +824,9 @@
         const navMenu = document.getElementById("navMenu");
 
         mobileMenuBtn.addEventListener("click", () => {
-          navMenu.classList.toggle("active");
-          mobileMenuBtn.textContent = navMenu.classList.contains("active")
-            ? "✕"
-            : "☰";
+          const isActive = navMenu.classList.toggle("active");
+          mobileMenuBtn.textContent = isActive ? "✕" : "☰";
+          mobileMenuBtn.setAttribute("aria-expanded", isActive);
         });
       });
     </script>

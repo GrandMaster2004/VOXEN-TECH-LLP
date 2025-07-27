@@ -30,6 +30,7 @@
         --dark-purple: #2d2640;
         --card-bg: #877c8b;
         --light-accent: #e5c4c4;
+        --text-muted: #a9a4b3;
       }
       html,
       body {
@@ -46,7 +47,7 @@
         box-sizing: inherit;
       }
 
-      /* --- Header & Navigation --- */
+      /* --- Header & Navigation (Synced with Home Page) --- */
       .header {
         background-color: var(--dark-purple);
         padding: 1rem 2rem;
@@ -92,13 +93,13 @@
         text-decoration: none;
         padding-bottom: 5px;
         border-bottom: 3px solid transparent;
-        transition: color 0.3s ease;
+        transition: color 0.3s ease, border-color 0.3s ease;
       }
-      .nav-item:hover {
+      .nav-item:hover,
+      .nav-item.active {
         color: white;
       }
       .nav-item.active {
-        color: white;
         font-weight: 600;
         border-bottom-color: var(--primary-purple);
       }
@@ -129,14 +130,11 @@
       .hero-container {
         background-size: cover;
         background-repeat: no-repeat;
-        /* width: 100%; */ /* <--- REMOVE OR COMMENT OUT THIS LINE */
         height: 832px;
         position: relative;
         overflow: hidden;
         background-color: #333333;
         margin-top: 80px; /* Adjust for fixed header */
-
-        /* ADD THESE THREE LINES 👇 */
         width: 100vw;
         left: 50%;
         margin-left: -50vw;
@@ -487,14 +485,33 @@
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        background: #5c4b69;
-        color: white;
+        background: #ffffff;
         text-decoration: none;
-        transition: background-color 0.3s, transform 0.3s;
+        font-size: 20px;
+        transition: transform 0.3s;
       }
       .social-icon:hover {
-        background-color: var(--primary-purple);
         transform: translateY(-3px);
+      }
+      .social-icon.facebook .fa-facebook-f {
+        color: #1877f2;
+      }
+      .social-icon.instagram .fa-instagram {
+        background: radial-gradient(
+          circle at 30% 107%,
+          #fdf497 0%,
+          #fdf497 5%,
+          #fd5949 45%,
+          #d6249f 60%,
+          #285aeb 90%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+      .social-icon.linkedin .fa-linkedin-in {
+        color: #0a66c2;
       }
       .contact-info p {
         display: flex;
@@ -522,15 +539,14 @@
         color: #a9a4b3;
       }
 
-      /*
-      ================================================================
-      --- RESPONSIVE STYLES (Mobile Phone View) ---
-      ================================================================
-      */
+      /* --- RESPONSIVE STYLES --- */
       @media (max-width: 768px) {
-        /* --- Header for Mobile --- */
+        /* --- Header for Mobile (Synced with Home Page) --- */
         .header {
           padding: 1rem;
+        }
+        .logo-text {
+          font-size: 1.1rem;
         }
         .nav-menu {
           display: none;
@@ -540,7 +556,10 @@
           right: 0;
           background: var(--dark-purple);
           flex-direction: column;
+          align-items: center;
           padding: 1rem 0;
+          gap: 0;
+          border-top: 1px solid #444;
         }
         .nav-menu.active {
           display: flex;
@@ -552,13 +571,12 @@
           border-bottom: none;
         }
         .nav-item.active {
+          background-color: rgba(139, 74, 132, 0.2);
           border-bottom: none;
-          background-color: var(--primary-purple);
         }
         .contact-btn {
-          width: calc(100% - 4rem);
-          margin: 1rem auto 0;
-          text-align: center;
+          margin: 1rem 2rem;
+          width: auto;
         }
         .mobile-menu-btn {
           display: block;
@@ -566,8 +584,8 @@
 
         /* --- Hero for Mobile --- */
         .hero-container {
-          height: 60vh; /* Shorter height on mobile */
-          margin-top: 65px; /* Adjust for mobile header height */
+          height: 60vh;
+          margin-top: 65px;
         }
         .hero-content-inner-wrapper {
           bottom: 20px;
@@ -577,15 +595,15 @@
           text-align: center;
         }
         .hero-title {
-          font-size: 36px; /* Smaller title */
+          font-size: 36px;
           margin-bottom: 15px;
         }
         .hero-subtitle {
-          font-size: 18px; /* Smaller subtitle */
+          font-size: 18px;
           line-height: 1.4;
         }
         .hero-subtitle br {
-          display: none; /* Remove forced line breaks */
+          display: none;
         }
 
         /* --- Portfolio Section for Mobile --- */
@@ -600,7 +618,6 @@
           gap: 30px;
           padding: 0 15px;
         }
-        /* Make hover content visible by default on mobile */
         .portfolio-item:hover .portfolio-info-container,
         .portfolio-info-container {
           opacity: 1;
@@ -652,16 +669,16 @@
           margin-bottom: 30px;
         }
         .client-spotlights-slider-wrapper {
-          width: 90%; /* Show one image at a time */
+          width: 90%;
           height: auto;
-          aspect-ratio: 1/1; /* Make it square-ish */
+          aspect-ratio: 1/1;
         }
         .spotlight-slide {
           width: 100%;
           height: 100%;
         }
         .next-spotlight-button {
-          right: 10px; /* Move button inside the frame */
+          right: 10px;
           width: 45px;
           height: 45px;
           background-size: 15px;
@@ -680,19 +697,19 @@
           font-size: 16px;
         }
         .vision-buttons-row {
-          flex-direction: column; /* Stack buttons */
+          flex-direction: column;
           gap: 15px;
           align-items: center;
         }
         .vision-specific-button {
           width: 100%;
-          max-width: 250px; /* Limit button width */
+          max-width: 250px;
           height: 50px;
         }
 
         /* --- Footer for Mobile --- */
         .footer-content {
-          flex-direction: column; /* Stack columns */
+          flex-direction: column;
           text-align: center;
           gap: 30px;
         }
@@ -1115,15 +1132,14 @@
     </footer>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // --- Mobile Menu Toggle ---
+        // --- Mobile Menu Toggle (Synced with Home Page) ---
         const mobileMenuBtn = document.getElementById("mobileMenuBtn");
         const navMenu = document.getElementById("navMenu");
 
         mobileMenuBtn.addEventListener("click", () => {
-          navMenu.classList.toggle("active");
-          mobileMenuBtn.textContent = navMenu.classList.contains("active")
-            ? "✕"
-            : "☰";
+          const isActive = navMenu.classList.toggle("active");
+          mobileMenuBtn.textContent = isActive ? "✕" : "☰";
+          mobileMenuBtn.setAttribute("aria-expanded", isActive);
         });
 
         // --- Client Spotlight Slider ---
@@ -1136,7 +1152,6 @@
           function updateSlidePosition() {
             if (slides.length === 0) return;
             const slideWidth = slides[0].getBoundingClientRect().width;
-            // Use the gap from the CSS variable if possible, otherwise fallback
             const gapStyle = window.getComputedStyle(track).gap;
             const gap = gapStyle ? parseInt(gapStyle) : 47;
 

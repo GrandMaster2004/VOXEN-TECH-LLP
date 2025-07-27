@@ -72,85 +72,77 @@
         list-style: none;
       }
 
-      /* --- 2. Header & Navigation --- */
+      /* --- 2. Header & Navigation (Synced with Home Page) --- */
       .header {
         background-color: var(--dark-purple);
-        padding: 1rem clamp(1rem, 5vw, 3rem);
+        padding: 1rem 2rem;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         z-index: 1000;
-        height: 80px; /* Fixed height */
-        display: flex;
-        align-items: center;
       }
-
       .nav-container {
-        width: 100%;
         max-width: 1280px;
         margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
-
       .logo-section {
         display: flex;
         align-items: center;
         gap: 0.75rem;
+        text-decoration: none;
       }
-
       .logo-icon img {
         width: 48px;
         height: 48px;
       }
-
       .logo-text {
         color: white;
         font-size: 1.3rem;
         font-weight: 700;
       }
-
       .nav-menu {
         display: flex;
         align-items: center;
         gap: 2.5rem;
+        list-style: none;
       }
-
       .nav-item {
-        color: var(--text-muted);
+        color: #a9a4b3;
         font-size: 1.1rem;
+        text-decoration: none;
         padding-bottom: 5px;
         border-bottom: 3px solid transparent;
+        transition: color 0.3s ease, border-color 0.3s ease;
       }
-
-      .nav-item:hover {
-        color: white;
-      }
-
+      .nav-item:hover,
       .nav-item.active {
         color: white;
+      }
+      .nav-item.active {
         font-weight: 600;
         border-bottom-color: var(--primary-purple);
       }
-
       .contact-btn {
         background: #5c4b69;
         color: white;
         padding: 0.75rem 1.75rem;
         border-radius: 12px;
+        text-decoration: none;
         font-size: 1.1rem;
-        border: none;
+        transition: all 0.3s ease;
       }
-
       .contact-btn:hover {
         background: var(--primary-purple);
+        transform: translateY(-2px);
       }
-      .nav-item.contact-btn.active {
-        border-bottom-color: transparent;
+      .contact-btn.active {
+        background: var(--primary-purple);
+        border-bottom-color: transparent !important;
       }
-
       .mobile-menu-btn {
         display: none;
         background: none;
@@ -179,7 +171,6 @@
         content: "";
         position: absolute;
         inset: 0;
-        /* Gradient overlay removed, keeping only the image */
         background-image: url("https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&q=80&w=2070");
         background-size: cover;
         background-position: center;
@@ -189,7 +180,6 @@
       .hero-content {
         max-width: 800px;
         z-index: 1;
-        /* Adding a subtle shadow to text for better readability */
         text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
       }
 
@@ -369,6 +359,7 @@
         background: var(--dark-purple);
         color: white;
         text-align: center;
+        margin-bottom: 3rem;
       }
 
       .vision-title {
@@ -409,7 +400,7 @@
 
       /* --- 7. Footer --- */
       .footer {
-        background-color: #1e172f;
+        background-color: var(--dark-purple);
         color: var(--text-muted);
         padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
       }
@@ -431,12 +422,16 @@
         color: white;
         margin-bottom: 1.5rem;
         font-size: 1.3rem;
+        font-weight: 600;
       }
 
       .footer-column ul li {
         margin-bottom: 1rem;
       }
 
+      .footer-column a {
+        transition: color 0.3s;
+      }
       .footer-column a:hover {
         color: white;
       }
@@ -451,6 +446,11 @@
         align-items: center;
         gap: 0.75rem;
         margin-bottom: 1rem;
+      }
+
+      .footer-logo img {
+        width: 48px;
+        height: 48px;
       }
 
       .footer-logo-text {
@@ -471,108 +471,105 @@
       }
 
       .footer-social-icons .social-icon {
-        color: var(--text-muted);
-        font-size: 1.5rem;
+        line-height: 0;
+        transition: transform 0.2s ease;
       }
 
       .footer-social-icons .social-icon:hover {
-        color: var(--primary-purple);
+        transform: scale(1.1);
       }
+
+      .footer-social-icons .social-icon img {
+        width: 42px;
+        height: 42px;
+      }
+
       .footer-column.contact-info p {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 1rem;
         margin-bottom: 1rem;
       }
-      .footer-column.contact-info i {
+
+      .footer-column.contact-info p i {
         color: var(--primary-purple);
+        margin-top: 5px;
+        width: 20px;
+        text-align: center;
       }
 
       .footer-separator {
-        border-top: 1px solid #333;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         margin: 3rem auto 2rem;
         max-width: 1280px;
       }
 
       .footer-bottom {
-        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
         max-width: 1280px;
         margin: 0 auto;
       }
 
+      .footer-bottom p {
+        margin: 0;
+      }
+
       .legal-links {
-        margin-top: 0.5rem;
+        margin-top: 0;
+        display: flex;
+        gap: 1.5rem;
       }
 
       .legal-links a {
-        margin: 0 10px;
+        margin: 0;
       }
+
       .legal-links a:hover {
         color: white;
       }
 
       /* --- 8. Responsive Media Queries --- */
-
-      @media (max-width: 1024px) {
-        .nav-menu {
-          gap: 1.5rem;
-        }
-        .contact-btn {
-          padding: 0.6rem 1.25rem;
-        }
-      }
-
       @media (max-width: 768px) {
-        body {
-          padding-top: 70px;
-        }
         .header {
-          height: 70px;
+          padding: 1rem;
         }
-        .mobile-menu-btn {
-          display: block;
+        .logo-text {
+          font-size: 1.1rem;
         }
-
         .nav-menu {
+          display: none;
           position: absolute;
-          top: 70px;
+          top: 100%;
           left: 0;
           right: 0;
-          background: rgba(45, 38, 64, 0.95);
+          background: var(--dark-purple);
           flex-direction: column;
-          gap: 0;
+          align-items: center;
           padding: 1rem 0;
-          opacity: 0;
-          visibility: hidden;
-          border-bottom-left-radius: 16px;
-          border-bottom-right-radius: 16px;
+          gap: 0;
+          border-top: 1px solid #444;
         }
-
         .nav-menu.active {
-          opacity: 1;
-          visibility: visible;
+          display: flex;
         }
-
         .nav-item {
           padding: 1rem 2rem;
           width: 100%;
-          text-align: left;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .nav-item:last-of-type {
+          text-align: center;
           border-bottom: none;
         }
-        .nav-item.active,
-        .nav-item:hover {
-          border-bottom-color: transparent;
-          background-color: rgba(255, 255, 255, 0.05);
+        .contact-btn {
+          margin: 1rem 2rem;
         }
-
-        .nav-menu .contact-btn {
-          margin: 1rem 2rem 0.5rem;
+        .contact-btn.active {
+          background-color: var(--primary-purple);
+        }
+        .mobile-menu-btn {
           display: block;
-          text-align: center;
-          width: calc(100% - 4rem);
         }
 
         .contact-form .form-row {
@@ -600,6 +597,10 @@
         .footer-column.contact-info p {
           justify-content: center;
         }
+        .footer-bottom {
+          flex-direction: column;
+          justify-content: center;
+        }
       }
 
       @media (max-width: 480px) {
@@ -607,7 +608,7 @@
           padding-top: 60px;
         }
         .header {
-          height: 60px;
+          height: 75px;
           padding: 0.75rem;
         }
         .nav-menu {
@@ -643,7 +644,7 @@
     </style>
   </head>
   <body>
-    <header class="header">
+    <header class="header" id="mainHeader">
       <div class="nav-container">
         <a href="./index.html" class="logo-section">
           <div class="logo-icon">
@@ -657,9 +658,7 @@
           <a href="./services.html" class="nav-item">Services</a>
           <a href="./portfolio.html" class="nav-item">Portfolio</a>
           <a href="./blog.html" class="nav-item">Blog</a>
-          <a href="./contactus.html" class="nav-item contact-btn active"
-            >Contact Us</a
-          >
+          <a href="./contactus.html" class="contact-btn active">Contact Us</a>
         </nav>
         <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
       </div>
@@ -784,7 +783,7 @@
         <h2 class="section-heading">Find Us On The Map</h2>
         <div class="map-container">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.539824921479!2d76.28629531526848!3d9.97258389286955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d5b5c73d9e9%3A0x8e0cb4c8b3e55e3e!2sKochi%2C%20Kerala!5e0!3m2!1sen!2sin!4v1663333222111!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.531278236769!2d76.28258387480295!3d9.973213090129203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d507a44246d%3A0x9330c634f5a6b0c!2sVoxen%20Tech%20LLP!5e0!3m2!1sen!2sin!4v1722002148768!5m2!1sen!2sin"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           >
@@ -829,22 +828,34 @@
               target="_blank"
               aria-label="Facebook"
               class="social-icon"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
+            >
+              <img
+                src="https://img.icons8.com/color/48/facebook-new.png"
+                alt="Facebook"
+              />
+            </a>
             <a
               href="https://www.instagram.com/voxentech"
               target="_blank"
               aria-label="Instagram"
               class="social-icon"
-              ><i class="fab fa-instagram"></i
-            ></a>
+            >
+              <img
+                src="https://img.icons8.com/color/48/instagram-new.png"
+                alt="Instagram"
+              />
+            </a>
             <a
               href="https://www.linkedin.com/company/voxentech"
               target="_blank"
               aria-label="LinkedIn"
               class="social-icon"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
+            >
+              <img
+                src="https://img.icons8.com/color/48/linkedin.png"
+                alt="LinkedIn"
+              />
+            </a>
           </div>
         </div>
 
@@ -914,31 +925,10 @@
         const mobileMenuBtn = document.getElementById("mobileMenuBtn");
         const navMenu = document.getElementById("navMenu");
 
-        if (!mobileMenuBtn || !navMenu) return;
-
-        // Toggle mobile menu
-        mobileMenuBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          navMenu.classList.toggle("active");
-          mobileMenuBtn.textContent = navMenu.classList.contains("active")
-            ? "✕"
-            : "☰";
-        });
-
-        // Close mobile menu when a nav link is clicked
-        navMenu.addEventListener("click", (e) => {
-          if (e.target.tagName === "A") {
-            navMenu.classList.remove("active");
-            mobileMenuBtn.textContent = "☰";
-          }
-        });
-
-        // Close mobile menu when clicking outside of it
-        document.addEventListener("click", () => {
-          if (navMenu.classList.contains("active")) {
-            navMenu.classList.remove("active");
-            mobileMenuBtn.textContent = "☰";
-          }
+        mobileMenuBtn.addEventListener("click", () => {
+          const isActive = navMenu.classList.toggle("active");
+          mobileMenuBtn.textContent = isActive ? "✕" : "☰";
+          mobileMenuBtn.setAttribute("aria-expanded", isActive);
         });
       });
     </script>
