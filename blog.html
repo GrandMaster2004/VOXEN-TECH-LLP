@@ -49,6 +49,7 @@
         color: #333;
         overflow-x: hidden;
         padding-top: 80px; /* Global offset for fixed header */
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
 
       a {
@@ -207,6 +208,7 @@
       .latest-insights-section {
         background: #f9f9f9;
         padding-top: clamp(2.5rem, 8vw, 4rem);
+        transition: background-color 0.3s ease;
       }
 
       .section-title {
@@ -215,6 +217,7 @@
         font-weight: 700;
         text-align: center;
         margin-bottom: 2.5rem;
+        transition: color 0.3s ease;
       }
 
       .insights-cards-container {
@@ -232,7 +235,8 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         display: flex;
         flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background-color 0.3s ease;
       }
 
       .Insightblog-card:hover {
@@ -257,6 +261,7 @@
         color: #777;
         font-size: 0.85rem;
         margin-bottom: 0.75rem;
+        transition: color 0.3s ease;
       }
 
       .Insightblog-title {
@@ -265,6 +270,7 @@
         line-height: 1.4;
         color: var(--dark-purple);
         margin-bottom: 0.75rem;
+        transition: color 0.3s ease;
       }
 
       .Insightblog-description {
@@ -273,6 +279,7 @@
         line-height: 1.6;
         margin-bottom: 1.5rem;
         flex-grow: 1;
+        transition: color 0.3s ease;
       }
 
       .read-article-button {
@@ -350,9 +357,10 @@
 
       /* --- 6. Footer --- */
       .footer {
+        margin-top: 2rem;
         background-color: var(--dark-purple);
         color: var(--text-muted);
-        padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
+        padding: 2rem 0rem 1rem 0rem;
       }
       .footer-content {
         display: flex;
@@ -516,6 +524,39 @@
       @media (max-width: 480px) {
         .insights-cards-container {
           grid-template-columns: 1fr;
+        }
+      }
+
+      /* --- 8. Dark Mode Styles --- */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #121212;
+          color: #e0e0e0;
+        }
+        .latest-insights-section {
+          background: #1c1c1c;
+        }
+        .section-title {
+          color: #f5f5f5;
+        }
+        .Insightblog-card {
+          background: #2a2a2a;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        .Insightblog-card:hover {
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+        .Insightblog-date {
+          color: #a0a0a0;
+        }
+        .Insightblog-title {
+          color: var(--text-light);
+        }
+        .Insightblog-description {
+          color: #c0c0c0;
+        }
+        .hero-background img {
+          filter: brightness(0.6);
         }
       }
     </style>

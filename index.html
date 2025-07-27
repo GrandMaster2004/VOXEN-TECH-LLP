@@ -45,7 +45,9 @@
       body {
         font-family: "Poppins", sans-serif;
         background-color: #fff;
+        color: #333;
         overflow-x: hidden; /* Prevents horizontal scroll */
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
 
       /* --- 2. Header & Navigation --- */
@@ -57,6 +59,7 @@
         left: 0;
         width: 100%;
         z-index: 1000;
+        transition: background-color 0.3s ease;
       }
       .nav-container {
         max-width: 1280px;
@@ -265,9 +268,11 @@
         font-weight: 700;
         color: #333;
         margin-bottom: 50px;
+        transition: color 0.3s ease;
       }
       .services-section {
         background-color: #f9f9f9;
+        transition: background-color 0.3s ease;
       }
       .services-grid {
         display: grid;
@@ -283,7 +288,8 @@
         overflow: hidden;
         min-height: 392px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background-color 0.3s ease;
         display: flex;
         flex-direction: column;
       }
@@ -344,6 +350,7 @@
       .about-us-sectionhome {
         background-color: var(--dark-purple);
         color: white;
+        transition: background-color 0.3s ease;
       }
       .about-us-inner-wrapper {
         display: flex;
@@ -397,7 +404,6 @@
         border-radius: 20px;
         overflow: hidden;
         position: relative;
-        /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
       }
       .about-us-slide {
         position: absolute;
@@ -422,6 +428,7 @@
         color: white;
         padding: 60px 20px;
         margin: 1rem 0rem 0rem;
+        transition: background-color 0.3s ease;
       }
       .stats-grid {
         display: flex;
@@ -444,88 +451,137 @@
         font-size: 1.1rem;
       }
 
-      /* --- 6. Why Choose Us (Accordion) Section --- */
+      /* --- 6. Why Choose Us Section --- */
       .why-choose-us {
         background-color: #f9f9f9;
+        transition: background-color 0.3s ease;
       }
-      .why-choose-us .accordion {
+      .wcu-container {
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
         gap: 20px;
         min-height: 450px;
       }
-      .accordion-item {
+      .wcu-card {
         flex: 1;
-        border-radius: 20px;
+        border-radius: 25px;
         overflow: hidden;
         position: relative;
         cursor: pointer;
         transition: flex 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
         background-size: cover;
         background-position: center;
+        color: white;
       }
-      .accordion-item:hover,
-      .accordion-item.active {
-        flex: 5;
+      .wcu-card.active {
+        flex: 4;
       }
-      .accordion-item::before {
+      .wcu-card::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.8),
-          rgba(0, 0, 0, 0.1)
-        );
+        background: rgba(0, 0, 0, 0.3);
         z-index: 1;
         transition: background 0.5s ease;
       }
-      .accordion-item:hover::before {
-        background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.9),
-          rgba(0, 0, 0, 0.2)
-        );
+      .wcu-card.active::before {
+        background: rgba(0, 0, 0, 0.5);
       }
-      .accordion-content {
+      .wcu-content-collapsed {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        inset: 0;
         z-index: 2;
-        color: white;
-        padding: 30px;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
-      }
-      .accordion-item:hover .accordion-content,
-      .accordion-item.active .accordion-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        transition: opacity 0.4s ease, transform 0.4s ease;
         opacity: 1;
-        transform: translateY(0);
       }
-      .accordion-title-vertical {
-        position: absolute;
-        z-index: 2;
-        color: white;
+      .wcu-content-collapsed i {
+        font-size: 2.5rem;
+      }
+      .wcu-title-vertical {
         font-size: 1.5rem;
         font-weight: 600;
         writing-mode: vertical-rl;
-        left: 50%;
-        top: 50%;
-        transform: translateX(-50%) translateY(-50%) rotate(180deg);
+        transform: rotate(180deg);
         white-space: nowrap;
-        transition: opacity 0.3s ease;
+      }
+      .wcu-content-expanded {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 40px;
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+      }
+      .wcu-content-expanded i {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        background-color: rgba(255, 255, 255, 0.15);
+        padding: 12px;
+        border-radius: 50%;
+        line-height: 1;
+        width: 48px;
+        height: 48px;
+        text-align: center;
+      }
+      .wcu-content-expanded h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .wcu-content-expanded p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .wcu-card.active .wcu-content-collapsed {
+        opacity: 0;
+        transform: scale(0.95);
         pointer-events: none;
       }
-      .accordion-item:hover .accordion-title-vertical,
-      .accordion-item.active .accordion-title-vertical {
-        opacity: 0;
+      .wcu-card.active .wcu-content-expanded {
+        opacity: 1;
+        transform: scale(1);
       }
-      .accordion-content h3 {
-        font-size: 1.8rem;
-        margin-bottom: 10px;
+
+      /* --- 6.5 Portfolio Section --- */
+      .portfolio-section {
+        background-color: #f9f9f9;
+        padding-top: 0; /* It follows a section with the same BG, so remove top padding */
+        transition: background-color 0.3s ease;
+      }
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .portfolio-item {
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        aspect-ratio: 4 / 3;
+      }
+      .portfolio-item:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+      }
+      .portfolio-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
       }
 
       /* --- 7. Testimonials & Tech Slider --- */
@@ -533,6 +589,7 @@
         background-color: var(--dark-purple);
         color: white;
         text-align: center;
+        transition: background-color 0.3s ease;
       }
       .testimonials-section .section-title {
         color: white;
@@ -574,6 +631,7 @@
         padding: 32px 24px;
         color: black;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
       .testimonial-avatar {
         width: 120px;
@@ -581,6 +639,7 @@
         border-radius: 50%;
         object-fit: cover;
         margin-bottom: 16px;
+        transition: border 0.3s ease;
       }
       .testimonial-stars {
         width: 120px;
@@ -613,10 +672,88 @@
         background: #5a2b54;
       }
 
+      /* --- 8. Insights Section --- */
+      .insights-section {
+        background-color: #f9f9f9;
+        padding-top: 80px;
+        transition: background-color 0.3s ease;
+      }
+      .insights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .insight-card {
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background-color 0.3s ease;
+      }
+      .insight-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+      .insight-card-image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+      }
+      .insight-card-content {
+        padding: 20px 24px 24px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+      .insight-card-meta {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 12px;
+        transition: color 0.3s ease;
+      }
+      .insight-card-title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #343a40;
+        margin-bottom: 10px;
+        line-height: 1.4;
+        transition: color 0.3s ease;
+      }
+      .insight-card-description {
+        font-size: 0.95rem;
+        color: #495057;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        flex-grow: 1; /* Pushes button to the bottom */
+        transition: color 0.3s ease;
+      }
+      .insight-card-button {
+        background-color: #e9ecef;
+        color: #495057;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        text-align: center;
+        align-self: flex-start;
+        transition: all 0.3s ease;
+      }
+      .insight-card-button:hover {
+        background-color: var(--primary-purple);
+        color: #fff;
+      }
+
       .tech-slider-section {
         padding: 60px 0;
         background: #fff;
         overflow: hidden;
+        transition: background-color 0.3s ease;
       }
       .infinite-slider {
         display: flex;
@@ -628,6 +765,7 @@
         margin: 0 40px;
         filter: grayscale(1);
         opacity: 0.7;
+        transition: filter 0.3s ease;
       }
 
       /* --- 8. CTA Section --- */
@@ -635,6 +773,7 @@
         background-color: var(--dark-purple);
         color: white;
         text-align: center;
+        transition: background-color 0.3s ease;
       }
       .project-cta-block__wrapper {
         max-width: 800px;
@@ -692,7 +831,8 @@
       .footer {
         background-color: var(--dark-purple);
         color: var(--text-muted);
-        padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
+        padding: 2rem 0rem 1rem 0rem;
+        transition: background-color 0.3s ease;
       }
       .footer-content {
         display: flex;
@@ -708,9 +848,8 @@
       .footer-column.footer-about {
         flex: 1.5;
         min-width: 280px;
-        text-align: center; /* ADDED: Center align content in this column */
+        text-align: center;
       }
-      /* ADDED: Style for the logo link to behave like an inline-block */
       .footer-about .logo-section {
         display: inline-flex;
         text-decoration: none;
@@ -741,7 +880,6 @@
         line-height: 1.7;
         margin-bottom: 1.5rem;
       }
-      /* ADDED: Override for paragraph to be left-aligned on desktop */
       .footer-column.footer-about > p {
         text-align: left;
       }
@@ -749,7 +887,7 @@
         display: flex;
         gap: 1rem;
         margin-top: 1rem;
-        justify-content: center; /* ADDED: Ensure icons are centered */
+        justify-content: center;
       }
       .footer-social-icons .social-icon {
         line-height: 0;
@@ -862,31 +1000,55 @@
         .about-us-heading {
           font-size: 2.2rem;
         }
-        .why-choose-us .accordion {
-          flex-direction: column; /* Stack accordion items vertically */
+        .wcu-container {
+          flex-direction: column;
           min-height: auto;
+          gap: 15px;
         }
-        .accordion-item {
-          height: 100px; /* Collapsed height */
-          flex: auto !important; /* Reset flex behavior */
+        .wcu-card {
+          height: 80px;
+          flex: auto !important; /* Reset flex behavior for mobile */
           transition: height 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        .accordion-item:hover,
-        .accordion-item.active {
-          height: 300px; /* Expanded height */
+        .wcu-card.active {
+          height: 240px;
         }
-        .accordion-title-vertical {
-          writing-mode: horizontal-tb; /* Horizontal title */
-          transform: translate(-50%, -50%);
-          white-space: normal;
-          text-align: center;
+        .wcu-card:hover {
+          height: 80px;
         }
-        .accordion-item:hover .accordion-title-vertical,
-        .accordion-item.active .accordion-title-vertical {
-          opacity: 0;
+        .wcu-card.active:hover {
+          height: 240px;
         }
-        .accordion-content {
-          transform: translateY(10px);
+
+        .wcu-content-collapsed {
+          flex-direction: row;
+          justify-content: flex-start;
+          padding: 0 30px;
+          gap: 1.5rem;
+        }
+        .wcu-title-vertical {
+          writing-mode: horizontal-tb;
+          transform: none;
+          font-size: 1.2rem;
+        }
+        .wcu-content-expanded {
+          padding: 20px 30px;
+          justify-content: center;
+          align-items: flex-start;
+          text-align: left;
+        }
+        .wcu-content-expanded i {
+          display: none;
+        }
+        .wcu-content-expanded h3 {
+          font-size: 1.5rem;
+        }
+        .wcu-content-expanded p {
+          font-size: 0.9rem;
+        }
+
+        .portfolio-grid {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
       }
 
@@ -965,8 +1127,13 @@
           height: 300px;
         }
         .testimonial-card {
-          flex-basis: 85vw; /* Make cards wider on mobile */
+          flex-basis: 85vw;
           max-width: 85vw;
+        }
+
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+          gap: 25px;
         }
 
         /* Responsive Footer */
@@ -1028,6 +1195,113 @@
         .infinite-slider img {
           height: 60px;
           margin: 0 20px;
+        }
+      }
+
+      /* --- 12. Dark Mode Styles (Auto System Default) --- */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --primary-purple: #9d6595;
+          --dark-purple: #221c33;
+          --card-bg: #4a414e;
+          --light-accent: #5e4a4a;
+          --text-muted: #b0abbc;
+        }
+
+        body {
+          background-color: #121212;
+          color: #e0e0e0;
+        }
+
+        .services-section,
+        .why-choose-us,
+        .portfolio-section,
+        .insights-section {
+          background-color: #1c1c1c;
+        }
+
+        .section-title {
+          color: #f5f5f5;
+        }
+
+        /* Special handling for the section title with inline color */
+        h2.section-title[style*="#5a2b54"] {
+          color: #d8a8d1 !important;
+        }
+
+        .secondary-button {
+          background: #3a3a3a;
+          color: white;
+          border: 1px solid var(--primary-purple);
+        }
+
+        .secondary-button:hover {
+          background: var(--primary-purple);
+          color: white;
+        }
+
+        .about-us-learn-more-button {
+          background-color: #493f50;
+          color: #f0f0f0;
+        }
+
+        .about-us-learn-more-button:hover {
+          background-color: #e0e0e0;
+          color: #000;
+        }
+
+        .service-card {
+          background: #2a2a2a;
+        }
+
+        .testimonial-card {
+          background: #2a2a2a;
+          color: #e0e0e0;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .testimonial-avatar {
+          border: 2px solid var(--primary-purple);
+        }
+
+        .insight-card {
+          background: #2a2a2a;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .insight-card-meta {
+          color: #a9a4b3;
+        }
+
+        .insight-card-title {
+          color: #ffffff;
+        }
+
+        .insight-card-description {
+          color: #c0c0c0;
+        }
+
+        .insight-card-button {
+          background-color: #3f3f3f;
+          color: #e0e0e0;
+        }
+
+        .insight-card-button:hover {
+          background-color: var(--primary-purple);
+          color: #fff;
+        }
+
+        .tech-slider-section {
+          background: #121212;
+        }
+
+        .infinite-slider img {
+          filter: grayscale(1) invert(1) brightness(1.2);
+          opacity: 0.8;
+        }
+
+        div[style*="background-color: #ffffff"] {
+          background-color: #121212 !important;
         }
       }
     </style>
@@ -1259,46 +1533,18 @@
       </section>
 
       <section class="why-choose-us section-padding">
-        <h2 class="section-title">Why Choose VOXEN TECH</h2>
-        <div class="accordion">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="wcu-container">
           <div
-            class="accordion-item active"
-            style="
-              background-image: url('https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            "
+            class="wcu-card"
+            style="background-image: url('./assets/images/why\ 1.png')"
           >
-            <div class="accordion-title-vertical">Skilled Team</div>
-            <div class="accordion-content">
-              <h3>Skilled Team</h3>
-              <p>
-                Our team comprises experienced and highly skilled professionals
-                dedicated to your success.
-              </p>
+            <div class="wcu-content-collapsed">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="wcu-title-vertical">Fast Delivery</span>
             </div>
-          </div>
-          <div
-            class="accordion-item"
-            style="
-              background-image: url('https://images.pexels.com/photos/7841793/pexels-photo-7841793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            "
-          >
-            <div class="accordion-title-vertical">Affordable Pricing</div>
-            <div class="accordion-content">
-              <h3>Affordable Pricing</h3>
-              <p>
-                We offer competitive and transparent pricing to provide the best
-                value.
-              </p>
-            </div>
-          </div>
-          <div
-            class="accordion-item"
-            style="
-              background-image: url('https://images.pexels.com/photos/163822/speed-background-light-effect-163822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            "
-          >
-            <div class="accordion-title-vertical">Fast Delivery</div>
-            <div class="accordion-content">
+            <div class="wcu-content-expanded">
+              <i class="fa-solid fa-cart-shopping"></i>
               <h3>Fast Delivery</h3>
               <p>
                 We ensure quick and efficient delivery of our services without
@@ -1307,13 +1553,49 @@
             </div>
           </div>
           <div
-            class="accordion-item"
-            style="
-              background-image: url('https://images.pexels.com/photos/4021779/pexels-photo-4021779.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            "
+            class="wcu-card"
+            style="background-image: url('./assets/images/why\ 2.png')"
           >
-            <div class="accordion-title-vertical">Ongoing Support</div>
-            <div class="accordion-content">
+            <div class="wcu-content-collapsed">
+              <i class="fa-solid fa-users"></i>
+              <span class="wcu-title-vertical">Skilled Team</span>
+            </div>
+            <div class="wcu-content-expanded">
+              <i class="fa-solid fa-users"></i>
+              <h3>Skilled Team</h3>
+              <p>
+                Our team comprises experienced and highly skilled professionals
+                dedicated to your success.
+              </p>
+            </div>
+          </div>
+          <div
+            class="wcu-card"
+            style="background-image: url('./assets/images/why\ 3.png')"
+          >
+            <div class="wcu-content-collapsed">
+              <i class="fa-solid fa-tag"></i>
+              <span class="wcu-title-vertical">Affordable Pricing</span>
+            </div>
+            <div class="wcu-content-expanded">
+              <i class="fa-solid fa-tag"></i>
+              <h3>Affordable Pricing</h3>
+              <p>
+                We offer competitive and transparent pricing to provide the best
+                value.
+              </p>
+            </div>
+          </div>
+          <div
+            class="wcu-card active"
+            style="background-image: url('./assets/images/why\ 4.png')"
+          >
+            <div class="wcu-content-collapsed">
+              <i class="fa-solid fa-headset"></i>
+              <span class="wcu-title-vertical">Ongoing Support</span>
+            </div>
+            <div class="wcu-content-expanded">
+              <i class="fa-solid fa-headset"></i>
               <h3>Ongoing Support</h3>
               <p>
                 We provide continuous support and maintenance to keep your
@@ -1324,6 +1606,29 @@
         </div>
       </section>
 
+      <section class="portfolio-section section-padding">
+        <h2 class="section-title">Our Portfolio</h2>
+        <div class="portfolio-grid">
+          <div class="portfolio-item">
+            <img
+              src="https://images.pexels.com/photos/7973302/pexels-photo-7973302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt="E-commerce Platform Portfolio"
+            />
+          </div>
+          <div class="portfolio-item">
+            <img
+              src="https://images.pexels.com/photos/4761793/pexels-photo-4761793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt="Fitness App Portfolio"
+            />
+          </div>
+          <div class="portfolio-item">
+            <img
+              src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt="Data Analytics Dashboard Portfolio"
+            />
+          </div>
+        </div>
+      </section>
       <section class="testimonials-section section-padding">
         <h2 class="section-title">What Our Clients Say</h2>
         <div class="testimonial-scroller-wrapper">
@@ -1440,6 +1745,71 @@
         </button>
       </section>
 
+      <section class="insights-section section-padding">
+        <h2 class="section-title">Latest Insights</h2>
+        <div class="insights-grid">
+          <div class="insight-card">
+            <img
+              src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt="Mobile App Development Trends"
+              class="insight-card-image"
+            />
+            <div class="insight-card-content">
+              <div class="insight-card-meta">
+                <span>June 15, 2023</span> &bull; <span>5 min read</span>
+              </div>
+              <h3 class="insight-card-title">
+                Top 5 Trends in Mobile App Development for 2025
+              </h3>
+              <p class="insight-card-description">
+                Discover the emerging technologies and approaches that will
+                shape mobile app development in the coming years.
+              </p>
+              <a href="#" class="insight-card-button">Read Article</a>
+            </div>
+          </div>
+          <div class="insight-card">
+            <img
+              src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt="Custom Software for Business"
+              class="insight-card-image"
+            />
+            <div class="insight-card-content">
+              <div class="insight-card-meta">
+                <span>May 28, 2023</span> &bull; <span>7 min read</span>
+              </div>
+              <h3 class="insight-card-title">
+                How Custom Software Helps Your Business Scale
+              </h3>
+              <p class="insight-card-description">
+                Learn why off-the-shelf solutions often fall short and how
+                custom software can drive your business growth.
+              </p>
+              <a href="#" class="insight-card-button">Read Article</a>
+            </div>
+          </div>
+          <div class="insight-card">
+            <img
+              src="https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt="Custom Billing System"
+              class="insight-card-image"
+            />
+            <div class="insight-card-content">
+              <div class="insight-card-meta">
+                <span>April 10, 2023</span> &bull; <span>6 min read</span>
+              </div>
+              <h3 class="insight-card-title">
+                Why Your Ecommerce Store Needs a Custom Billing System
+              </h3>
+              <p class="insight-card-description">
+                Explore the benefits of custom billing solutions over generic
+                platforms for your online business.
+              </p>
+              <a href="#" class="insight-card-button">Read Article</a>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="project-cta-block section-padding" id="contact">
         <div class="project-cta-block__wrapper">
           <h3 class="project-cta-block__title">Ready to Start Your Project?</h3>
@@ -1613,7 +1983,7 @@
             heroSlides[currentHeroSlide].classList.remove("active");
             currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
             heroSlides[currentHeroSlide].classList.add("active");
-          }, 5000); // Changed interval to 5s
+          }, 5000);
         }
 
         // --- About Us Slider ---
@@ -1627,20 +1997,43 @@
           }, 2000);
         }
 
-        // --- Accordion Interaction for Touch/Click ---
-        const accordionItems = document.querySelectorAll(".accordion-item");
-        accordionItems.forEach((item) => {
-          item.addEventListener("click", () => {
-            // On mobile/tablet, a click will toggle the 'active' class
-            if (window.innerWidth <= 1024) {
+        // --- Why Choose Us Card Interaction ---
+        const wcuCards = document.querySelectorAll(".wcu-card");
+        const cardContainer = document.querySelector(".wcu-container");
+
+        // Logic for Mobile/Tablet (uses click)
+        if (window.innerWidth <= 1024) {
+          wcuCards.forEach((item) => {
+            item.addEventListener("click", () => {
               const isActive = item.classList.contains("active");
-              accordionItems.forEach((i) => i.classList.remove("active"));
+              wcuCards.forEach((i) => i.classList.remove("active"));
               if (!isActive) {
                 item.classList.add("active");
               }
-            }
+            });
           });
-        });
+        }
+
+        // Logic for Desktop (uses hover)
+        else {
+          const defaultActiveCard = document.querySelector(".wcu-card.active");
+
+          wcuCards.forEach((card) => {
+            card.addEventListener("mouseenter", () => {
+              wcuCards.forEach((c) => c.classList.remove("active"));
+              card.classList.add("active");
+            });
+          });
+
+          if (cardContainer) {
+            cardContainer.addEventListener("mouseleave", () => {
+              wcuCards.forEach((c) => c.classList.remove("active"));
+              if (defaultActiveCard) {
+                defaultActiveCard.classList.add("active");
+              }
+            });
+          }
+        }
       });
     </script>
   </body>
