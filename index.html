@@ -523,17 +523,19 @@
         transform: scale(0.95);
         transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
       }
+      /* --- THIS IS THE CORRECTED CODE --- */
       .wcu-content-expanded i {
-        font-size: 2rem;
+        font-size: 1.5rem; /* Adjusted for better visual balance */
         margin-bottom: 1rem;
         background-color: rgba(255, 255, 255, 0.15);
-        padding: 12px;
         border-radius: 50%;
-        line-height: 1;
         width: 48px;
         height: 48px;
-        text-align: center;
+        display: inline-flex; /* Use flexbox for centering */
+        align-items: center; /* Vertical centering */
+        justify-content: center; /* Horizontal centering */
       }
+      /* --- END OF CORRECTION --- */
       .wcu-content-expanded h3 {
         font-size: 1.8rem;
         font-weight: 600;
@@ -556,44 +558,117 @@
       /* --- 6.5 Portfolio Section --- */
       .portfolio-section {
         background-color: #f9f9f9;
-        padding-top: 0; /* It follows a section with the same BG, so remove top padding */
+        padding-top: 0;
         transition: background-color 0.3s ease;
       }
       .portfolio-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        display: flex; /* Using flexbox for better alignment of fixed-size items */
+        flex-wrap: wrap;
+        justify-content: center; /* This will center the items horizontally */
         gap: 30px;
         max-width: 1280px;
         margin: 0 auto;
       }
       .portfolio-item {
+        position: relative;
         overflow: hidden;
         border-radius: 20px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        aspect-ratio: 4 / 3;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        width: 370px; /* Fixed width as requested */
+        height: 498px; /* Fixed height as requested */
+        background: #fff;
+        flex-shrink: 0; /* Prevents items from shrinking */
       }
       .portfolio-item:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        transform: translateY(-8px);
+        box-shadow: 0 16px 24px rgba(0, 0, 0, 0.12);
       }
       .portfolio-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
+        transition: transform 0.4s ease;
+      }
+      .portfolio-item:hover img {
+        transform: scale(1.05);
+      }
+      .portfolio-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        padding: 20px;
+        transform: translateY(100%);
+        opacity: 0;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          opacity 0.4s ease;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .portfolio-item:hover .portfolio-overlay {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .portfolio-content h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2d2640; /* Match dark purple */
+        margin: 0 0 8px 0;
+      }
+      .portfolio-content p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #4c4c4c;
+        margin-bottom: 15px;
+      }
+      .portfolio-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .portfolio-tags span {
+        background-color: #e9ecef;
+        color: #495057;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
       }
 
       /* --- 7. Testimonials & Tech Slider --- */
       .testimonials-section {
-        background-color: var(--dark-purple);
-        color: white;
+        background-color: #f9f9f9; /* Sets the light background for the top part */
+        color: #333; /* Changes default text color to be readable on light bg */
         text-align: center;
+        position: relative; /* Required for positioning the new background layer */
+        z-index: 1;
+        overflow: hidden; /* Ensures the new background layer doesn't overflow */
         transition: background-color 0.3s ease;
       }
-      .testimonials-section .section-title {
-        color: white;
+
+      /* This creates the dark purple background for the bottom half */
+      .testimonials-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 55%; /* Covers the bottom 65% of the section. You can adjust this value! */
+        background-color: var(--dark-purple);
+        z-index: -1; /* Puts this background layer behind the content */
+        transition: background-color 0.3s ease;
       }
+
+      .testimonials-section .section-title {
+        color: #333; /* Ensures the title is dark and readable */
+        position: relative; /* Keeps it above the ::before pseudo-element */
+        z-index: 2;
+      }
+
       .testimonial-scroller-wrapper {
         overflow: hidden;
         max-width: 100%;
@@ -612,15 +687,18 @@
           transparent
         );
       }
+
       .testimonial-scroller-wrapper:hover .testimonial-cards-container {
         animation-play-state: paused;
       }
+
       .testimonial-cards-container {
         display: flex;
         width: fit-content;
         gap: 24px;
         animation: scroll-testimonials 40s linear infinite;
       }
+
       .testimonial-card {
         flex: 0 0 350px;
         background: #faf2f2;
@@ -633,6 +711,7 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s ease, color 0.3s ease;
       }
+
       .testimonial-avatar {
         width: 120px;
         height: 120px;
@@ -641,21 +720,25 @@
         margin-bottom: 16px;
         transition: border 0.3s ease;
       }
+
       .testimonial-stars {
         width: 120px;
         height: auto;
         margin-bottom: 16px;
       }
+
       .testimonial-name {
         font-size: 1.4rem;
         font-weight: 600;
         margin-bottom: 16px;
       }
+
       .testimonial-quote {
         font-size: 1rem;
         line-height: 1.6;
         flex-grow: 1;
       }
+
       .success-story-button {
         background: var(--primary-purple);
         color: white;
@@ -668,6 +751,7 @@
         cursor: pointer;
         transition: background 0.3s;
       }
+
       .success-story-button:hover {
         background: #5a2b54;
       }
@@ -1198,13 +1282,22 @@
         }
       }
 
+      /* Responsive adjustment for portfolio items on very small screens */
+      @media (max-width: 420px) {
+        .portfolio-item {
+          width: 100%; /* Let the item take the full width */
+          height: auto; /* Adjust height automatically */
+          aspect-ratio: 370 / 498; /* Maintain the requested proportions */
+        }
+      }
+
       /* --- 12. Dark Mode Styles (Auto System Default) --- */
       @media (prefers-color-scheme: dark) {
         :root {
           --primary-purple: #9d6595;
           --dark-purple: #221c33;
           --card-bg: #4a414e;
-          --light-accent: #5e4a4a;
+          --light-accent: #e5c4c4;
           --text-muted: #b0abbc;
         }
 
@@ -1254,12 +1347,40 @@
           background: #2a2a2a;
         }
 
+        /* Dark mode for new portfolio styles */
+        .portfolio-item {
+          background: #2a2a2a;
+        }
+        .portfolio-overlay {
+          background: rgba(30, 30, 30, 0.85);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .portfolio-content h3 {
+          color: #e5c4c4; /* Match light accent */
+        }
+        .portfolio-content p {
+          color: #b0abbc; /* Match text muted */
+        }
+        .portfolio-tags span {
+          background-color: #3f3f3f;
+          color: #e0e0e0;
+        }
+
+        /* Dark mode for testimonials section */
+        .testimonials-section {
+          background-color: #1c1c1c; /* Match dark background of the section above */
+          color: #e0e0e0;
+        }
+        .testimonials-section .section-title {
+          color: #f5f5f5; /* Make sure title is light in dark mode */
+        }
         .testimonial-card {
           background: #2a2a2a;
           color: #e0e0e0;
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
-
         .testimonial-avatar {
           border: 2px solid var(--primary-purple);
         }
@@ -1611,24 +1732,64 @@
         <div class="portfolio-grid">
           <div class="portfolio-item">
             <img
-              src="https://images.pexels.com/photos/7973302/pexels-photo-7973302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src="./assets/images/port1.png"
               alt="E-commerce Platform Portfolio"
             />
+            <div class="portfolio-overlay">
+              <div class="portfolio-content">
+                <h3>E-commerce Platform</h3>
+                <p>
+                  A sleek, modern e-commerce interface for a fashion brand,
+                  focusing on user experience.
+                </p>
+                <div class="portfolio-tags">
+                  <span>React</span>
+                  <span>Node.js</span>
+                  <span>Stripe</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-item">
+            <img src="./assets/images/port2.png" alt="Fitness App Portfolio" />
+            <div class="portfolio-overlay">
+              <div class="portfolio-content">
+                <h3>Fitness Mobile App</h3>
+                <p>
+                  A cross-platform fitness application with workout tracking and
+                  nutrition planning features.
+                </p>
+                <div class="portfolio-tags">
+                  <span>iOS</span>
+                  <span>Android</span>
+                  <span>React Native</span>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="portfolio-item">
             <img
-              src="https://images.pexels.com/photos/4761793/pexels-photo-4761793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Fitness App Portfolio"
-            />
-          </div>
-          <div class="portfolio-item">
-            <img
-              src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src="./assets/images/port3.png"
               alt="Data Analytics Dashboard Portfolio"
             />
+            <div class="portfolio-overlay">
+              <div class="portfolio-content">
+                <h3>Analytics Dashboard</h3>
+                <p>
+                  A comprehensive data analytics dashboard for a tech company to
+                  visualize key metrics.
+                </p>
+                <div class="portfolio-tags">
+                  <span>Vue.js</span>
+                  <span>D3.js</span>
+                  <span>Python</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
       <section class="testimonials-section section-padding">
         <h2 class="section-title">What Our Clients Say</h2>
         <div class="testimonial-scroller-wrapper">

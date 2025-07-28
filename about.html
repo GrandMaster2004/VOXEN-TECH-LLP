@@ -11,26 +11,21 @@
       name="description"
       content="Voxen Tech LLP is a leading software, website, and mobile app development company in India. We offer end-to-end branding, digital marketing, social media management, and BPO solutions to grow your business online."
     />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Poppins:wght@400;500;600;700;900&display=swap"
       rel="stylesheet"
     />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-
     <link rel="icon" type="image/png" href="favicon.ico" />
-
     <style>
       /* --- 1. Global Styles & Variables --- */
       :root {
@@ -41,14 +36,14 @@
         --primary-purple: #8b4a84;
         --dark-purple: #2d2640;
         --text-muted: #a9a4b3;
+        --active-card-bg: #2d2640;
+        --inactive-card-bg: #3c3552;
       }
-
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
       html,
       body {
         width: 100%;
@@ -56,20 +51,17 @@
         overflow-x: hidden;
         font-family: "Poppins", sans-serif;
       }
-
       body {
         background-color: #fff;
         color: #333;
         position: relative;
         transition: background-color 0.3s ease, color 0.3s ease;
       }
-
       .content-wrapper {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
       }
-
       /* --- 2. Header & Navigation --- */
       .header {
         background-color: var(--dark-purple);
@@ -146,7 +138,6 @@
         cursor: pointer;
         z-index: 1001;
       }
-
       /* --- 3. Hero Section --- */
       .heroabout-container {
         padding-top: 80px;
@@ -196,7 +187,6 @@
         font-size: 1.5rem;
         font-weight: 500;
       }
-
       /* --- 4. About Us Section --- */
       .about-us-sectionhome {
         padding: 80px 0;
@@ -243,7 +233,6 @@
         height: 100%;
         object-fit: contain;
       }
-
       /* --- 5. Our Mission Section --- */
       .our-mission-section {
         background: var(--dark-bg);
@@ -290,7 +279,6 @@
         font-size: 1rem;
         margin-top: 10px;
       }
-
       /* --- 6. Timeline Sections (Desktop & Mobile) --- */
       .timeline-section-fullwidth {
         background: #b2aeb3;
@@ -364,39 +352,51 @@
       .mobile-timeline-section {
         display: none; /* Hidden on desktop */
       }
-
-      /* --- 7. Core Values Carousel --- */
-      .carousel-section {
+      /* === START: CORE VALUES SECTION CSS (ANIMATION FIXED) === */
+      .core-values-section {
+        background-color: #101010;
         padding: 80px 0;
+        position: relative;
       }
       .section-title {
         text-align: center;
         font-size: 2rem;
         font-weight: 700;
         margin-bottom: 40px;
+        color: #fff;
         transition: color 0.3s ease;
       }
-      .carousel-container {
+      .core-values-container {
+        max-width: 1200px;
+        margin: 0 auto;
         position: relative;
-        overflow: hidden;
-        height: 550px;
+        padding: 0 80px;
       }
-      .carousel-wrapper {
-        display: flex;
+      .core-values-swiper {
+        width: 100%;
+        padding: 50px 0;
+        overflow: visible;
+      }
+      .core-values-swiper .swiper-slide {
+        width: 380px;
+        height: 440px;
+        opacity: 0.4;
+        filter: blur(4px);
+        transform: scale(0.8);
+        /* ANIMATION FIX: Using ease-in-out for a smoother feel */
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out,
+          filter 0.5s ease-in-out;
+      }
+      .core-values-swiper .swiper-slide-active {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+        z-index: 1;
+      }
+      .value-card {
+        width: 100%;
         height: 100%;
-        transition: transform 0.5s ease-in-out;
-      }
-      .slide {
-        min-width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .main-card {
-        width: 433px;
-        height: 480px;
-        background: var(--dark-bg);
+        background: var(--inactive-card-bg);
         color: white;
         border-radius: 20px;
         display: flex;
@@ -405,55 +405,70 @@
         justify-content: center;
         text-align: center;
         padding: 40px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        transition: background-color 0.5s ease-in-out;
       }
-      .main-icon {
-        width: 72px;
-        height: 72px;
-        fill: #d9d9d9;
-        margin-bottom: 20px;
+      .core-values-swiper .swiper-slide-active .value-card {
+        background: var(--active-card-bg);
       }
-      .main-card h2 {
-        font-size: 1.75rem;
-        font-weight: 900;
-        margin-bottom: 20px;
+      .value-icon {
+        margin-bottom: 25px;
       }
-      .main-card p {
+      .value-icon i {
+        font-size: 50px;
+        color: rgba(255, 255, 255, 0.8);
+        transition: color 0.5s ease-in-out;
+      }
+      .core-values-swiper .swiper-slide-active .value-icon i {
+        color: #fff;
+      }
+      .value-card h3 {
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      .value-card p {
         line-height: 1.6;
+        font-size: 1rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.8);
         max-width: 300px;
       }
-      .nav-circle {
+      .core-values-container .swiper-button-prev,
+      .core-values-container .swiper-button-next {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        width: 47px;
-        height: 47px;
-        background: #2d2640;
+        width: 48px;
+        height: 48px;
+        background-color: var(--dark-bg);
         border-radius: 50%;
+        z-index: 10;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 10;
+        color: white;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       }
-      .nav-circle.prev {
-        left: 20px;
+      .core-values-container .swiper-button-prev:hover,
+      .core-values-container .swiper-button-next:hover {
+        background-color: var(--primary-color);
       }
-      .nav-circle.next {
-        right: 20px;
+      .core-values-container .swiper-button-prev::after,
+      .core-values-container .swiper-button-next::after {
+        font-family: swiper-icons;
+        font-size: 1rem;
+        font-weight: bold;
       }
-      .nav-arrow {
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 3px;
+      .core-values-container .swiper-button-prev {
+        left: -60px;
       }
-      .nav-arrow.left {
-        transform: rotate(135deg);
+      .core-values-container .swiper-button-next {
+        right: -60px;
       }
-      .nav-arrow.right {
-        transform: rotate(-45deg);
-      }
-
+      /* === END: CORE VALUES SECTION CSS === */
       /* --- 8. Why Choose Us Section --- */
       .why-choose-us {
         padding: 80px 20px;
@@ -581,7 +596,6 @@
         visibility: visible;
         transition: opacity 0.4s ease 0.2s;
       }
-
       /* --- 9. Technology Stack Section --- */
       .image-slider-section {
         padding: 80px 0;
@@ -605,7 +619,6 @@
           transform: translateX(-1280px);
         }
       }
-
       /* --- 10. Call to Action (CTA) Section --- */
       .build-amazing-section {
         background: var(--dark-bg);
@@ -643,7 +656,6 @@
         font-weight: 500;
         cursor: pointer;
       }
-
       /* --- 11. Footer --- */
       .footer {
         background-color: var(--dark-purple);
@@ -754,7 +766,6 @@
         text-decoration: none;
         color: #999999;
       }
-
       /* --- 12. Responsive --- */
       @media (max-width: 992px) {
         .about-us-inner-wrapper,
@@ -768,26 +779,44 @@
         .mobile-timeline-section {
           display: block;
         }
+        /* === START: Fixed Why Choose Us (Mobile View) === */
+        /* On smaller screens, the accordion stacks vertically. The logic is simplified for a tap-friendly experience. */
         .why-choose-us .accordion {
           flex-direction: column;
           min-height: auto;
           gap: 10px;
         }
-        .accordion-item {
-          transition: min-height 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-          min-height: 100px;
-        }
+        /* Override desktop flex behavior */
         .accordion-item,
         .accordion-item:hover,
         .accordion:has(.accordion-item:hover)
           .accordion-item.active:not(:hover) {
           flex: auto;
         }
-        .accordion-item.active {
-          min-height: 280px;
+        .accordion-item {
+          transition: min-height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+          min-height: 80px; /* Default collapsed height for touch */
         }
-        .accordion-item:hover:not(.active) {
-          min-height: 100px;
+        .accordion-item.active {
+          min-height: 280px; /* Expanded height */
+        }
+        /* Key Fix: The vertical title is changed to a readable horizontal one on mobile. */
+        .accordion-title-vertical {
+          writing-mode: initial; /* Reset from vertical */
+          transform: none; /* Reset rotation */
+          flex-direction: row; /* Align icon and text horizontally */
+          justify-content: flex-start; /* Align to the left */
+          height: 80px; /* Match collapsed height */
+          padding: 0 25px;
+          gap: 20px;
+        }
+        .accordion-title-vertical span {
+          writing-mode: initial;
+          transform: none;
+          font-size: 1.2rem;
+        }
+        .accordion-title-vertical i {
+          font-size: 1.8rem;
         }
         .accordion-content {
           padding: 20px;
@@ -798,14 +827,12 @@
         .accordion-content p {
           font-size: 0.9rem;
         }
-        .accordion-title-vertical span {
-          font-size: 1.2rem;
+        /* Override desktop hover effects that are not needed on mobile */
+        .accordion-item:hover:not(.active) {
+          min-height: 80px; /* Prevent height change on hover */
         }
-        .accordion-title-vertical i {
-          font-size: 1.8rem;
-        }
+        /* === END: Fixed Why Choose Us (Mobile View) === */
       }
-
       @media (max-width: 768px) {
         .header {
           padding: 1rem;
@@ -881,8 +908,19 @@
           flex-direction: column;
           justify-content: center;
         }
+        .core-values-container {
+          padding: 0 15px;
+        }
+        .core-values-swiper .swiper-slide {
+          width: 80vw; /* On mobile, let the card take up more space */
+          height: auto;
+          min-height: 400px;
+        }
+        .core-values-container .swiper-button-prev,
+        .core-values-container .swiper-button-next {
+          display: none;
+        }
       }
-
       /* --- 13. Team Carousel Styles --- */
       .team_center {
         background-color: #1e172f;
@@ -982,7 +1020,6 @@
           padding: 8px;
         }
       }
-
       /* --- 14. Additional Responsive Styles --- */
       @media (max-width: 1159px) {
         .about-us-inner-wrapper {
@@ -1024,9 +1061,6 @@
         .about-us-slider-container {
           height: 250px;
         }
-        .carousel-container {
-          margin-bottom: 40px;
-        }
       }
       @media (max-width: 480px) {
         .heroabout-title {
@@ -1042,7 +1076,6 @@
           height: 120px;
         }
       }
-
       /* --- 15. Dark Mode Styles --- */
       @media (prefers-color-scheme: dark) {
         body {
@@ -1072,8 +1105,11 @@
         .team_center,
         .team-carousel-section,
         .build-amazing-section,
-        .main-card {
+        .value-card {
           background-color: #181224;
+        }
+        .core-values-section {
+          background-color: #101010;
         }
         .team-carousel-member {
           background-color: #2c2142;
@@ -1107,12 +1143,16 @@
         <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
       </div>
     </header>
-
     <div class="heroabout-container" id="heroabout-animated">
       <div class="banner-slides">
         <div
           class="banner-slide active"
-          style="background-image: url('./assets/images/Landing\ About.png')"
+          style="
+            background-image: url('./assets/images/Landing About.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+          "
         ></div>
       </div>
       <div class="heroabout-content">
@@ -1124,7 +1164,6 @@
         </p>
       </div>
     </div>
-
     <section class="about-us-sectionhome">
       <div class="content-wrapper about-us-inner-wrapper">
         <div class="about-us-content-area">
@@ -1157,7 +1196,6 @@
         </div>
       </div>
     </section>
-
     <section class="our-mission-section">
       <div class="content-wrapper mission-content-wrapper">
         <div class="mission-text-content">
@@ -1180,7 +1218,6 @@
         </div>
       </div>
     </section>
-
     <section class="timeline-section-fullwidth">
       <h2 class="section-title">Our Journey</h2>
       <div class="content-wrapper" style="position: relative">
@@ -1221,68 +1258,48 @@
         </div>
       </div>
     </section>
-
     <section class="mobile-timeline-section"></section>
-
-    <section class="carousel-section">
+    <section class="core-values-section">
       <h2 class="section-title">Our Core Values</h2>
-      <div class="carousel-container">
-        <div class="carousel-wrapper" id="carouselWrapper">
-          <div class="slide">
-            <div class="main-card">
-              <svg class="main-icon" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 7C13.1 7 14 7.9 14 9S13.1 11 12 11 10 10.1 10 9 10.9 7 12 7ZM12 17C10.67 17 9.4 16.64 8.31 16L8.33 14.5C8.33 13.17 10.67 12.5 12 12.5S15.67 13.17 15.67 14.5L15.69 16C14.6 16.64 13.33 17 12 17Z"
-                />
-              </svg>
-              <h2>Integrity</h2>
-              <p>
-                We build trust through transparency, honesty, and ethical
-                business practices in all our relationships.
-              </p>
+      <div class="core-values-container">
+        <div class="swiper core-values-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="value-card">
+                <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Integrity</h3>
+                <p>
+                  We build trust through transparency, honesty, and ethical
+                  business practices in all our relationships.
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="slide">
-            <div class="main-card">
-              <svg class="main-icon" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M16 4C18.2 4 20 5.8 20 8S18.2 12 16 12 12 10.2 12 8 13.8 4 16 4ZM8 4C10.2 4 12 5.8 12 8S10.2 12 8 12 4 10.2 4 8 5.8 4 8 4ZM8 13C10.67 13 16 14.33 16 17V20H0V17C0 14.33 5.33 13 8 13ZM16 13C16.67 13 17.27 13.08 17.8 13.2C18.53 13.9 19 14.9 19 16V20H24V17C24 14.33 18.67 13 16 13Z"
-                />
-              </svg>
-              <h2>Collaboration</h2>
-              <p>
-                We believe the best solutions emerge from teamwork—both within
-                our company and with our clients.
-              </p>
+            <div class="swiper-slide">
+              <div class="value-card">
+                <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Innovation</h3>
+                <p>
+                  We constantly push boundaries to create cutting-edge solutions
+                  that set our clients apart in their industries.
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="slide">
-            <div class="main-card">
-              <svg class="main-icon" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M9 21C9 22.1 9.9 23 11 23H13C14.1 23 15 22.1 15 21V20H9V21ZM12 2C8.14 2 5 5.14 5 9C5 11.38 6.19 13.47 8 14.74V17C8 17.55 8.45 18 9 18H15C15.55 18 16 17.55 16 17V14.74C17.81 13.47 19 11.38 19 9C19 5.14 15.86 2 12 2Z"
-                />
-              </svg>
-              <h2>Innovation</h2>
-              <p>
-                We constantly push boundaries to create cutting-edge solutions
-                that set our clients apart in their industries.
-              </p>
+            <div class="swiper-slide">
+              <div class="value-card">
+                <div class="value-icon"><i class="fas fa-users"></i></div>
+                <h3>Collaboration</h3>
+                <p>
+                  We believe the best solutions emerge from teamwork—both within
+                  our company and with our clients.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="nav-circle prev" id="prevSlideBtn">
-          <div class="nav-arrow left"></div>
-        </div>
-        <div class="nav-circle next" id="nextSlideBtn">
-          <div class="nav-arrow right"></div>
-        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </div>
     </section>
-
     <section class="why-choose-us">
       <h2 class="section-title">Why Choose Us</h2>
       <div class="accordion">
@@ -1306,7 +1323,6 @@
             </div>
           </div>
         </div>
-
         <div class="accordion-item">
           <div
             class="item-background"
@@ -1327,7 +1343,6 @@
             </div>
           </div>
         </div>
-
         <div class="accordion-item">
           <div
             class="item-background"
@@ -1348,7 +1363,6 @@
             </div>
           </div>
         </div>
-
         <div class="accordion-item">
           <div
             class="item-background"
@@ -1379,7 +1393,6 @@
         <img src="./assets/images/Frame 39.png" alt="Technology Stack Logos" />
       </div>
     </section>
-
     <div class="team_center">
       <section class="team-carousel-section">
         <h2 class="team-carousel-title">Meet the Team</h2>
@@ -1434,7 +1447,6 @@
         </div>
       </div>
     </section>
-
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-column footer-about">
@@ -1485,7 +1497,6 @@
             </a>
           </div>
         </div>
-
         <div class="footer-column">
           <h3>Quick Links</h3>
           <ul>
@@ -1497,7 +1508,6 @@
             <li><a href="./contactus.html">Contact</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h3>Our Services</h3>
           <ul>
@@ -1517,7 +1527,6 @@
             <li><a href="./services.html#bpo-services">BPO Services</a></li>
           </ul>
         </div>
-
         <div class="footer-column contact-info">
           <h3>Contact Us</h3>
           <p>
@@ -1535,9 +1544,7 @@
           <p><i class="fas fa-clock"></i><span>Mon-Fri: 9AM – 6PM</span></p>
         </div>
       </div>
-
       <div class="footer-separator"></div>
-
       <div class="footer-bottom">
         <p>© 2025 VOXEN TECH LLP. All Rights Reserved.</p>
         <div class="legal-links">
@@ -1546,19 +1553,17 @@
         </div>
       </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // --- Mobile Menu Toggle ---
         const mobileMenuBtn = document.getElementById("mobileMenuBtn");
         const navMenu = document.getElementById("navMenu");
-
         mobileMenuBtn.addEventListener("click", () => {
           const isActive = navMenu.classList.toggle("active");
           mobileMenuBtn.textContent = isActive ? "✕" : "☰";
           mobileMenuBtn.setAttribute("aria-expanded", isActive);
         });
-
         // --- Hero Slideshow ---
         const slides = document.querySelectorAll(".banner-slide");
         let currentSlide = 0;
@@ -1569,7 +1574,6 @@
             slides[currentSlide].classList.add("active");
           }, 3000);
         }
-
         // --- About Us Logo Slider ---
         const aboutSlides = document.querySelectorAll(".about-us-slide");
         let aboutIndex = 0;
@@ -1580,36 +1584,24 @@
             aboutSlides[aboutIndex].classList.add("active-slide");
           }, 2000);
         }
-
-        // --- Core Values Carousel ---
-        const carouselWrapper = document.getElementById("carouselWrapper");
-        if (carouselWrapper) {
-          const prevBtn = document.getElementById("prevSlideBtn");
-          const nextBtn = document.getElementById("nextSlideBtn");
-          const totalSlides = carouselWrapper.children.length;
-          let carouselIndex = 0;
-
-          function updateCarousel() {
-            carouselWrapper.style.transform = `translateX(-${
-              carouselIndex * 100
-            }%)`;
-          }
-
-          nextBtn.addEventListener("click", () => {
-            carouselIndex = (carouselIndex + 1) % totalSlides;
-            updateCarousel();
-          });
-
-          prevBtn.addEventListener("click", () => {
-            carouselIndex = (carouselIndex - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-          });
-
-          setInterval(() => {
-            nextBtn.click();
-          }, 5000);
-        }
-
+        // --- Core Values Swiper (ANIMATION FIXED) ---
+        var coreValuesSwiper = new Swiper(".core-values-swiper", {
+          effect: "slide",
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: "auto",
+          loop: true,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+          /* ANIMATION FIX: Synchronize JS speed with CSS transition duration */
+          speed: 500,
+          navigation: {
+            nextEl: ".core-values-container .swiper-button-next",
+            prevEl: ".core-values-container .swiper-button-prev",
+          },
+        });
         // --- Why Choose Us Click Handler (Accordion) ---
         const accordionItems = document.querySelectorAll(".accordion-item");
         accordionItems.forEach((item) => {

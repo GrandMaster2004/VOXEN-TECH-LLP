@@ -11,7 +11,7 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="icon" type="image/png" href="favicon.ico" />
     <meta
@@ -22,7 +22,6 @@
       Top Software, Website & Mobile App Development Company | Branding &
       Digital Marketing Experts – Voxen Tech LLP
     </title>
-
     <style>
       /* --- Global & Base Styles --- */
       :root {
@@ -49,7 +48,6 @@
       *::after {
         box-sizing: inherit;
       }
-
       /* --- Header & Navigation (Synced with Home Page) --- */
       .header {
         background-color: var(--dark-purple);
@@ -128,7 +126,6 @@
         cursor: pointer;
         z-index: 1001;
       }
-
       /* --- Hero Banner Styles --- */
       .hero-container {
         background-size: cover;
@@ -190,7 +187,6 @@
       .about-us-heading-highlight {
         color: #793271;
       }
-
       /* --- Portfolio Section --- */
       .portfolio-section {
         background-color: #f8f8f8;
@@ -311,7 +307,6 @@
       .portfolio-item:hover .portfolio-buttons {
         transform: translateX(0);
       }
-
       /* --- Client Spotlights Section --- */
       .client-spotlights-section {
         padding: 80px 0;
@@ -352,7 +347,7 @@
       }
       .next-spotlight-button {
         position: absolute;
-        right: -34.5px;
+        right: 10px; /* Changed from -34.5px to 10px to make it visible */
         top: 50%;
         transform: translateY(-50%);
         width: 69px;
@@ -372,7 +367,6 @@
       .next-spotlight-button:hover {
         background-color: #4a405f;
       }
-
       /* --- Vision Section --- */
       .vision-section {
         margin-top: 100px;
@@ -424,7 +418,6 @@
         color: #ffffff;
         transform: translateY(-2px);
       }
-
       /* --- Footer --- */
       footer {
         margin-top: 3rem;
@@ -488,13 +481,13 @@
         gap: 15px;
       }
       .social-icon {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        background: #ffffff;
+        /* Removed default white background here, will be set by specific classes */
         text-decoration: none;
         font-size: 20px;
         transition: transform 0.3s;
@@ -502,10 +495,15 @@
       .social-icon:hover {
         transform: translateY(-3px);
       }
-      .social-icon.facebook .fa-facebook-f {
-        color: #1877f2;
+      /* Corrected styles for Facebook icon */
+      .social-icon.facebook {
+        background-color: #1877f2; /* Blue background */
       }
-      .social-icon.instagram .fa-instagram {
+      .social-icon.facebook .fa-facebook-f {
+        color: white; /* White icon */
+      }
+      /* Corrected styles for Instagram icon */
+      .social-icon.instagram {
         background: radial-gradient(
           circle at 30% 107%,
           #fdf497 0%,
@@ -513,14 +511,22 @@
           #fd5949 45%,
           #d6249f 60%,
           #285aeb 90%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
+        ); /* Gradient background */
+      }
+      .social-icon.instagram .fa-instagram {
+        color: white; /* White icon */
+        -webkit-background-clip: initial; /* Reset to ensure color works */
+        -webkit-text-fill-color: initial; /* Reset to ensure color works */
+        background-clip: initial; /* Reset to ensure color works */
+        text-fill-color: initial; /* Reset to ensure color works */
+      }
+      /* Corrected styles for LinkedIn icon */
+      .social-icon.linkedin {
+        background-color: #0a66c2; /* Blue background */
+        border-radius: 10px; /* Make it a square with rounded corners */
       }
       .social-icon.linkedin .fa-linkedin-in {
-        color: #0a66c2;
+        color: white; /* White icon */
       }
       .contact-info p {
         display: flex;
@@ -547,7 +553,6 @@
         text-decoration: none;
         color: #a9a4b3;
       }
-
       /* --- RESPONSIVE STYLES --- */
       @media (max-width: 768px) {
         /* --- Header for Mobile (Synced with Home Page) --- */
@@ -590,7 +595,6 @@
         .mobile-menu-btn {
           display: block;
         }
-
         /* --- Hero for Mobile --- */
         .hero-container {
           height: 60vh;
@@ -614,7 +618,6 @@
         .hero-subtitle br {
           display: none;
         }
-
         /* --- Portfolio Section for Mobile --- */
         .portfolio-section {
           padding: 40px 0;
@@ -668,7 +671,6 @@
           font-size: 12px;
           padding: 6px 12px;
         }
-
         /* --- Client Spotlights for Mobile --- */
         .client-spotlights-section {
           padding: 40px 0;
@@ -687,12 +689,11 @@
           height: 100%;
         }
         .next-spotlight-button {
-          right: 10px;
+          right: 10px; /* Kept consistent for mobile */
           width: 45px;
           height: 45px;
           background-size: 15px;
         }
-
         /* --- Vision Section for Mobile --- */
         .vision-section {
           height: auto;
@@ -715,7 +716,6 @@
           max-width: 250px;
           height: 50px;
         }
-
         /* --- Footer for Mobile --- */
         .footer-content {
           flex-direction: column;
@@ -745,7 +745,6 @@
           margin-left: 0;
         }
       }
-
       /* --- Dark Mode Styles --- */
       @media (prefers-color-scheme: dark) {
         body {
@@ -795,7 +794,6 @@
         <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
       </div>
     </header>
-
     <div class="hero-container">
       <div class="banner-slides">
         <div class="banner-slide active"></div>
@@ -814,7 +812,6 @@
         </div>
       </div>
     </div>
-
     <section class="portfolio-section">
       <div class="main-content-wrapper">
         <h2 class="section-heading">Portfolio</h2>
@@ -843,7 +840,6 @@
               </div>
             </a>
           </div>
-
           <div class="portfolio-item">
             <a href="services.html#web-development">
               <img
@@ -868,7 +864,6 @@
               </div>
             </a>
           </div>
-
           <div class="portfolio-item">
             <a href="services.html#web-development">
               <img
@@ -894,7 +889,6 @@
               </div>
             </a>
           </div>
-
           <div class="portfolio-item">
             <a href="services.html#web-development">
               <img
@@ -920,7 +914,6 @@
               </div>
             </a>
           </div>
-
           <div class="portfolio-item">
             <a href="services.html#web-development">
               <img
@@ -946,7 +939,6 @@
               </div>
             </a>
           </div>
-
           <div class="portfolio-item">
             <a href="services.html#web-development">
               <img
@@ -974,12 +966,10 @@
         </div>
       </div>
     </section>
-
     <section class="client-spotlights-section">
       <div class="main-content-wrapper">
         <h2 class="section-heading">Client Spotlights</h2>
       </div>
-
       <div class="client-spotlights-slider-wrapper">
         <div class="spotlights-track">
           <div class="spotlight-slide">
@@ -1033,20 +1023,17 @@
         </button>
       </div>
     </section>
-
     <section class="vision-section">
       <div class="vision-content-wrapper">
         <div class="vision-animated-item vision-animate-left">
           <h3 class="vision-title">Let's Turn Your Vision Into Reality</h3>
         </div>
-
         <div class="vision-animated-item vision-animate-right">
           <p class="vision-description">
             Let's discuss how we can help transform your ideas into powerful
             digital solutions.
           </p>
         </div>
-
         <div class="vision-buttons-row">
           <div class="vision-animated-item vision-animate-left">
             <button class="contact-button vision-specific-button">
@@ -1061,7 +1048,6 @@
         </div>
       </div>
     </section>
-
     <footer>
       <div class="footer-content">
         <div class="footer-column footer-column-company-details">
@@ -1102,7 +1088,6 @@
             ></a>
           </div>
         </div>
-
         <div class="footer-column">
           <h3>Quick Links</h3>
           <ul>
@@ -1114,7 +1099,6 @@
             <li><a href="./contactus.html">Contact</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
           <h3>Our Services</h3>
           <ul>
@@ -1134,7 +1118,6 @@
             <li><a href="./services.html#bpo-services">BPO Services</a></li>
           </ul>
         </div>
-
         <div class="footer-column contact-info">
           <h3>Contact Us</h3>
           <p>
@@ -1156,9 +1139,7 @@
           <p><i class="fas fa-clock"></i> Mon-Fri: 9AM – 6PM</p>
         </div>
       </div>
-
       <div class="footer-separator"></div>
-
       <div class="footer-bottom">
         <p>© 2025 VOXEN TECH LLP. All Rights Reserved.</p>
         <div class="legal-links">
@@ -1172,43 +1153,36 @@
         // --- Mobile Menu Toggle (Synced with Home Page) ---
         const mobileMenuBtn = document.getElementById("mobileMenuBtn");
         const navMenu = document.getElementById("navMenu");
-
         mobileMenuBtn.addEventListener("click", () => {
           const isActive = navMenu.classList.toggle("active");
           mobileMenuBtn.textContent = isActive ? "✕" : "☰";
           mobileMenuBtn.setAttribute("aria-expanded", isActive);
         });
-
         // --- Client Spotlight Slider ---
         const track = document.querySelector(".spotlights-track");
         if (track) {
           const slides = Array.from(track.children);
           const nextButton = document.querySelector(".next-spotlight-button");
           let currentIndex = 0;
-
           function updateSlidePosition() {
             if (slides.length === 0) return;
             const slideWidth = slides[0].getBoundingClientRect().width;
             const gapStyle = window.getComputedStyle(track).gap;
             const gap = gapStyle ? parseInt(gapStyle) : 47;
-
             const moveAmount = (slideWidth + gap) * currentIndex;
             track.style.transform = `translateX(-${moveAmount}px)`;
           }
-
           nextButton.addEventListener("click", () => {
             let maxIndex = slides.length - 2; // Default for desktop (shows 2)
             if (window.innerWidth <= 768) {
               maxIndex = slides.length - 1; // For mobile view (shows 1)
             }
-
             currentIndex++;
             if (currentIndex > maxIndex) {
               currentIndex = 0; // Loop back to the start
             }
             updateSlidePosition();
           });
-
           // Recalculate on window resize
           window.addEventListener("resize", updateSlidePosition);
           updateSlidePosition(); // Initial position
